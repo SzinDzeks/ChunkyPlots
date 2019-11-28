@@ -15,7 +15,7 @@ public class PlayerLeashEntityListener implements Listener {
     public void onPlayerLeashEntity(final PlayerLeashEntityEvent event){
         final Location entityLocation = event.getEntity().getLocation();
         final Player player = event.getPlayer();
-        final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlot(entityLocation.getChunk());
+        final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(entityLocation.getChunk());
 
         if(ChunkyPlots.plugin.userManager.getUser(player.getName()).isBypassingRestrictons == true) return;
         else if(ChunkyPlots.plugin.userManager.getUser(player.getName()).cooldown == true) event.setCancelled(true);

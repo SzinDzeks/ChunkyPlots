@@ -40,7 +40,6 @@ public class VisitPoint {
 		if (head.getType().isOccluding()) return false;
 
 		Block ground = feet.getRelative(BlockFace.DOWN);
-		if (!ground.getType().isSolid()) return false;
-		return true;
+		return ground.getType().isSolid();
 	}
 }

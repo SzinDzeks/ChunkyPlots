@@ -15,7 +15,7 @@ public class PlayerBucketEmptyListener implements Listener {
 	public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event){
 		Block block = event.getBlock();
 		if(block != null){
-			Plot plot = ChunkyPlots.plugin.plotManager.getPlot(block.getChunk());
+			Plot plot = ChunkyPlots.plugin.plotManager.getPlotByChunk(block.getChunk());
 			Player player = event.getPlayer();
 			if(!plot.getOwnerNickname().equals(player.getName())) {
 				if (!plot.members.contains(player.getName())) {

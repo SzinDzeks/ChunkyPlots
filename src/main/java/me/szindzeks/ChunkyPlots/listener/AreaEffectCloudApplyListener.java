@@ -24,7 +24,7 @@ public class AreaEffectCloudApplyListener implements Listener {
 			if(ChunkyPlots.plugin.userManager.getUser(((Player) shooter).getName()).isBypassingRestrictons == true) return;
 			Collection<LivingEntity> affectedEntities = event.getAffectedEntities();
 			for (LivingEntity entity : affectedEntities) {
-				Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlot(entity.getLocation().getChunk());
+				Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlotAtChunk(entity.getLocation().getChunk());
 				if (eventPlot != null)
 					if (eventPlot.getOwnerNickname().equals(player.getName())) return;
 					else if (eventPlot.getFlags().get(Flag.SPLASH_POTION_MEMBER) == true && eventPlot.members.contains(player.getName())) return;

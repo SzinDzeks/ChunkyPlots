@@ -26,7 +26,7 @@ public class EntityDamageByEntityListener implements Listener {
 
         }
 
-        Plot plot = ChunkyPlots.plugin.plotManager.getPlot(victim.getLocation().getChunk());
+        Plot plot = ChunkyPlots.plugin.plotManager.getPlotByChunk(victim.getLocation().getChunk());
         if(plot != null)
             if (attacker instanceof Player) {
                 Player player = (Player) attacker;

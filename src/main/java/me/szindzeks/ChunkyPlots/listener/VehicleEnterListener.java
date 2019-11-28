@@ -16,7 +16,7 @@ public class VehicleEnterListener implements Listener {
     public void onVehicleEnter(final VehicleEnterEvent event) {
         final Location vehicleLocation = event.getVehicle().getLocation();
         final Entity entered = event.getEntered();
-        final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlot(vehicleLocation.getChunk());
+        final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(vehicleLocation.getChunk());
 
         if(entered instanceof Player) {
             Player player = (Player) entered;

@@ -12,8 +12,8 @@ public class BlockSpreadListener implements Listener {
 	@EventHandler
 	public void onBlockSpread(BlockSpreadEvent event){
 		PlotManager plotManager = ChunkyPlots.plugin.plotManager;
-		Plot sourceBlockPlot = plotManager.getPlot(event.getSource().getChunk());
-		Plot destinationBlockPlot = plotManager.getPlot(event.getBlock().getChunk());
+		Plot sourceBlockPlot = plotManager.getPlotByChunk(event.getSource().getChunk());
+		Plot destinationBlockPlot = plotManager.getPlotByChunk(event.getBlock().getChunk());
 		if(sourceBlockPlot == null && destinationBlockPlot != null) event.setCancelled(true);
 		else if(sourceBlockPlot != null && destinationBlockPlot != null)
 			if(!sourceBlockPlot.getOwnerNickname().equals(destinationBlockPlot.getOwnerNickname())) event.setCancelled(true);

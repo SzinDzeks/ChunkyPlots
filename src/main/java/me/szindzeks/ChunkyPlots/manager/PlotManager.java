@@ -42,19 +42,19 @@ public class PlotManager {
 
 	public ItemStack getPlotItem() { return plotItem; }
 	public List<Plot> getPlots(){ return plots; }
-	public Plot getPlot(Chunk chunk){
+	public Plot getPlotByChunk(Chunk chunk){
 		for(Plot plot:plots) {
 			if (plot.getChunkX() == chunk.getX() && plot.getChunkZ() == chunk.getZ()) return plot;
 		}
 		return null;
 	}
-	public Plot getPlot(UUID uuid){
+	public Plot getPlotByUUID(UUID uuid){
 		for(Plot plot:plots) {
 			if (plot.getUUID().equals(uuid)) return plot;
 		}
 		return null;
 	}
-	public Plot getPlot(String x, String z, String worldName){
+	public Plot getPlotByCoordinates(String x, String z, String worldName){
 		int parsedX = Integer.parseInt(x);
 		int parsedZ = Integer.parseInt(z);
 		for(Plot plot:plots) {
@@ -66,7 +66,17 @@ public class PlotManager {
 		}
 		return null;
 	}
-	public Plot getPlot(int x, int z, String worldName){
+	public Plot getPlotByCoordinates(int x, int z, String worldName){
+		for(Plot plot:plots) {
+			if (
+				plot.getChunkX() == x &&
+				plot.getChunkZ() == z &&
+				plot.getWorldName().equals(worldName)
+			) return plot;
+		}
+		return null;
+	}
+	public Plot getPlotCoordinates(int x, int z, String worldName){
 		for(Plot plot:plots) {
 			if (
 				plot.getChunkX() == x &&
@@ -92,7 +102,7 @@ public class PlotManager {
 		HashMap<MessageType, String> messages = ChunkyPlots.plugin.configManager.getMessages();
 		Chunk chunk = block.getChunk();
 		String plotID = chunk.getX() + ";" + chunk.getZ();
-		if(getPlot(chunk) == null){
+		if(getPlotByChunk(chunk) == null){
 			Plot plot = new Plot(player, chunk);
 
 			User user = ChunkyPlots.plugin.userManager.getUser(player.getName());
@@ -100,7 +110,7 @@ public class PlotManager {
 				if(group.getName().equals("all")) group.plots.add(plot.getUUID());
 			}
 			addPlot(plot);
-			player.sendMessage(messages.get(MessageType.CREATED_PLOT).replace("%plotID%", plotID));
+			player.sendMessage(messages.get(MessageType.PLOT_CREATED).replace("%plotID%", plotID));
 		} else player.sendMessage(messages.get(MessageType.PLOT_ALREADY_EXISTS).replace("%plotID%", plotID));
 	}
 }

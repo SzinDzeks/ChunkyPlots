@@ -15,8 +15,8 @@ public class BlockFromToListener implements Listener {
 		PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 		Block from = event.getBlock();
 		Block to = event.getToBlock();
-		Plot fromPlot = plotManager.getPlot(from.getChunk());
-		Plot toPlot = plotManager.getPlot(to.getChunk());
+		Plot fromPlot = plotManager.getPlotByChunk(from.getChunk());
+		Plot toPlot = plotManager.getPlotByChunk(to.getChunk());
 		if(from.getType().equals(Material.DRAGON_EGG)){
 			if(fromPlot == null && toPlot == null) return;
 			else if(fromPlot != null && toPlot == null) event.setCancelled(true);

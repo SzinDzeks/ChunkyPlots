@@ -15,7 +15,7 @@ public class PlayerShearEntityListener implements Listener {
     public void onPlayerShearEntity(final PlayerShearEntityEvent event){
         final Location entityLocation = event.getEntity().getLocation();
         final Player player = event.getPlayer();
-        final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlot(entityLocation.getChunk());
+        final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(entityLocation.getChunk());
 
         if(ChunkyPlots.plugin.userManager.getUser(player.getName()).isBypassingRestrictons == true) return;
         else if(ChunkyPlots.plugin.userManager.getUser(player.getName()).cooldown == true) event.setCancelled(true);

@@ -19,7 +19,7 @@ public class LingeringPotionSplashListener implements Listener {
 	@EventHandler
 	public void onLingeringPotionSplash(LingeringPotionSplashEvent event){
 		Location location = event.getEntity().getLocation();
-		Plot plot = ChunkyPlots.plugin.plotManager.getPlot(location.getChunk());
+		Plot plot = ChunkyPlots.plugin.plotManager.getPlotByChunk(location.getChunk());
 		if(plot != null){
 			ProjectileSource shooter = event.getEntity().getShooter();
 			if(shooter instanceof  Player){

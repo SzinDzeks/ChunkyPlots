@@ -200,7 +200,7 @@ public class PlotCommand implements CommandExecutor {
 
 				User user = userManager.getUser(player.getName());
 				for(Group group:user.groups){
-					if(group.plots.contains(plot.getUUID())) group.plots.remove(plot.getUUID());
+					group.plots.remove(plot.getUUID());
 				}
 
 				List<VisitPoint> visitPointsToDelete = new ArrayList<>();

@@ -19,7 +19,7 @@ public class PlayerInteractListener implements Listener {
 
 		if(ChunkyPlots.plugin.userManager.getUser(player.getName()).isBypassingRestrictons == true) return;
 		else if(block != null) {
-			final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlot(block.getLocation().getChunk());
+			final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(block.getLocation().getChunk());
 
 			if (eventPlot == null) return;
 			else if (ChunkyPlots.plugin.userManager.getUser(player.getName()).cooldown == true) {

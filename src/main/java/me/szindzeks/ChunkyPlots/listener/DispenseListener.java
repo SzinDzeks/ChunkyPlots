@@ -22,8 +22,8 @@ public class DispenseListener implements Listener {
 		World world = event.getBlock().getWorld();
 		Block source = event.getBlock();
 		Block destination = world.getBlockAt(x, y, z);
-		Plot sourcePlot = ChunkyPlots.plugin.plotManager.getPlot(source.getChunk());
-		Plot destinationPlot = ChunkyPlots.plugin.plotManager.getPlot(destination.getChunk());
+		Plot sourcePlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(source.getChunk());
+		Plot destinationPlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(destination.getChunk());
 		if(sourcePlot == null && destinationPlot != null) event.setCancelled(true);
 		else if(sourcePlot != null && destination != null){
 			if(!sourcePlot.getOwnerNickname().equals(destinationPlot.getOwnerNickname()))

@@ -15,7 +15,7 @@ public class PlayerTakeLecternBookListener implements Listener {
 	public void onPlayerTakeLecternBook(PlayerTakeLecternBookEvent event){
 		final Location lecternLocation = event.getLectern().getLocation();
 		final Player player = event.getPlayer();
-		final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlot(lecternLocation.getChunk());
+		final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(lecternLocation.getChunk());
 
 		if(ChunkyPlots.plugin.userManager.getUser(player.getName()).isBypassingRestrictons == true) return;
 		else if(ChunkyPlots.plugin.userManager.getUser(player.getName()).cooldown == true) event.setCancelled(true);

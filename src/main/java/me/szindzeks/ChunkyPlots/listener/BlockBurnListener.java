@@ -11,8 +11,8 @@ public class BlockBurnListener implements Listener {
 	@EventHandler
 	public void onBlockBurn(BlockBurnEvent event){
 		PlotManager plotManager = ChunkyPlots.plugin.plotManager;
-		Plot ignitingPlot = plotManager.getPlot(event.getIgnitingBlock().getChunk());
-		Plot burnedPlot = plotManager.getPlot(event.getBlock().getChunk());
+		Plot ignitingPlot = plotManager.getPlotByChunk(event.getIgnitingBlock().getChunk());
+		Plot burnedPlot = plotManager.getPlotByChunk(event.getBlock().getChunk());
 		if(ignitingPlot == null && burnedPlot != null) event.setCancelled(true);
 		else if(ignitingPlot != null && burnedPlot != null){
 			if(!ignitingPlot.getOwnerNickname().equals(burnedPlot.getOwnerNickname()))

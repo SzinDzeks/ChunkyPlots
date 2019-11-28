@@ -33,9 +33,8 @@ public class BlockBreakListener implements Listener {
 		PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 		ConfigManager configManager = ChunkyPlots.plugin.configManager;
 
-		Plot plot = plotManager.getPlot(block.getLocation().getChunk().getX(), block.getLocation().getChunk().getZ(), block.getWorld().getName());
-		if (plot == null) {
-		} else {
+		Plot plot = plotManager.getPlotByCoordinates(block.getLocation().getChunk().getX(), block.getLocation().getChunk().getZ(), block.getWorld().getName());
+		if (plot != null) {
 			if (plot.getFlags().get(Flag.BREAK_STRANGER) == true && !plot.members.contains(player.getName())) {
 			} else if (plot.getOwnerNickname().equals(player.getName())) {
 			} else if (plot.members.contains(player.getName()) && plot.getFlags().get(Flag.BREAK_MEMBER) == true) {

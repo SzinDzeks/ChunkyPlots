@@ -22,7 +22,7 @@ public class EntityExplodeListener implements Listener {
 
 		for (final Block block : event.blockList()) {
 			for (final Plot plot : plots) {
-				if (plot.isInside(block.getLocation())) {
+				if (plot.isLocationInside(block.getLocation())) {
 					if (event.getEntity() instanceof TNTPrimed) {
 						final Entity igniter = ((TNTPrimed) event.getEntity()).getSource();
 

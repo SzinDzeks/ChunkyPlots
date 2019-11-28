@@ -38,7 +38,7 @@ public class BlockPlaceListener implements Listener {
         PlotManager plotManager = ChunkyPlots.plugin.plotManager;
         ConfigManager configManager = ChunkyPlots.plugin.configManager;
 
-        Plot plot = plotManager.getPlot(block.getChunk().getX(), block.getChunk().getZ(), block.getWorld().getName());
+        Plot plot = plotManager.getPlotByCoordinates(block.getChunk().getX(), block.getChunk().getZ(), block.getWorld().getName());
         if (plot != null) {
             if (plot.getFlags().get(Flag.PLACE_STRANGER) == true && !plot.members.contains(player.getName())) {
             } else if (plot.getOwnerNickname().equals(player.getName())) {

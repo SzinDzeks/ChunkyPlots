@@ -16,7 +16,7 @@ public class VehicleDamageListener implements Listener {
     public void onVehicleDamage(final VehicleDamageEvent event){
         final Location vehicleLocation = event.getVehicle().getLocation();
         final Entity attacker = event.getAttacker();
-        final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlot(vehicleLocation.getChunk());
+        final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(vehicleLocation.getChunk());
 
         if(attacker instanceof Player) {
             Player player = (Player) attacker;

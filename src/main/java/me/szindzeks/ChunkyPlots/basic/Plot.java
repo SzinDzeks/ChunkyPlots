@@ -37,7 +37,11 @@ public class Plot {
 	public UUID getUUID(){ return uuid; }
 	public String getID(){ return chunkX + ";" + chunkZ; }
 
-	public boolean isInside(Location location){
+	public boolean isLocationInside(Location location){
 		return location.getChunk().getX() == chunkX && location.getChunk().getZ() == chunkZ;
+	}
+	public boolean hasTheSameOwnerAs(Plot plot){
+		if(plot == null) return false;
+		else return ownerNickname.equals(plot.getOwnerNickname());
 	}
 }

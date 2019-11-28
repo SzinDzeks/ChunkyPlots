@@ -27,8 +27,8 @@ public class PlayerMoveListener implements Listener {
             final Player player = event.getPlayer();
             final User user = userManager.getUser(player.getName());
 
-            final Plot previousPlot = plotManager.getPlot(from.getChunk());
-            final Plot newPlot = plotManager.getPlot(to.getChunk());
+            final Plot previousPlot = plotManager.getPlotByChunk(from.getChunk());
+            final Plot newPlot = plotManager.getPlotByChunk(to.getChunk());
 
             if(user != null) {
                 if(newPlot != null && newPlot.blacklist.contains(user.getNickname())) event.setCancelled(true);
