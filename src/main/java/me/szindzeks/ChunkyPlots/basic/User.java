@@ -7,8 +7,8 @@ import java.util.List;
 
 public class User {
 	private String nickname;
-	public boolean isBypassingRestrictons, hasEntered, cooldown, isTeleporting = false;
-	public final List<Group> groups = new ArrayList<>();
+	public boolean isBypassingRestrictions, hasEntered, cooldown, isTeleporting = false;
+	public List<Group> groups = new ArrayList<>();
 
 	public User(String nickname){
 		this.nickname = nickname;

@@ -25,12 +25,7 @@ public class ChunkyPlots extends JavaPlugin {
 		config = this.getConfig();
 		plugin = this;
 
-		configManager = new ConfigManager();
-		plotManager = new PlotManager();
-		userManager = new UserManager();
-		visitManager = new VisitManager();
-		craftingManager = new CraftingManager();
-		marketManager = new MarketManager();
+		initializeManagers();
 
 		registerListeners();
 		registerCommands();
@@ -43,6 +38,15 @@ public class ChunkyPlots extends JavaPlugin {
 	@EventHandler
 	public void onDisable(){
 
+	}
+
+	private void initializeManagers(){
+		configManager = new ConfigManager();
+		plotManager = new PlotManager();
+		userManager = new UserManager();
+		visitManager = new VisitManager();
+		craftingManager = new CraftingManager();
+		marketManager = new MarketManager();
 	}
 
 	private void registerListeners(){
@@ -62,6 +66,7 @@ public class ChunkyPlots extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new PlayerInteractAtEntityListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerInteractListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerJoinListener(),this);
+		this.getServer().getPluginManager().registerEvents(new PlayerLeftListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerLeashEntityListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerMoveListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerShearEntityListener(),this);

@@ -1,13 +1,11 @@
 package me.szindzeks.ChunkyPlots.commands;
 
-import com.mojang.brigadier.Message;
 import com.sun.istack.internal.NotNull;
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.*;
 import me.szindzeks.ChunkyPlots.guis.MenuGUI;
 import me.szindzeks.ChunkyPlots.manager.*;
 import me.szindzeks.ChunkyPlots.util.ChatUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -40,37 +38,37 @@ public class PlotCommand implements CommandExecutor {
 					if(plots.size() > 0) for(Plot plot: plots) displayPlotInfo(player, plot);
 					else player.sendMessage(ChatUtils.fixColors("&cDo tej grupy nie są przypisane żadne działki"));
 				}
-				else if(args[0].equals("flag")){
+				else if(args[0].equals("flag") && player.hasPermission("chunkyplots.flag")){
 					if(args[1].equals("defaults")) displayFlags(player, true, null);
-					else if(args[1].equals("list")) displayFlags(player, false, plotManager.getPlot(player.getLocation().getChunk()));
+					else if(args[1].equals("list")) displayFlags(player, false, plotManager.getPlotByChunk(player.getLocation().getChunk()));
 					else displayHelpMessage(player);
 				}
 				else if(args[0].equals("visit")) visitPlot(player, args[1]);
 				else displayHelpMessage(player);
 			} else if(args.length == 3){
 				if(args[0].equals("members")){
-					if(args[1].equals("add")) addMemberToPlot(player, args[2], plotManager.getPlot(player.getLocation().getChunk()));
-					else if(args[1].equals("remove")) removeMemberFromPlot(player, args[2], plotManager.getPlot(player.getLocation().getChunk()));
+					if(args[1].equals("add")) addMemberToPlot(player, args[2], plotManager.getPlotByChunk(player.getLocation().getChunk()));
+					else if(args[1].equals("remove")) removeMemberFromPlot(player, args[2], plotManager.getPlotByChunk(player.getLocation().getChunk()));
 					else displayHelpMessage(player);
 				}
-				else if(args[0].equals("blacklist")){
-					if(args[1].equals("add")) addPlayerToBlacklist(player, args[2], plotManager.getPlot(player.getLocation().getChunk()));
-					else if(args[1].equals("remove")) removePlayerFromBlacklist(player, args[2], plotManager.getPlot(player.getLocation().getChunk()));
+				else if(args[0].equals("blacklist") && player.hasPermission("chunkyplots.blacklist")){
+					if(args[1].equals("add")) addPlayerToBlacklist(player, args[2], plotManager.getPlotByChunk(player.getLocation().getChunk()));
+					else if(args[1].equals("remove")) removePlayerFromBlacklist(player, args[2], plotManager.getPlotByChunk(player.getLocation().getChunk()));
 					else displayHelpMessage(player);
 				}
-				else if(args[0].equals("flag")){
-					if(args[1].equals("check")) displayFlagValue(player, args[2], plotManager.getPlot(player.getLocation().getChunk()));
+				else if(args[0].equals("flag") && player.hasPermission("chunkyplots.flag")){
+					if(args[1].equals("check")) displayFlagValue(player, args[2], plotManager.getPlotByChunk(player.getLocation().getChunk()));
 					else displayHelpMessage(player);
 				}
 				else if(args[0].equals("group")){
 					if(args[1].equals("create")) createGroup(player, args[2]);
 					else if(args[1].equals("delete")) deleteGroup(player, args[2]);
-					else if(args[1].equals("add")) addPlotToGroup(player, args[2], plotManager.getPlot(player.getLocation().getChunk()));
-					else if(args[1].equals("remove")) removePlotFromGroup(player, args[2], plotManager.getPlot(player.getLocation().getChunk()));
+					else if(args[1].equals("add")) addPlotToGroup(player, args[2], plotManager.getPlotByChunk(player.getLocation().getChunk()));
+					else if(args[1].equals("remove")) removePlotFromGroup(player, args[2], plotManager.getPlotByChunk(player.getLocation().getChunk()));
 					else displayHelpMessage(player);
 				}
 				else if(args[0].equals("visit")){
-					if(args[1].equals("createpoint")) createVisitPoint(player, args[2], null, plotManager.getPlot(player.getLocation().getChunk()));
+					if(args[1].equals("createpoint")) createVisitPoint(player, args[2], null, plotManager.getPlotByChunk(player.getLocation().getChunk()));
 					else if(args[1].equals("deletepoint")) deleteVisitPoint(player, args[2]);
 					else displayHelpMessage(player);
 				}
@@ -88,7 +86,7 @@ public class PlotCommand implements CommandExecutor {
 						else player.sendMessage(ChatUtils.fixColors("&cDo tej grupy nie są przypisane żadne działki"));
 					}
 					else displayHelpMessage(player);
-				} else if (args[0].equals("blacklist")) {
+				} else if (args[0].equals("blacklist") && player.hasPermission("chunkyplots.blacklist")) {
 					if (args[1].equals("add")) {
 						List<Plot> plots = getPlotsFromGroupName(player, args[3]);
 						if(plots.size() > 0) for(Plot plot: plots) addPlayerToBlacklist(player, args[2], plot );
@@ -100,43 +98,43 @@ public class PlotCommand implements CommandExecutor {
 						else player.sendMessage(ChatUtils.fixColors("&cDo tej grupy nie są przypisane żadne działki"));
 					}
 					else displayHelpMessage(player);
-				} else if (args[0].equals("flag")) {
+				} else if (args[0].equals("flag") && player.hasPermission("chunkyplots.flag")) {
 					if (args[1].equals("check")) {
 						List<Plot> plots = getPlotsFromGroupName(player, args[3]);
 						if(plots.size() > 0) for(Plot plot: plots) displayFlagValue(player, args[2], plot);
 						else player.sendMessage(ChatUtils.fixColors("&cDo tej grupy nie są przypisane żadne działki"));
 					}
-					else if (args[1].equals("set")) setFlagValue(player, args[2], args[3], plotManager.getPlot(player.getLocation().getChunk()));
+					else if (args[1].equals("set")) setFlagValue(player, args[2], args[3], plotManager.getPlotByChunk(player.getLocation().getChunk()));
 					else displayHelpMessage(player);
 				} else displayHelpMessage(player);
 			} else if(args.length == 5){
-				if(args[0].equals("flag")) {
+				if(args[0].equals("flag") && player.hasPermission("chunkyplots.flag")) {
 					if (args[1].equals("set")){
 						List<Plot> plots = getPlotsFromGroupName(player, args[4]);
 						if(plots.size() > 0) for(Plot plot: plots) setFlagValue(player, args[2], args[3], plot);
 						else player.sendMessage(ChatUtils.fixColors("&cDo tej grupy nie są przypisane żadne działki"));
 					}
-					else if(args[1].equals("list")) displayFlags(player, false, plotManager.getPlot(args[2], args[3], args[4]));
+					else if(args[1].equals("list")) displayFlags(player, false, plotManager.getPlotByCoordinates(args[2], args[3], args[4]));
 					else displayHelpMessage(player);
 				} else displayHelpMessage(player);
 			} else if(args.length == 6){
 				if (args[0].equals("members")) {
-					if (args[1].equals("add")) addMemberToPlot(player, args[2], plotManager.getPlot(args[3], args[4], args[5]));
-					else if (args[1].equals("remove"))removeMemberFromPlot(player, args[2], plotManager.getPlot(args[3], args[4], args[5]));
+					if (args[1].equals("add")) addMemberToPlot(player, args[2], plotManager.getPlotByCoordinates(args[3], args[4], args[5]));
+					else if (args[1].equals("remove"))removeMemberFromPlot(player, args[2], plotManager.getPlotByCoordinates(args[3], args[4], args[5]));
 					else displayHelpMessage(player);
-				} else if (args[0].equals("blacklist")) {
-					if (args[1].equals("add")) addPlayerToBlacklist(player, args[2], plotManager.getPlot(args[3], args[4], args[5]));
-					else if (args[1].equals("remove")) removePlayerFromBlacklist(player, args[2], plotManager.getPlot(args[3], args[4], args[5]));
+				} else if (args[0].equals("blacklist") && player.hasPermission("chunkyplots.blacklist")) {
+					if (args[1].equals("add")) addPlayerToBlacklist(player, args[2], plotManager.getPlotByCoordinates(args[3], args[4], args[5]));
+					else if (args[1].equals("remove")) removePlayerFromBlacklist(player, args[2], plotManager.getPlotByCoordinates(args[3], args[4], args[5]));
 					else displayHelpMessage(player);
 				} else if(args[0].equals("group")) {
-					if (args[1].equals("add")) addPlotToGroup(player, args[2], plotManager.getPlot(args[3], args[4], args[5]));
-					else if (args[1].equals("remove")) removePlotFromGroup(player, args[2], plotManager.getPlot(args[3], args[4], args[5]));
+					if (args[1].equals("add")) addPlotToGroup(player, args[2], plotManager.getPlotByCoordinates(args[3], args[4], args[5]));
+					else if (args[1].equals("remove")) removePlotFromGroup(player, args[2], plotManager.getPlotByCoordinates(args[3], args[4], args[5]));
 					else displayHelpMessage(player);
 				}
 				else displayHelpMessage(player);
 			} else if(args.length == 7){
-				if(args[0].equals("flag")){
-					if(args[1].equals("set")) setFlagValue(player, args[2], args[3], plotManager.getPlot(args[4], args[5], args[6]));
+				if(args[0].equals("flag") && player.hasPermission("chunkyplots.flag")){
+					if(args[1].equals("set")) setFlagValue(player, args[2], args[3], plotManager.getPlotByCoordinates(args[4], args[5], args[6]));
 					else displayHelpMessage(player);
 				} else displayHelpMessage(player);
 			} else displayHelpMessage(player);
@@ -162,23 +160,6 @@ public class PlotCommand implements CommandExecutor {
 		player.sendMessage(ChatUtils.fixColors("&a/plot members remove <nick>"));
 		player.sendMessage(ChatUtils.fixColors("&a/plot members remove <nick> <x działki> <z działki> <nazwa świata> "));
 		player.sendMessage(ChatUtils.fixColors("&9========================================"));
-		player.sendMessage(ChatUtils.fixColors("&a/plot blacklist add <nick> "));
-		player.sendMessage(ChatUtils.fixColors("&a/plot blacklist add <nick> <x działki> <z działki> <nazwa świata>"));
-		player.sendMessage(ChatUtils.fixColors("&a/plot blacklist remove <nick> "));
-		player.sendMessage(ChatUtils.fixColors("&a/plot blacklist remove <nick> <x działki> <z działki> <nazwa świata>"));
-		player.sendMessage(ChatUtils.fixColors("&9========================================"));
-		player.sendMessage(ChatUtils.fixColors("&a/plot flag set <flaga> <wartość> "));
-		player.sendMessage(ChatUtils.fixColors("&a/plot flag set <flaga> <wartość> <x działki> <z działki> <nazwa świata>"));
-		player.sendMessage(ChatUtils.fixColors("&a/plot flag check <flaga> "));
-		player.sendMessage(ChatUtils.fixColors("&a/plot flag check <flaga> <x działki> <z działki> <nazwa świata>"));
-		player.sendMessage(ChatUtils.fixColors("&a/plot flag defaults "));
-		player.sendMessage(ChatUtils.fixColors("&a/plot flag list "));
-		player.sendMessage(ChatUtils.fixColors("&a/plot flag list <x działki> <z działki> <nazwa świata>"));
-		player.sendMessage(ChatUtils.fixColors("&9========================================"));
-		player.sendMessage(ChatUtils.fixColors("&a/plot visit <nazwa punktu> "));
-		player.sendMessage(ChatUtils.fixColors("&a/plot visit createpoint <nazwa punktu>"));
-		player.sendMessage(ChatUtils.fixColors("&a/plot visit deletepoint <nazwa punktu>"));
-		player.sendMessage(ChatUtils.fixColors("&9========================================"));
 		player.sendMessage(ChatUtils.fixColors("&a/plot group create <nazwa grupy> "));
 		player.sendMessage(ChatUtils.fixColors("&a/plot group delete <nazwa grupy> "));
 		player.sendMessage(ChatUtils.fixColors("&a/plot group add <nazwa grupy>"));
@@ -191,12 +172,12 @@ public class PlotCommand implements CommandExecutor {
 	private void disposePlot(Player player){
 		Chunk chunk = player.getLocation().getChunk();
 		String plotID = chunk.getX() + ";" + chunk.getZ();
-		Plot plot = plotManager.getPlot(chunk);
+		Plot plot = plotManager.getPlotByChunk(chunk);
 		if(plot != null){
 			if(plot.getOwnerNickname().equals(player.getName())) {
 				plotManager.removePlot(plot);
 				player.getInventory().addItem(CraftingManager.plotBlock);
-				player.sendMessage(ChatUtils.replacePlaceholders(messages.get(MessageType.PLOT_DELETED), player, ));
+				player.sendMessage(messages.get(MessageType.PLOT_DELETED).replace("{plotID}", plotID).replace("{world}", plot.getWorldName()));
 
 				User user = userManager.getUser(player.getName());
 				for(Group group:user.groups){
@@ -212,7 +193,7 @@ public class PlotCommand implements CommandExecutor {
 					player.sendMessage(ChatUtils.fixColors("&cNa usuniętej działce znajdował się punkt &f" + visitPoint.getName() + "&c, więc został on usunięty!"));
 				}
 			} else player.sendMessage(messages.get(MessageType.NOT_OWNER));
-		} else player.sendMessage(messages.get(MessageType.NULL_PLOT).replace("%plotID%", plotID));
+		} else player.sendMessage(messages.get(MessageType.NULL_PLOT).replace("{plotID}", plotID));
 	}
 
 	private void displayPlotList(Player player){
@@ -243,7 +224,7 @@ public class PlotCommand implements CommandExecutor {
 	}
 
 	private void displayPlotInfo(Player player, Plot plot){
-		if(plot == null) plot = plotManager.getPlot(player.getLocation().getChunk());
+		if(plot == null) plot = plotManager.getPlotByChunk(player.getLocation().getChunk());
 		if (plot != null) {
 			player.sendMessage(ChatUtils.fixColors("&9-----------{ " + configManager.getPluginPrefix() + " &9}-----------"));
 			player.sendMessage(ChatUtils.fixColors("&aWłaściciel: &f" + plot.getOwnerNickname()));
@@ -277,7 +258,10 @@ public class PlotCommand implements CommandExecutor {
 				boolean flagValue = flags.get(flag);
 				player.sendMessage(ChatUtils.fixColors("&7" + flag.toString() + "&8: " + (flagValue ? ("&a" + flagValue) : ("&c" + flagValue))));
 			}
-		} else player.sendMessage(messages.get(MessageType.ERROR_UNSPECIFIED));
+		} else {
+			String rawMessage = messages.get(MessageType.ERROR_UNSPECIFIED);
+			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+		}
 	}
 	@NotNull
 	private void displayFlagValue(Player player, String flagName, Plot plot) {
@@ -285,9 +269,19 @@ public class PlotCommand implements CommandExecutor {
 			Flag flag = Flag.valueOf(flagName.toUpperCase());
 			if(flag != null){
 				String flagValue = plot.getFlags().get(flag).toString();
-				player.sendMessage(messages.get(MessageType.FLAG_VALUE).replace("%plotID%", plot.getID()).replace("%flagName%", flagName.toUpperCase()).replace("%flagValue%", flagValue));
-			} else player.sendMessage(messages.get(MessageType.UNKNOWN_FLAG).replace("%flagName%", flagName.toUpperCase()));
-		} else player.sendMessage(messages.get(MessageType.NULL_PLOT).replace("%plotID%", player.getLocation().getChunk().getX() + ";" + player.getLocation().getChunk().getZ()));
+
+				String rawMessage = messages.get(MessageType.FLAG_VALUE_ON_PLOT);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, flag);
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			} else {
+				String rawMessage = messages.get(MessageType.UNKNOWN_FLAG);
+				String uncolouredMessage = rawMessage.replace("{flagName}", flagName.toUpperCase());
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			}
+		} else {
+			String rawMessage = messages.get(MessageType.NULL_PLOT);
+			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+		}
 	}
 
 	@NotNull
@@ -299,11 +293,29 @@ public class PlotCommand implements CommandExecutor {
 					if(flagValue.equalsIgnoreCase("true") || flagValue.equalsIgnoreCase("false")){
 						boolean value = Boolean.valueOf(flagValue);
 						plot.setFlag(flag, value);
-						player.sendMessage(messages.get(MessageType.SETTED_FLAG).replace("%flagName%", flagName.toUpperCase()).replace("%flagValue%", flagValue.toLowerCase()));
-					} else player.sendMessage(messages.get(MessageType.UNKNOWN_FLAG_VALUE).replace("%flagValue%", flagValue));
-				} else player.sendMessage(messages.get(MessageType.UNKNOWN_FLAG).replace("%flagName%", flagName.toUpperCase()));
-			} else player.sendMessage(messages.get(MessageType.NOT_OWNER));
-		} else player.sendMessage(messages.get(MessageType.NULL_PLOT).replace("%plotID%", player.getLocation().getChunk().getX() + ";" + player.getLocation().getChunk().getZ()));
+						plotManager.savePlot(plot);
+
+						String rawMessage = messages.get(MessageType.FLAG_SET_ON_PLOT);
+						String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, flag);
+						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+					} else {
+						String rawMessage = messages.get(MessageType.WRONG_FLAG_VALUE);
+						String uncolouredMessage = rawMessage.replace("{flagValue}", flagValue.toUpperCase());
+						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+					}
+				} else {
+					String rawMessage = messages.get(MessageType.UNKNOWN_FLAG);
+					String uncolouredMessage = rawMessage.replace("{flagName}", flagName.toUpperCase());
+					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				}
+			} else {
+				String rawMessage = messages.get(MessageType.NOT_OWNER);
+				MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+			}
+		} else {
+			String rawMessage = messages.get(MessageType.NULL_PLOT);
+			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+		}
 	}
 
 
@@ -316,7 +328,9 @@ public class PlotCommand implements CommandExecutor {
 					final User user = userManager.getUser(player.getName());
 					if (user.isTeleporting == false) {
 						user.isTeleporting = true;
-						player.sendMessage(ChatUtils.fixColors("&aZostaniesz teleportowany za &f5 &asekund. Nie ruszaj się!"));
+						String rawMessage = messages.get(MessageType.TELEPORTING_TO_VISIT_POINT);
+						String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
+						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 						final int x = player.getLocation().getBlockX();
 						final int y = player.getLocation().getBlockY();
 						final int z = player.getLocation().getBlockZ();
@@ -326,32 +340,58 @@ public class PlotCommand implements CommandExecutor {
 								if (player.isOnline()) {
 									if (player.getLocation().getBlockX() == x && player.getLocation().getBlockY() == y && player.getLocation().getBlockZ() == z) {
 										player.teleport(visitPoint.getLocation());
-										player.sendMessage(ChatUtils.fixColors("&aZostałeś przeteleportowany do punktu &f" + visitPoint.getName()));
-									} else
-										player.sendMessage(ChatUtils.fixColors("&cPoruszyłeś się! Teleportacja została przerwana!"));
+										String rawMessage = messages.get(MessageType.TELEPORTED_TO_VISIT_POINT);
+										String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
+										MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+									} else {
+										String rawMessage = messages.get(MessageType.TELEPORT_CANCELLED);
+										String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
+										MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+									}
 								}
 								user.isTeleporting = false;
 							}
 						}, 20 * 5);
-					} else player.sendMessage(ChatUtils.fixColors("&cJesteś już w trakcie teleportacji!"));
-				} else player.sendMessage(ChatUtils.fixColors("&cTen punkt nie jest bezpieczny! Teleportację anulowano"));
-			} else player.sendMessage(ChatUtils.fixColors("&7Punkt o nazwie &f" + visitPointName + " &7jest &czamknięty"));
-		} else player.sendMessage(ChatUtils.fixColors("&cPunkt o nazwie &f" + visitPointName + " &cnie istnieje!"));
+					} else {
+						String rawMessage = messages.get(MessageType.ALREADY_TELEPORTING);
+						MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+					}
+				} else {
+					String rawMessage = messages.get(MessageType.VISIT_POINT_NOT_SAFE);
+					MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+				}
+			} else {
+				String rawMessage = messages.get(MessageType.VISIT_POINT_CLOSED);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			}
+		} else {
+			String rawMessage = messages.get(MessageType.NULL_VISIT_POINT);
+			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+		}
 	}
 	@NotNull
 	private void createVisitPoint(Player player, String name, String description, Plot plot){
 		if(plot != null) {
 			for (VisitPoint visitPoint : visitManager.getVisitPoints()) {
 				if (visitPoint.getName().equals(name)) {
-					player.sendMessage(ChatUtils.fixColors("&cPunkt o nazwie &f" + name + " &cjuż istnieje!"));
+					String rawMessage = messages.get(MessageType.VISIT_POINT_ALREADY_EXISTS);
+					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
+					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 					return;
 				}
 			}
 			Location location = player.getLocation();
 			VisitPoint visitPoint = new VisitPoint(location, plot.getUUID(), player.getName(), name, description);
 			visitManager.createVisitPoint(visitPoint);
-			player.sendMessage(ChatUtils.fixColors("&aPomyślnie utworzono punkt o nazwie &f" + name));
-		} else player.sendMessage(ChatUtils.fixColors("&cNie możesz stworzyć punktu odwiedzin poza działką!"));
+
+			String rawMessage = messages.get(MessageType.CREATED_VISIT_POINT);
+			String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
+			MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+		} else {
+			String rawMessage = messages.get(MessageType.VISIT_POINT_NOT_INSIDE_PLOT);
+			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+		}
 	}
 	@NotNull
 	private void deleteVisitPoint(Player player, String visitPointName){
@@ -359,9 +399,20 @@ public class PlotCommand implements CommandExecutor {
 		if(visitPoint != null) {
 			if(visitPoint.getOwnerName().equals(player.getName())){
 				visitManager.deleteVisitPoint(visitPoint);
-				player.sendMessage(ChatUtils.fixColors("&aPomyślnie usunięto punkt odwiedziń o nazwie &e" + visitPointName));
-			} else player.sendMessage(ChatUtils.fixColors("&cNie jesteś właścicielem punktu o nazwie &e" + visitPointName));
-		} else player.sendMessage(ChatUtils.fixColors("&cPunkt o nazwie &f" + visitPointName + " &cnie istnieje!"));
+
+				String rawMessage = messages.get(MessageType.DELETED_VISIT_POINT);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			} else {
+				String rawMessage = messages.get(MessageType.NOT_VISIT_POINT_OWNER);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint, player);
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			}
+		} else {
+			String rawMessage = messages.get(MessageType.NULL_VISIT_POINT);
+			String uncolouredMessage = rawMessage.replace("{visitPoint}", visitPointName);
+			MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+		}
 	}
 	@NotNull
 	private void setVisitPointStatus(Player player, String visitPointName, boolean status){
@@ -376,18 +427,35 @@ public class PlotCommand implements CommandExecutor {
 	}
 
 	@NotNull
-	private void addMemberToPlot(Player player, String userName, Plot plot){
-		if(plot != null) {
+	private void addMemberToPlot(Player player, String userName, Plot plot) {
+		if (plot != null) {
 			if (plot.getOwnerNickname().equals(player.getName())) {
 				if (!userName.equals(plot.getOwnerNickname())) {
 					User user = userManager.getUser(userName);
 					if (user != null) {
 						plot.members.add(userName);
-						player.sendMessage(messages.get(MessageType.ADDED_MEMBER).replace("%plotID%", plot.getID()).replace("%userName%", userName));
-					} else player.sendMessage(messages.get(MessageType.NULL_USER).replace("%userName%", userName));
-				} else player.sendMessage(messages.get(MessageType.CANNOT_ADD_SELF_AS_MEMBER));
-			} else player.sendMessage(messages.get(MessageType.NOT_OWNER));
-		} else player.sendMessage(messages.get(MessageType.NULL_PLOT));
+						plotManager.savePlot(plot);
+						String rawMessage = messages.get(MessageType.ADDED_MEMBER_TO_PLOT);
+						String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, user);
+						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+					} else {
+						String rawMessage = messages.get(MessageType.NULL_USER);
+						MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+					}
+				} else {
+					String rawMessage = messages.get(MessageType.CANNOT_ADD_OWNER_AS_MEMBER);
+					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, player);
+					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				}
+			} else {
+				String rawMessage = messages.get(MessageType.NOT_OWNER);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, player);
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			}
+		} else {
+			String rawMessage = messages.get(MessageType.NULL_PLOT);
+			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+		}
 	}
 
 	@NotNull
@@ -396,10 +464,24 @@ public class PlotCommand implements CommandExecutor {
 			if(plot.getOwnerNickname().equals(player.getName())){
 				if(plot.members.contains(userName)){
 					plot.members.remove(userName);
-					player.sendMessage(messages.get(MessageType.REMOVED_MEMBER).replace("%plotID%", plot.getID()).replace("%userName%", userName));
-				} else player.sendMessage(messages.get(MessageType.NULL_USER).replace("%userName%", userName));
-			} else player.sendMessage(messages.get(MessageType.NOT_OWNER));
-		} else player.sendMessage(messages.get(MessageType.NULL_PLOT));
+					plotManager.savePlot(plot);
+
+					String rawMessage = messages.get(MessageType.REMOVED_MEMBER_FROM_PLOT);
+					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, player);
+					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				} else {
+					String rawMessage = messages.get(MessageType.NULL_USER);
+					MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+				}
+			} else {
+				String rawMessage = messages.get(MessageType.NOT_OWNER);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, player);
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			}
+		} else {
+			String rawMessage = messages.get(MessageType.NULL_PLOT);
+			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+		}
 	}
 
 	@NotNull
@@ -410,11 +492,26 @@ public class PlotCommand implements CommandExecutor {
 					User user = userManager.getUser(userName);
 					if(user != null){
 						plot.blacklist.add(userName);
-						player.sendMessage(messages.get(MessageType.ADDED_TO_BLACKLIST).replace("%plotID%", plot.getID()).replace("%userName%", userName));
-					} else player.sendMessage(messages.get(MessageType.NULL_USER).replace("%userName%", userName));
-				} else player.sendMessage(messages.get(MessageType.CANNOT_ADD_SELF_TO_BLACKLIST));
-			} else player.sendMessage(messages.get(MessageType.NOT_OWNER));
-		} else player.sendMessage(messages.get(MessageType.NULL_PLOT));
+						plotManager.savePlot(plot);
+						player.sendMessage(messages.get(MessageType.BLACKLIST_ADDED_TO_PLOT).replace("%plotID%", plot.getID()).replace("%userName%", userName));
+					} else {
+						String rawMessage = messages.get(MessageType.NULL_USER);
+						MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+					}
+				} else {
+					String rawMessage = messages.get(MessageType.CANNOT_ADD_OWNER_TO_BLACKLIST);
+					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, player);
+					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				}
+			} else {
+				String rawMessage = messages.get(MessageType.NOT_OWNER);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, player);
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			}
+		} else {
+			String rawMessage = messages.get(MessageType.NULL_PLOT);
+			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+		}
 	}
 
 	@NotNull
@@ -423,10 +520,25 @@ public class PlotCommand implements CommandExecutor {
 			if(plot.getOwnerNickname().equals(player.getName())){
 				if(plot.blacklist.contains(userName)){
 					plot.blacklist.remove(userName);
-					player.sendMessage(messages.get(MessageType.REMOVED_FROM_BLACKLIST).replace("%plotID%", plot.getID()).replace("%userName%", userName));
-				} else player.sendMessage(messages.get(MessageType.NULL_USER).replace("%userName%", userName));
-			} else player.sendMessage(messages.get(MessageType.NOT_OWNER));
-		} else player.sendMessage(messages.get(MessageType.NULL_PLOT));
+					plotManager.savePlot(plot);
+
+					player.sendMessage(messages.get(MessageType.BLACKLIST_REMOVED_FROM_PLOT).replace("%plotID%", plot.getID()).replace("%userName%", userName));
+					String rawMessage = messages.get(MessageType.BLACKLIST_REMOVED_FROM_PLOT);
+					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, userManager.getUser(userName));
+					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				} else {
+					String rawMessage = messages.get(MessageType.NULL_USER);
+					MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+				}
+			} else {
+				String rawMessage = messages.get(MessageType.NOT_OWNER);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, player);
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			}
+		} else {
+			String rawMessage = messages.get(MessageType.NULL_PLOT);
+			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+		}
 	}
 
 	@NotNull
@@ -435,23 +547,49 @@ public class PlotCommand implements CommandExecutor {
 		if(user != null){
 			if(user.getGroupByName(groupName) == null){
 				user.groups.add(new Group(groupName));
-				player.sendMessage(messages.get(MessageType.GROUP_CREATED));
-			} else player.sendMessage(messages.get(MessageType.GROUP_ALREADY_EXISTS));
-		} else player.sendMessage(messages.get(MessageType.NULL_USER));
+				userManager.saveUser(user);
+
+				String rawMessage = messages.get(MessageType.GROUP_CREATE);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, user.getGroupByName(groupName));
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			} else {
+				String rawMessage = messages.get(MessageType.GROUP_ALREADY_EXISTS);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, user.getGroupByName(groupName));
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			}
+		} else {
+			String rawMessage = messages.get(MessageType.NULL_USER);
+			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+		}
 	}
 
 	@NotNull
 	private void deleteGroup(Player player, String groupName){
+		User user = userManager.getUser(player.getName());
 		if(!groupName.equalsIgnoreCase("all")) {
-			User user = userManager.getUser(player.getName());
 			if (user != null) {
 				Group group = user.getGroupByName(groupName);
 				if (group != null) {
 					user.groups.remove(group);
-					player.sendMessage(ChatUtils.fixColors("&aPomyślnie usunięto grupie o nazwie &f" + groupName.toLowerCase()));
-				} else player.sendMessage(messages.get(MessageType.NULL_GROUP));
-			} else player.sendMessage(messages.get(MessageType.NULL_USER));
-		} else player.sendMessage(ChatUtils.fixColors("&cNie możesz usunąć tej grupy!"));
+					userManager.saveUser(user);
+
+					String rawMessage = messages.get(MessageType.GROUP_DELETE);
+					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
+					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				} else {
+					String rawMessage = messages.get(MessageType.NULL_GROUP);
+					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
+					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				}
+			} else {
+				String rawMessage = messages.get(MessageType.NULL_USER);
+				MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+			}
+		} else {
+			String rawMessage = messages.get(MessageType.CANNOT_DELETE_GROUP);
+			String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, user.getGroupByName("all"));
+			MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+		}
 	}
 
 	@NotNull
@@ -461,13 +599,44 @@ public class PlotCommand implements CommandExecutor {
 			Group group = user.getGroupByName(groupName);
 			if(group != null){
 				group.plots.add(plot.getUUID());
-				player.sendMessage(messages.get(MessageType.GROUP_DELETED));
-			} else player.sendMessage(messages.get(MessageType.NULL_GROUP));
-		} else player.sendMessage(messages.get(MessageType.NULL_USER));
+				userManager.saveUser(user);
+
+				String rawMessage = messages.get(MessageType.PLOT_ADDED_TO_GROUP);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, group);
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			} else {
+				String rawMessage = messages.get(MessageType.NULL_GROUP);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			}
+		} else {
+			String rawMessage = messages.get(MessageType.NULL_USER);
+			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+		}
 	}
 
 	@NotNull
-	private void removePlotFromGroup(Player player, String groupName, Plot plot){}
+	private void removePlotFromGroup(Player player, String groupName, Plot plot){
+		User user = userManager.getUser(player.getName());
+		if(user != null){
+			Group group = user.getGroupByName(groupName);
+			if(group != null){
+				group.plots.remove(plot.getUUID());
+				userManager.saveUser(user);
+
+				String rawMessage = messages.get(MessageType.PLOT_REMOVED_FROM_GROUP);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, group);
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			} else {
+				String rawMessage = messages.get(MessageType.NULL_GROUP);
+				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
+				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			}
+		} else {
+			String rawMessage = messages.get(MessageType.NULL_USER);
+			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+		}
+	}
 
 	@NotNull
 	private List<Plot> getPlotsFromGroupName(Player player, String groupName){
@@ -479,14 +648,18 @@ public class PlotCommand implements CommandExecutor {
 				group = g;
 				List<UUID> plotUUIDs = group.plots;
 				for(UUID plotUUID:plotUUIDs){
-					Plot plot = plotManager.getPlot(plotUUID);
+					Plot plot = plotManager.getPlotByUUID(plotUUID);
 					if(plot != null) plots.add(plot);
 					else group.plots.remove(plotUUID);
 				}
 				return plots;
 			}
 		}
-		if(group == null) player.sendMessage(ChatUtils.fixColors("&cGrupa o nazwie &f" + groupName.toLowerCase() + " &cnie istnieje!"));
+		if(group == null){
+			String rawMessage = messages.get(MessageType.NULL_GROUP);
+			String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, player);
+			MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+		}
 		return plots;
 
 	}

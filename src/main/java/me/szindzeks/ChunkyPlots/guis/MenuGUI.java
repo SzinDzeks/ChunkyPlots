@@ -22,12 +22,12 @@ public class MenuGUI extends GUI {
 	}
 
 	private Inventory generateInventory() {
-		ItemStack item1 = InventoryUtil.createItem(Material.IRON_DOOR, 1, "&6&lSprawdź działki innego gracza", new ArrayList<String>(), new HashMap<Enchantment, Integer>(), false);
-		ItemStack item2 = InventoryUtil.createItem(Material.MINECART, 1, "&a&lOdwiedzanie działek", new ArrayList<String>(), new HashMap<Enchantment, Integer>(), false);
-		ItemStack item3 = InventoryUtil.createItem(Material.DIAMOND_PICKAXE, 1, "&b&lZarządzaj działką, na której stoisz", new ArrayList<String>(), new HashMap<Enchantment, Integer>(), false);
-		ItemStack item4 = InventoryUtil.createItem(Material.COMPASS, 1, "&9&lZarządzaj pozostałymi działkami", new ArrayList<String>(), new HashMap<Enchantment, Integer>(), false);
-		ItemStack item5 = InventoryUtil.createItem(Material.ENDER_CHEST, 1, "&2&lZarządzaj grupami działek", new ArrayList<String>(), new HashMap<Enchantment, Integer>(), false);
-		ItemStack spacing = InventoryUtil.createItem(Material.WHITE_STAINED_GLASS_PANE, 1, " ", new ArrayList<String>(), new HashMap<Enchantment, Integer>(), false);
+		ItemStack item1 = InventoryUtil.createItemStack(Material.IRON_DOOR, 1, "&6&lSprawdź działki innego gracza", new ArrayList<String>(), new HashMap<Enchantment, Integer>(), false);
+		ItemStack item2 = InventoryUtil.createItemStack(Material.MINECART, 1, "&a&lOdwiedzanie działek", new ArrayList<String>(), new HashMap<Enchantment, Integer>(), false);
+		ItemStack item3 = InventoryUtil.createItemStack(Material.DIAMOND_PICKAXE, 1, "&b&lZarządzaj działką, na której stoisz", new ArrayList<String>(), new HashMap<Enchantment, Integer>(), false);
+		ItemStack item4 = InventoryUtil.createItemStack(Material.COMPASS, 1, "&9&lZarządzaj pozostałymi działkami", new ArrayList<String>(), new HashMap<Enchantment, Integer>(), false);
+		ItemStack item5 = InventoryUtil.createItemStack(Material.ENDER_CHEST, 1, "&2&lZarządzaj grupami działek", new ArrayList<String>(), new HashMap<Enchantment, Integer>(), false);
+		ItemStack spacing = InventoryUtil.createItemStack(Material.WHITE_STAINED_GLASS_PANE, 1, " ", new ArrayList<String>(), new HashMap<Enchantment, Integer>(), false);
 		Inventory inventory = Bukkit.getServer().createInventory(null, 27);
 		for(int i = 0; i < inventory.getSize(); i++){
 			inventory.setItem(i,spacing);

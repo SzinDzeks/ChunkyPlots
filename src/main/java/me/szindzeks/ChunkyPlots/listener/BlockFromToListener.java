@@ -10,23 +10,52 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockFromToEvent;
 
 public class BlockFromToListener implements Listener {
+	private final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
+
 	@EventHandler
 	public void onBlockFromTo(BlockFromToEvent event){
-		PlotManager plotManager = ChunkyPlots.plugin.plotManager;
-		Block from = event.getBlock();
-		Block to = event.getToBlock();
-		Plot fromPlot = plotManager.getPlotByChunk(from.getChunk());
-		Plot toPlot = plotManager.getPlotByChunk(to.getChunk());
-		if(from.getType().equals(Material.DRAGON_EGG)){
-			if(fromPlot == null && toPlot == null) return;
-			else if(fromPlot != null && toPlot == null) event.setCancelled(true);
-			else if(fromPlot == null && toPlot != null) event.setCancelled(true);
-			else if(!fromPlot.getOwnerNickname().equals(toPlot.getOwnerNickname()))  event.setCancelled(true);
+		if(!canBlockMoveFromTo(event.getBlock(), event.getToBlock())){
+			event.setCancelled(true);
+		}
+	}
+
+	private boolean canBlockMoveFromTo(Block block, Block toBlock) {
+		if(block.getType().equals(Material.DRAGON_EGG)){
+			return canDragonEggMoveFromTo(block, toBlock);
 		} else {
-			if(fromPlot == null && toPlot == null) return;
-			else if(fromPlot != null && toPlot == null) return;
-			else if(fromPlot == null && toPlot != null) event.setCancelled(true);
-			else if(!fromPlot.getOwnerNickname().equals(toPlot.getOwnerNickname()))  event.setCancelled(true);
+			return canLiquidMoveFromTo(block, toBlock);
+		}
+	}
+
+	private boolean canLiquidMoveFromTo(Block block, Block toBlock) {
+		Plot fromPlot = plotManager.getPlotByChunk(block.getChunk());
+		Plot toPlot = plotManager.getPlotByChunk(toBlock.getChunk());
+		if(fromPlot == null && toPlot == null) {
+			return true;
+		} else if(fromPlot != null && toPlot == null){
+			return true;
+		} else if(fromPlot == null && toPlot != null){
+			return false;
+		} else if(fromPlot.getOwnerNickname().equals(toPlot.getOwnerNickname())){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private boolean canDragonEggMoveFromTo(Block block, Block toBlock) {
+		Plot fromPlot = plotManager.getPlotByChunk(block.getChunk());
+		Plot toPlot = plotManager.getPlotByChunk(toBlock.getChunk());
+		if(fromPlot == null && toPlot == null) {
+			return true;
+		} else if(fromPlot != null && toPlot == null){
+			return false;
+		} else if(fromPlot == null && toPlot != null){
+			return false;
+		} else if(fromPlot.getOwnerNickname().equals(toPlot.getOwnerNickname())){
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

@@ -9,6 +9,7 @@ import me.szindzeks.ChunkyPlots.manager.ConfigManager;
 import me.szindzeks.ChunkyPlots.manager.CraftingManager;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
 import me.szindzeks.ChunkyPlots.manager.UserManager;
+import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -16,8 +17,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 public class BlockPlaceListener implements Listener {
@@ -32,7 +31,7 @@ public class BlockPlaceListener implements Listener {
             if (user.cooldown == true) {
                 event.setCancelled(true);
                 return;
-            } else if (user.isBypassingRestrictons == true) return;
+            } else if (user.isBypassingRestrictions == true) return;
         }
 
         PlotManager plotManager = ChunkyPlots.plugin.plotManager;
@@ -53,8 +52,15 @@ public class BlockPlaceListener implements Listener {
         if(event.isCancelled() == false) {
             PlayerInventory inventory = event.getPlayer().getInventory();
             if (inventory.getItemInMainHand().isSimilar(CraftingManager.plotBlock) || inventory.getItemInOffHand().isSimilar(CraftingManager.plotBlock)) {
-                plotManager.claimPlot(player, event.getBlock());
-                event.getBlockPlaced().setType(Material.AIR);
+                if(event.getBlockPlaced().getType().equals(Material.NOTE_BLOCK)) {
+                    if(!player.getWorld().getName().equals("world_the_end")) {
+                        plotManager.claimPlot(player, event.getBlock());
+                        event.getBlockPlaced().setType(Material.AIR);
+                    } else {
+                        event.setCancelled(true);
+                        player.sendMessage(ChatUtils.fixColors("&e&lKwadraciarze.pl &8&l» &cTymczasowo nie można stawiać działek w endzie!"));
+                    }
+                }
             }
         }
     }

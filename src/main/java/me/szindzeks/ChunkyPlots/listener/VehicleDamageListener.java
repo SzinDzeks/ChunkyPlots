@@ -20,7 +20,7 @@ public class VehicleDamageListener implements Listener {
 
         if(attacker instanceof Player) {
             Player player = (Player) attacker;
-            if(ChunkyPlots.plugin.userManager.getUser(player.getName()).isBypassingRestrictons == true) return;
+            if(ChunkyPlots.plugin.userManager.getUser(player.getName()).isBypassingRestrictions == true) return;
             else if (ChunkyPlots.plugin.userManager.getUser(player.getName()).cooldown == true) event.setCancelled(true);
             else if (eventPlot != null) {
                 if (eventPlot.getOwnerNickname().equals(player.getName())) return;

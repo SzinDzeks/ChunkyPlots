@@ -16,34 +16,31 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
 public class BlockBreakListener implements Listener {
+	private final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
+
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onBlockBreak(final BlockBreakEvent event){
-		final Block block = event.getBlock();
-		final Player player = event.getPlayer();
-		{
-			UserManager userManager = ChunkyPlots.plugin.userManager;
-			final User user = userManager.getUser(player.getName());
-
-			if (user.cooldown == true) {
-				event.setCancelled(true);
-				return;
-			} else if (user.isBypassingRestrictons == true) return;
+		if(!canPlayerDestroyBlock(event)){
+			event.setCancelled(true);
 		}
+	}
 
-		PlotManager plotManager = ChunkyPlots.plugin.plotManager;
-		ConfigManager configManager = ChunkyPlots.plugin.configManager;
+	private boolean canPlayerDestroyBlock(BlockBreakEvent event) {
+		Plot blockPlot = plotManager.getPlotByChunk(event.getBlock().getChunk());
+		if(blockPlot != null){
+			return canPlayerDestroyBlockOnPlot(event.getPlayer(), blockPlot);
+		} else {
+			return true;
+		}
+	}
 
-		Plot plot = plotManager.getPlotByCoordinates(block.getLocation().getChunk().getX(), block.getLocation().getChunk().getZ(), block.getWorld().getName());
-		if (plot != null) {
-			if (plot.getFlags().get(Flag.BREAK_STRANGER) == true && !plot.members.contains(player.getName())) {
-			} else if (plot.getOwnerNickname().equals(player.getName())) {
-			} else if (plot.members.contains(player.getName()) && plot.getFlags().get(Flag.BREAK_MEMBER) == true) {
-			} else {
-				event.setCancelled(true);
-
-				String message = configManager.getMessages().get(MessageType.NOT_PERMITTED);
-				player.sendMessage(message);
-			}
+	private boolean canPlayerDestroyBlockOnPlot(Player player, Plot blockPlot) {
+		if(blockPlot.isPlayerOwner(player)){
+			return true;
+		} else if(blockPlot.isPlayerMember(player)) {
+			return blockPlot.flags.get(Flag.BREAK_MEMBER);
+		} else {
+			return blockPlot.flags.get(Flag.BREAK_STRANGER);
 		}
 	}
 }

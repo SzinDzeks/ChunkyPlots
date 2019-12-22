@@ -19,7 +19,7 @@ public class PlayerInteractAtEntityListener implements Listener {
 		Location clickedEntityLocation = clickedEntity.getLocation();
 		Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(clickedEntityLocation.getChunk());
 
-		if(ChunkyPlots.plugin.userManager.getUser(player.getName()).isBypassingRestrictons == true) return;
+		if(ChunkyPlots.plugin.userManager.getUser(player.getName()).isBypassingRestrictions == true) return;
 		else if(eventPlot != null){
 			if(eventPlot.getOwnerNickname().equals(player.getName())) return;
 			else if(eventPlot.getFlags().get(Flag.ENTITY_INTERACT_MEMBER) == true && eventPlot.members.contains(player.getName()))

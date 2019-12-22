@@ -1,6 +1,7 @@
 package me.szindzeks.ChunkyPlots.manager;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
+import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import me.szindzeks.ChunkyPlots.util.InventoryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -17,13 +18,26 @@ import java.util.List;
 
 public class CraftingManager {
 	public static ItemStack plotBlock;
+	private ConfigManager configManager = ChunkyPlots.plugin.configManager;
 
 	public CraftingManager(){
+		createPlotItem();
 		loadShapedRecipes(createShapedRecipes());
 	}
 
+	private void createPlotItem() {
+		String name = configManager.getPlotItemName();
+		List<String> lore = configManager.getPlotItemLore();
+		HashMap<Enchantment, Integer> enchantments = new HashMap<>();
+		enchantments.put(Enchantment.DURABILITY, 1);
+
+		plotBlock = InventoryUtil.createItemStack(Material.NOTE_BLOCK, 1, name, lore, enchantments, false);
+	}
+
 	private void loadShapedRecipes(List<ShapedRecipe> recipes){
-		for(ShapedRecipe recipe:recipes) Bukkit.addRecipe(recipe);
+		for(ShapedRecipe recipe:recipes){
+			Bukkit.addRecipe(recipe);
+		}
 	}
 
 	private List<ShapedRecipe> createShapedRecipes(){
@@ -33,22 +47,12 @@ public class CraftingManager {
 	}
 
 	private ShapedRecipe createPlotBlockRecipe(){
-		List<String> lore = new ArrayList<>(Arrays.asList(
-				"&7Ten blok umożliwi ci zajęcie chunku tak,",
-				"&7aby nikt niezaufany nie mógł ci zniszczyć",
-				"&7działki.",
-				"&eAby zobaczyć granicę chunku wciśnij &6F3 + G"
-		));
-		HashMap<Enchantment, Integer> enchantments = new HashMap<>();
-		enchantments.put(Enchantment.DURABILITY, 10);
-		plotBlock = InventoryUtil.createItem(Material.NOTE_BLOCK, 1, "&6&lBLOK DZIAŁKI", lore, enchantments, false);
-
 		NamespacedKey key = new NamespacedKey(ChunkyPlots.plugin, "plot_block");
 		ShapedRecipe recipe = new ShapedRecipe(key, plotBlock);
-		recipe.shape("ppp", "pep", "pgp");
-		recipe.setIngredient('p', Material.OAK_FENCE);
+		recipe.shape("fff", "fef", "fgf");
+		recipe.setIngredient('f', Material.OAK_FENCE);
 		recipe.setIngredient('g', Material.OAK_FENCE_GATE);
-		recipe.setIngredient('e', Material.EMERALD_BLOCK);
+		recipe.setIngredient('e', Material.EMERALD);
 
 		return recipe;
 	}

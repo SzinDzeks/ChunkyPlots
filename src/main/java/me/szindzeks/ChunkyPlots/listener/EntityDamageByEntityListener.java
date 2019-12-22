@@ -31,7 +31,7 @@ public class EntityDamageByEntityListener implements Listener {
             if (attacker instanceof Player) {
                 Player player = (Player) attacker;
                 final User user = ChunkyPlots.plugin.userManager.getUser(player.getName());
-                if(user.isBypassingRestrictons == true) return;
+                if(user.isBypassingRestrictions == true) return;
                 else if(user.cooldown == true) event.setCancelled(true);
                 else if (victim instanceof Player) {
                     if (plot.getFlags().get(Flag.PVP) == false) {

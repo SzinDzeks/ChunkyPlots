@@ -5,6 +5,7 @@ import me.szindzeks.ChunkyPlots.basic.MessageType;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.basic.User;
 import me.szindzeks.ChunkyPlots.manager.ConfigManager;
+import me.szindzeks.ChunkyPlots.manager.MessageManager;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
 import me.szindzeks.ChunkyPlots.manager.UserManager;
 import org.bukkit.Location;
@@ -52,6 +53,16 @@ public class PlayerMoveListener implements Listener {
                             sendLeaveMessages(player, configManager, previousPlot);
                             user.hasEntered = false;
                         }
+                    } else if(previousPlot == null) {
+                        if(newPlot == null){
+                            MessageManager.sendColouredMessageToPlayer("&e&lKwadraciarze.pl &8&l» &7&cDziałka, na której stałeś została usunięta!", player);
+                            user.hasEntered = false;
+                        } else {
+                            if (!newPlot.getOwnerNickname().equals(previousPlot.getOwnerNickname())) {
+                                sendEnterMessages(player, configManager, newPlot);
+                                user.hasEntered = true;
+                            }
+                        }
                     }
                 }
             }
@@ -59,11 +70,9 @@ public class PlayerMoveListener implements Listener {
     }
 
     private void sendEnterMessages(Player player, ConfigManager configManager, Plot newPlot){
-        player.sendTitle("  ", configManager.getMessages().get(MessageType.ENTERED_PLOT).replace("%plotOwnerName%", newPlot.getOwnerNickname()), 6, 20 * 3, 6);
-        player.sendMessage(configManager.getMessages().get(MessageType.ENTERED_PLOT).replace("%plotOwnerName%", newPlot.getOwnerNickname()));
+        player.sendMessage(configManager.getMessages().get(MessageType.ENTERED_PLOT).replace("{plotOwnerName}", newPlot.getOwnerNickname()));
     }
     private void sendLeaveMessages(Player player, ConfigManager configManager, Plot previousPlot){
-        player.sendTitle("  ", configManager.getMessages().get(MessageType.LEFT_PLOT).replace("%plotOwnerName%", previousPlot.getOwnerNickname()), 6, 20 * 3, 6);
-        player.sendMessage(configManager.getMessages().get(MessageType.LEFT_PLOT).replace("%plotOwnerName%", previousPlot.getOwnerNickname()));
+        player.sendMessage(configManager.getMessages().get(MessageType.LEFT_PLOT).replace("{plotOwnerName}", previousPlot.getOwnerNickname()));
     }
 }

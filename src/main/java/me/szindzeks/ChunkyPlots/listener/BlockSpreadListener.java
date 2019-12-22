@@ -14,8 +14,22 @@ public class BlockSpreadListener implements Listener {
 		PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 		Plot sourceBlockPlot = plotManager.getPlotByChunk(event.getSource().getChunk());
 		Plot destinationBlockPlot = plotManager.getPlotByChunk(event.getBlock().getChunk());
-		if(sourceBlockPlot == null && destinationBlockPlot != null) event.setCancelled(true);
-		else if(sourceBlockPlot != null && destinationBlockPlot != null)
-			if(!sourceBlockPlot.getOwnerNickname().equals(destinationBlockPlot.getOwnerNickname())) event.setCancelled(true);
+		if(!canBlockSpreadFromPlotToPlot(sourceBlockPlot, destinationBlockPlot)){
+			event.setCancelled(true);
+		}
+	}
+
+	private boolean canBlockSpreadFromPlotToPlot(Plot sourceBlockPlot, Plot destinationBlockPlot) {
+		if(sourceBlockPlot == null && destinationBlockPlot != null) {
+			return false;
+		} else if(sourceBlockPlot != null && destinationBlockPlot != null){
+			if(sourceBlockPlot.getOwnerNickname().equals(destinationBlockPlot.getOwnerNickname())){
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 }

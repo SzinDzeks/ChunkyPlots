@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerBucketEvent;
 public class PlayerBucketEmptyListener implements Listener {
 	@EventHandler
 	public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event){
-		Block block = event.getBlock();
+		Block block = event.getBlockClicked();
 		if(block != null){
 			Plot plot = ChunkyPlots.plugin.plotManager.getPlotByChunk(block.getChunk());
 			Player player = event.getPlayer();

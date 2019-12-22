@@ -4,7 +4,6 @@ import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
 import me.szindzeks.ChunkyPlots.basic.MessageType;
 import me.szindzeks.ChunkyPlots.basic.Plot;
-import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +16,7 @@ public class PlayerInteractListener implements Listener {
 		final Block block = event.getClickedBlock();
 		final Player player = event.getPlayer();
 
-		if(ChunkyPlots.plugin.userManager.getUser(player.getName()).isBypassingRestrictons == true) return;
+		if(ChunkyPlots.plugin.userManager.getUser(player.getName()).isBypassingRestrictions == true) return;
 		else if(block != null) {
 			final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(block.getLocation().getChunk());
 

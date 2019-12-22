@@ -8,17 +8,16 @@ import org.bukkit.block.Block;
 
 import java.util.List;
 
-public class PistonUtil {
+public class PlotPermissionUtil {
 	private static PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 
-	public static boolean hasPistonPermissionToAffectBlocks(Block piston, List<Block> affectedBlocks){
+	public static boolean canPistonAffectBlocks(Block piston, List<Block> affectedBlocks){
 		for(Block block:affectedBlocks) {
-			if (!pistonCanAffectBlock(piston, block)) return false;
+			if (!canPistonAffectBlock(piston, block)) return false;
 		}
 		return true;
 	}
-
-	public static boolean pistonCanAffectBlock(Block piston, Block affectedBlock){
+	private static boolean canPistonAffectBlock(Block piston, Block affectedBlock){
 		Plot pistonPlot = plotManager.getPlotByChunk(piston.getChunk());
 		Plot affectedBlockPlot = plotManager.getPlotByChunk(affectedBlock.getChunk());
 		if(affectedBlockPlot == null) return true;
