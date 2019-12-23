@@ -8,6 +8,7 @@ import me.szindzeks.ChunkyPlots.basic.User;
 import me.szindzeks.ChunkyPlots.manager.ConfigManager;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
 import me.szindzeks.ChunkyPlots.manager.UserManager;
+import me.szindzeks.ChunkyPlots.util.PlotPermissionUtil;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,19 +29,9 @@ public class BlockBreakListener implements Listener {
 	private boolean canPlayerDestroyBlock(BlockBreakEvent event) {
 		Plot blockPlot = plotManager.getPlotByChunk(event.getBlock().getChunk());
 		if(blockPlot != null){
-			return canPlayerDestroyBlockOnPlot(event.getPlayer(), blockPlot);
+			return PlotPermissionUtil.canPlayerAffectPlot(event.getPlayer(), blockPlot, Flag.BREAK_MEMBER, Flag.BREAK_STRANGER);
 		} else {
 			return true;
-		}
-	}
-
-	private boolean canPlayerDestroyBlockOnPlot(Player player, Plot blockPlot) {
-		if(blockPlot.isPlayerOwner(player)){
-			return true;
-		} else if(blockPlot.isPlayerMember(player)) {
-			return blockPlot.flags.get(Flag.BREAK_MEMBER);
-		} else {
-			return blockPlot.flags.get(Flag.BREAK_STRANGER);
 		}
 	}
 }

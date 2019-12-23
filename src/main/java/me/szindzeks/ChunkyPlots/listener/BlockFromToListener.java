@@ -20,6 +20,7 @@ public class BlockFromToListener implements Listener {
 	}
 
 	private boolean canBlockMoveFromTo(Block block, Block toBlock) {
+		//This event is handling only two types of blocks: liquids and dragon eggs
 		if(block.getType().equals(Material.DRAGON_EGG)){
 			return canDragonEggMoveFromTo(block, toBlock);
 		} else {
@@ -36,7 +37,7 @@ public class BlockFromToListener implements Listener {
 			return true;
 		} else if(fromPlot == null && toPlot != null){
 			return false;
-		} else if(fromPlot.getOwnerNickname().equals(toPlot.getOwnerNickname())){
+		} else if(fromPlot.hasTheSameOwnerAs(toPlot)){
 			return true;
 		} else {
 			return false;
@@ -52,7 +53,7 @@ public class BlockFromToListener implements Listener {
 			return false;
 		} else if(fromPlot == null && toPlot != null){
 			return false;
-		} else if(fromPlot.getOwnerNickname().equals(toPlot.getOwnerNickname())){
+		} else if(fromPlot.hasTheSameOwnerAs(toPlot)){
 			return true;
 		} else {
 			return false;

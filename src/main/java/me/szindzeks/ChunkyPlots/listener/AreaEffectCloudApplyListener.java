@@ -5,6 +5,7 @@ import me.szindzeks.ChunkyPlots.basic.Flag;
 import me.szindzeks.ChunkyPlots.basic.MessageType;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
+import me.szindzeks.ChunkyPlots.util.PlotPermissionUtil;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -43,19 +44,9 @@ public class AreaEffectCloudApplyListener implements Listener {
 	private boolean canShooterApplyEffectToEntityStandingOnPlot(ProjectileSource shooter, Plot plotEntityIsStandingOn) {
 		if(shooter instanceof Player){
 			Player player = (Player) shooter;
-			return canPlayerApplyEffectToEntityStandingOnPlot(player, plotEntityIsStandingOn);
+			return PlotPermissionUtil.canPlayerAffectPlot(player, plotEntityIsStandingOn, Flag.SPLASH_POTION_MEMBER, Flag.SPLASH_POTION_STRANGER);
 		} else {
 			return false;
-		}
-	}
-
-	private boolean canPlayerApplyEffectToEntityStandingOnPlot(Player player, Plot plotEntityIsStandingOn) {
-		if(plotEntityIsStandingOn.isPlayerOwner(player)){
-			return true;
-		} else if(plotEntityIsStandingOn.isPlayerMember(player)) {
-			return plotEntityIsStandingOn.flags.get(Flag.SPLASH_POTION_MEMBER);
-		} else {
-			return plotEntityIsStandingOn.flags.get(Flag.SPLASH_POTION_STRANGER);
 		}
 	}
 }

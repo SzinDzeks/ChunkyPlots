@@ -61,7 +61,7 @@ public class ChunkyPlots extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new BlockPlaceListener(),this);
 		this.getServer().getPluginManager().registerEvents(new DispenseListener(),this);
 		this.getServer().getPluginManager().registerEvents(new EntityDamageByEntityListener(),this);
-		this.getServer().getPluginManager().registerEvents(new EntityExplodeListener(),this);
+		this.getServer().getPluginManager().registerEvents(new ExplodeProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerBucketEmptyListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerInteractAtEntityListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerInteractListener(),this);

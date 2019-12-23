@@ -10,6 +10,7 @@ import me.szindzeks.ChunkyPlots.manager.CraftingManager;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
 import me.szindzeks.ChunkyPlots.manager.UserManager;
 import me.szindzeks.ChunkyPlots.util.ChatUtils;
+import me.szindzeks.ChunkyPlots.util.PlotPermissionUtil;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -20,48 +21,54 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.PlayerInventory;
 
 public class BlockPlaceListener implements Listener {
+    private final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
+    private final ConfigManager configManager = ChunkyPlots.plugin.configManager;
+
     @EventHandler(priority = EventPriority.MONITOR)
     public void onBlockPlace(final BlockPlaceEvent event){
         final Block block = event.getBlock();
         final Player player = event.getPlayer();
-        {
-            UserManager userManager = ChunkyPlots.plugin.userManager;
-            final User user = userManager.getUser(player.getName());
+        final Plot blockPlot = plotManager.getPlotByChunk(block.getChunk());
 
-            if (user.cooldown == true) {
-                event.setCancelled(true);
-                return;
-            } else if (user.isBypassingRestrictions == true) return;
-        }
-
-        PlotManager plotManager = ChunkyPlots.plugin.plotManager;
-        ConfigManager configManager = ChunkyPlots.plugin.configManager;
-
-        Plot plot = plotManager.getPlotByCoordinates(block.getChunk().getX(), block.getChunk().getZ(), block.getWorld().getName());
-        if (plot != null) {
-            if (plot.getFlags().get(Flag.PLACE_STRANGER) == true && !plot.members.contains(player.getName())) {
-            } else if (plot.getOwnerNickname().equals(player.getName())) {
-            } else if (plot.members.contains(player.getName()) && plot.getFlags().get(Flag.PLACE_MEMBER) == true) {
+        if(!PlotPermissionUtil.canPlayerAffectPlot(player, blockPlot, Flag.PLACE_MEMBER, Flag.PLACE_STRANGER)){
+            event.setCancelled(true);
+            String message = configManager.getMessages().get(MessageType.NOT_PERMITTED);
+            player.sendMessage(message);
+        } else if(shouldPlotBeCreated(event)){
+            if(!hasBlockBeenPlacedInRestrictedArea(block)) {
+                plotManager.claimPlot(player, block);
             } else {
-                event.setCancelled(true);
                 String message = configManager.getMessages().get(MessageType.NOT_PERMITTED);
                 player.sendMessage(message);
             }
         }
+    }
 
-        if(event.isCancelled() == false) {
-            PlayerInventory inventory = event.getPlayer().getInventory();
-            if (inventory.getItemInMainHand().isSimilar(CraftingManager.plotBlock) || inventory.getItemInOffHand().isSimilar(CraftingManager.plotBlock)) {
-                if(event.getBlockPlaced().getType().equals(Material.NOTE_BLOCK)) {
-                    if(!player.getWorld().getName().equals("world_the_end")) {
-                        plotManager.claimPlot(player, event.getBlock());
-                        event.getBlockPlaced().setType(Material.AIR);
-                    } else {
-                        event.setCancelled(true);
-                        player.sendMessage(ChatUtils.fixColors("&e&lKwadraciarze.pl &8&l» &cTymczasowo nie można stawiać działek w endzie!"));
-                    }
-                }
+    private boolean shouldPlotBeCreated(BlockPlaceEvent event) {
+        if(!event.isCancelled()){
+            Player player = event.getPlayer();
+            Block block = event.getBlockPlaced();
+            if(hasPlayerPlacedAPlotBlock(player, block)){
+                return true;
             }
         }
+        return false;
     }
+    private boolean hasPlayerPlacedAPlotBlock(Player player, Block block) {
+        PlayerInventory inventory = player.getInventory();
+        if (inventory.getItemInMainHand().isSimilar(CraftingManager.plotBlock) || inventory.getItemInOffHand().isSimilar(CraftingManager.plotBlock)) {
+            if(block.getType().equals(Material.NOTE_BLOCK)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasBlockBeenPlacedInRestrictedArea(Block block) {
+        if(block.getWorld().getName().equals("world_the_end")) {
+            return true;
+        }
+        return false;
+    }
+
 }

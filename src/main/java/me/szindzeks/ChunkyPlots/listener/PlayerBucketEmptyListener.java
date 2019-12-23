@@ -17,13 +17,15 @@ public class PlayerBucketEmptyListener implements Listener {
 		if(block != null){
 			Plot plot = ChunkyPlots.plugin.plotManager.getPlotByChunk(block.getChunk());
 			Player player = event.getPlayer();
-			if(!plot.getOwnerNickname().equals(player.getName())) {
-				if (!plot.members.contains(player.getName())) {
-					if (!plot.getFlags().get(Flag.PLACE_STRANGER)) {
+			if(plot != null) {
+				if (!plot.getOwnerNickname().equals(player.getName())) {
+					if (!plot.members.contains(player.getName())) {
+						if (!plot.getFlags().get(Flag.PLACE_STRANGER)) {
+							event.setCancelled(true);
+						}
+					} else if (!plot.getFlags().get(Flag.PLACE_MEMBER)) {
 						event.setCancelled(true);
 					}
-				} else if (!plot.getFlags().get(Flag.PLACE_MEMBER)){
-					event.setCancelled(true);
 				}
 			}
 		}

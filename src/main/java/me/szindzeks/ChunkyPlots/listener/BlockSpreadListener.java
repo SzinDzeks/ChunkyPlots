@@ -20,16 +20,11 @@ public class BlockSpreadListener implements Listener {
 	}
 
 	private boolean canBlockSpreadFromPlotToPlot(Plot sourceBlockPlot, Plot destinationBlockPlot) {
-		if(sourceBlockPlot == null && destinationBlockPlot != null) {
-			return false;
+		if(sourceBlockPlot == null && destinationBlockPlot == null) {
+			return true;
 		} else if(sourceBlockPlot != null && destinationBlockPlot != null){
-			if(sourceBlockPlot.getOwnerNickname().equals(destinationBlockPlot.getOwnerNickname())){
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
+			return sourceBlockPlot.hasTheSameOwnerAs(destinationBlockPlot);
 		}
+		return false;
 	}
 }
