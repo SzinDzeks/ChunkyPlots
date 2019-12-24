@@ -15,6 +15,7 @@ public enum Flag {
 
 	PVP,
 	PVE,
+	EVE,
 
 	ANIMAL_SPAWNING,
 	MOB_SPAWNING,

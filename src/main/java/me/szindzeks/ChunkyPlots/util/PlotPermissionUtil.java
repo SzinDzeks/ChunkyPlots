@@ -60,4 +60,29 @@ public class PlotPermissionUtil {
 			return plot.flags.get(strangerFlag);
 		}
 	}
+
+	public static boolean canBlockAffectPlot(Block block, Plot plot){
+		Plot blockPlot = plotManager.getPlotByChunk(block.getChunk());
+		if(blockPlot != null) {
+			if (plot.hasTheSameOwnerAs(blockPlot)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static boolean canPlotAffectPlots(Plot plot, List<Plot> plots){
+		for(Plot affectedPlot:plots){
+			if(plot != null) {
+				if (!plot.hasTheSameOwnerAs(affectedPlot)) {
+					return false;
+				} else {
+					return true;
+				}
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
 }

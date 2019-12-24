@@ -49,11 +49,9 @@ public class DispenseListener implements Listener {
 		} else if(sourcePlot != null && destinationPlot != null) {
 			if (sourcePlot.getOwnerNickname().equals(destinationPlot.getOwnerNickname())){
 				return true;
-			} else {
-				return false;
 			}
-		} else {
-			return true;
+			return false;
 		}
+		return true;
 	}
 }

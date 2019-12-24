@@ -121,6 +121,10 @@ public class PlotManager {
 		}
 		return null;
 	}
+	public Plot getPlotByLocation(Location location){
+		Chunk chunk = location.getChunk();
+		return getPlotByChunk(chunk);
+	}
 
 	public void addPlot(Plot plot){
 		plots.add(plot);

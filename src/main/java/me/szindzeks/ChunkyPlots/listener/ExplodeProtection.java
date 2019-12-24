@@ -100,9 +100,8 @@ public class ExplodeProtection implements Listener {
 		if(witherSkull.getShooter() instanceof Wither) {
 			Wither wither = (Wither) witherSkull.getShooter();
 			return canWitherExplodeBlock(wither, block);
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	private boolean canTNTPrimedExplodeBlock(TNTPrimed tntPrimed, Block block) {
@@ -113,28 +112,20 @@ public class ExplodeProtection implements Listener {
 				if (tntSource instanceof Player) {
 					Player player = (Player) tntSource;
 					return PlotPermissionUtil.canPlayerAffectPlot(player, blockPlot, Flag.EXPLODE_MEMBER, Flag.EXPLODE_STRANGER);
-				} else {
-					return false;
 				}
-			} else {
-				return false;
 			}
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	private boolean canExplosiveMinecraftExplodeBlock(ExplosiveMinecart explosiveMinecart, Block block) {
+		//TODO: Check if exploding tntminecart is the same thing as tntprimed and if it isn't handle it here
 		return false;
 	}
 
 	private boolean canEnderCrystalExplodeBlock(EnderCrystal enderCrystal, Block block) {
 		Plot blockPlot = plotManager.getPlotByChunk(block.getChunk());
 		Plot crystalPlot = plotManager.getPlotByChunk(enderCrystal.getLocation().getChunk());
-		if(blockPlot.getOwnerNickname().equals(crystalPlot.getOwnerNickname())){
-			return true;
-		} else {
-			return false;
-		}
+		return blockPlot.hasTheSameOwnerAs(crystalPlot);
 	}
 }

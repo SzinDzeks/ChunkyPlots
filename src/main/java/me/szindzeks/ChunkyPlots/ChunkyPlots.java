@@ -72,8 +72,7 @@ public class ChunkyPlots extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new PlayerShearEntityListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerTakeLecternBookListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerUnleashEntityListener(),this);
-		this.getServer().getPluginManager().registerEvents(new PotionSplashListener(),this);
-		this.getServer().getPluginManager().registerEvents(new LingeringPotionSplashListener(),this);
+		this.getServer().getPluginManager().registerEvents(new PotionProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new VehicleDamageListener(),this);
 		this.getServer().getPluginManager().registerEvents(new VehicleEnterListener(),this);
 	}

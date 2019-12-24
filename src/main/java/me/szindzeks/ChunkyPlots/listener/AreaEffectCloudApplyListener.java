@@ -36,17 +36,15 @@ public class AreaEffectCloudApplyListener implements Listener {
 		Plot plotEntityIsStandingOn = plotManager.getPlotByChunk(entity.getLocation().getChunk());
 		if(plotEntityIsStandingOn != null){
 			return canShooterApplyEffectToEntityStandingOnPlot(shooter, plotEntityIsStandingOn);
-		} else {
-			return true;
 		}
+		return true;
 	}
 
 	private boolean canShooterApplyEffectToEntityStandingOnPlot(ProjectileSource shooter, Plot plotEntityIsStandingOn) {
 		if(shooter instanceof Player){
 			Player player = (Player) shooter;
 			return PlotPermissionUtil.canPlayerAffectPlot(player, plotEntityIsStandingOn, Flag.SPLASH_POTION_MEMBER, Flag.SPLASH_POTION_STRANGER);
-		} else {
-			return false;
 		}
+		return false;
 	}
 }
