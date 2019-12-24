@@ -35,9 +35,8 @@ public class BlockIgniteListener implements Listener {
 			return canBlockBeIgnitedByBlock(block, ignitingBlock);
 		} else if(ignitingEntity != null){
 			return canBlockBeIgnitedByEntity(block, ignitingEntity);
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	private boolean canBlockBeIgnitedByBlock(Block block, Block ignitingBlock) {
@@ -63,23 +62,23 @@ public class BlockIgniteListener implements Listener {
 		Chunk blockChunk = block.getChunk();
 		Plot destinationBlockPlot = plotManager.getPlotByChunk(blockChunk);
 
-		if(ignitingEntity instanceof Player){
-			Player player = (Player) ignitingEntity;
-			return PlotPermissionUtil.canPlayerAffectPlot(player, destinationBlockPlot, Flag.IGNITE_MEMBER, Flag.IGNITE_STRANGER);
-		} else if(ignitingEntity instanceof EnderCrystal){
-			EnderCrystal enderCrystal = (EnderCrystal) ignitingEntity;
-			return canEnderCrystalIgnitePlot(enderCrystal, destinationBlockPlot);
-		} else {
-			return false;
+		if(destinationBlockPlot != null) {
+			if (ignitingEntity instanceof Player) {
+				Player player = (Player) ignitingEntity;
+				return PlotPermissionUtil.canPlayerAffectPlot(player, destinationBlockPlot, Flag.IGNITE_MEMBER, Flag.IGNITE_STRANGER);
+			} else if (ignitingEntity instanceof EnderCrystal) {
+				EnderCrystal enderCrystal = (EnderCrystal) ignitingEntity;
+				return canEnderCrystalIgnitePlot(enderCrystal, destinationBlockPlot);
+			}
 		}
+		return false;
 	}
 
 	private boolean canEnderCrystalIgnitePlot(EnderCrystal enderCrystal, Plot plot) {
 		Location enderCrystalLocation = enderCrystal.getLocation();
-		if(plot.isLocationInside(enderCrystalLocation)){
+		if(plot.isLocationInside(enderCrystalLocation)) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 }

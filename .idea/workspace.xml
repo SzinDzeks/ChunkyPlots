@@ -6,19 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/ChunkyPlots.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/ChunkyPlots.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/Flag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/Flag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/AreaEffectCloudApplyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/AreaEffectCloudApplyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/DispenseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/DispenseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/EntityDamageByEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/EntityDamageByEntityListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/ExplodeProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/ExplodeProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/LingeringPotionSplashListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/PotionSplashListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/PotionProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/PlotManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/PlotManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/util/PlotPermissionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/util/PlotPermissionUtil.java" afterDir="false" />
-    </list>
+    <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

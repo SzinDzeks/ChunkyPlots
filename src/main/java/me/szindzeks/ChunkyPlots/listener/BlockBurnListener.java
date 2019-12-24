@@ -24,13 +24,18 @@ public class BlockBurnListener implements Listener {
 		if(fire != null) {
 			Plot blockPlot = plotManager.getPlotByChunk(block.getChunk());
 			Plot firePlot = plotManager.getPlotByChunk(fire.getChunk());
-			if (blockPlot.hasTheSameOwnerAs(firePlot)) {
-				return true;
-			} else {
-				return !blockPlot.flags.get(Flag.EXTERNAL_FIRE_PROTECTION);
+			if(blockPlot != null) {
+				if(firePlot != null) {
+					if (blockPlot.hasTheSameOwnerAs(firePlot)) {
+						return true;
+					} else {
+						return !blockPlot.flags.get(Flag.EXTERNAL_FIRE_PROTECTION);
+					}
+				} else {
+					return false;
+				}
 			}
-		} else {
-			return true;
 		}
+		return true;
 	}
 }
