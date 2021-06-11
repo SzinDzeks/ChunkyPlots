@@ -1,7 +1,5 @@
 package me.szindzeks.ChunkyPlots.basic;
 
-import com.sun.istack.internal.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

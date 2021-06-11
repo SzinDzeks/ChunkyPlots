@@ -1,6 +1,5 @@
 package me.szindzeks.ChunkyPlots.commands;
 
-import com.sun.istack.internal.NotNull;
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.*;
 import me.szindzeks.ChunkyPlots.guis.MenuGUI;
@@ -142,9 +141,6 @@ public class PlotCommand implements CommandExecutor {
 		return true;
 	}
 
-
-
-	@NotNull
 	private void displayHelpMessage(Player player){
 		player.sendMessage(ChatUtils.fixColors("&9-----------{ " + configManager.getPluginPrefix() + " &9}-----------"));
 		player.sendMessage(ChatUtils.fixColors("&a/plot help "));
@@ -241,7 +237,7 @@ public class PlotCommand implements CommandExecutor {
 	}
 	private void displayFlags(Player player, boolean defaultOrNot, Plot plot) {
 		HashMap<Flag, Boolean> flags;
-		if(defaultOrNot == true) {
+		if(defaultOrNot) {
 			flags = configManager.getDefaultFlags();
 			player.sendMessage(ChatUtils.fixColors("&a&lLista domyślnych flag dla działek:"));
 		} else {
@@ -263,7 +259,7 @@ public class PlotCommand implements CommandExecutor {
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
-	@NotNull
+
 	private void displayFlagValue(Player player, String flagName, Plot plot) {
 		if(plot != null){
 			Flag flag = Flag.valueOf(flagName.toUpperCase());
@@ -284,7 +280,6 @@ public class PlotCommand implements CommandExecutor {
 		}
 	}
 
-	@NotNull
 	private void setFlagValue(Player player, String flagName, String flagValue, Plot plot) {
 		if(plot != null){
 			if(plot.getOwnerNickname().equals(player.getName())){
@@ -318,12 +313,10 @@ public class PlotCommand implements CommandExecutor {
 		}
 	}
 
-
-	@NotNull
 	private void visitPlot(final Player player, final String visitPointName){
 		final VisitPoint visitPoint = visitManager.getVisitPoint(visitPointName);
 		if(visitPoint != null) {
-			if(visitPoint.isOpen == true) {
+			if(visitPoint.isOpen) {
 				if(visitPoint.isSafe()) {
 					final User user = userManager.getUser(player.getName());
 					if (user.isTeleporting == false) {
@@ -370,7 +363,7 @@ public class PlotCommand implements CommandExecutor {
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
-	@NotNull
+
 	private void createVisitPoint(Player player, String name, String description, Plot plot){
 		if(plot != null) {
 			for (VisitPoint visitPoint : visitManager.getVisitPoints()) {
@@ -393,7 +386,7 @@ public class PlotCommand implements CommandExecutor {
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
-	@NotNull
+
 	private void deleteVisitPoint(Player player, String visitPointName){
 		VisitPoint visitPoint = visitManager.getVisitPoint(visitPointName);
 		if(visitPoint != null) {
@@ -414,7 +407,7 @@ public class PlotCommand implements CommandExecutor {
 			MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 		}
 	}
-	@NotNull
+
 	private void setVisitPointStatus(Player player, String visitPointName, boolean status){
 		VisitPoint visitPoint = visitManager.getVisitPoint(visitPointName);
 		if(visitPoint != null) {
@@ -426,7 +419,7 @@ public class PlotCommand implements CommandExecutor {
 		} else player.sendMessage(ChatUtils.fixColors("&cPunkt o nazwie &f" + visitPointName + " &cnie istnieje!"));
 	}
 
-	@NotNull
+
 	private void addMemberToPlot(Player player, String userName, Plot plot) {
 		if (plot != null) {
 			if (plot.getOwnerNickname().equals(player.getName())) {
@@ -458,7 +451,7 @@ public class PlotCommand implements CommandExecutor {
 		}
 	}
 
-	@NotNull
+
 	private void removeMemberFromPlot(Player player, String userName, Plot plot){
 		if(plot != null) {
 			if(plot.getOwnerNickname().equals(player.getName())){
@@ -484,7 +477,7 @@ public class PlotCommand implements CommandExecutor {
 		}
 	}
 
-	@NotNull
+
 	private void addPlayerToBlacklist(Player player, String userName, Plot plot){
 		if(plot != null) {
 			if(plot.getOwnerNickname().equals(player.getName())){
@@ -514,7 +507,7 @@ public class PlotCommand implements CommandExecutor {
 		}
 	}
 
-	@NotNull
+
 	private void removePlayerFromBlacklist(Player player, String userName, Plot plot){
 		if(plot != null) {
 			if(plot.getOwnerNickname().equals(player.getName())){
@@ -541,7 +534,7 @@ public class PlotCommand implements CommandExecutor {
 		}
 	}
 
-	@NotNull
+
 	private void createGroup(Player player, String groupName){
 		User user = userManager.getUser(player.getName());
 		if(user != null){
@@ -563,7 +556,7 @@ public class PlotCommand implements CommandExecutor {
 		}
 	}
 
-	@NotNull
+
 	private void deleteGroup(Player player, String groupName){
 		User user = userManager.getUser(player.getName());
 		if(!groupName.equalsIgnoreCase("all")) {
@@ -592,7 +585,7 @@ public class PlotCommand implements CommandExecutor {
 		}
 	}
 
-	@NotNull
+
 	private void addPlotToGroup(Player player, String groupName, Plot plot){
 		User user = userManager.getUser(player.getName());
 		if(user != null){
@@ -615,7 +608,7 @@ public class PlotCommand implements CommandExecutor {
 		}
 	}
 
-	@NotNull
+
 	private void removePlotFromGroup(Player player, String groupName, Plot plot){
 		User user = userManager.getUser(player.getName());
 		if(user != null){
@@ -638,7 +631,7 @@ public class PlotCommand implements CommandExecutor {
 		}
 	}
 
-	@NotNull
+
 	private List<Plot> getPlotsFromGroupName(Player player, String groupName){
 		List<Plot> plots = new ArrayList<>();
 		User user = userManager.getUser(player.getName());
