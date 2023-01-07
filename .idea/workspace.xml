@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Build" />
+      <artifact name="ChunkyPlots" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,15 +10,71 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/ChunkyPlots.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ChunkyPlots.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Build.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChunkyPlots.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ChunkyPlots.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/PlotCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/PlotCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/MarketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/MarketManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/VisitManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/VisitManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/ChunkyPlots.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/ChunkyPlots.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/ChunkyPlots.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/Flag.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/Flag.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/Group.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/MessageType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/MessageType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/Plot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/Plot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/VisitPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/VisitPoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/commands/PlotAdminCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/commands/PlotAdminCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/commands/PlotCommand$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/commands/PlotCommand$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/commands/PlotCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/commands/PlotCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/guis/MenuGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/guis/MenuGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/AreaEffectCloudApplyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/AreaEffectCloudApplyListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockBreakListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockBreakListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockBurnListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockBurnListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockFromToListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockFromToListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockIgniteListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockIgniteListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockPistonExtendListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockPistonExtendListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockPistonRetractListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockPistonRetractListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockPlaceListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockPlaceListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockSpreadListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockSpreadListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/DispenseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/DispenseListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/EntityDamageByEntityListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/EntityDamageByEntityListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/ExplodeProtection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/ExplodeProtection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/LingeringPotionSplashListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerBucketEmptyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerBucketEmptyListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerInteractAtEntityListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerInteractAtEntityListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerInteractListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerInteractListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerJoinListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerJoinListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerLeashEntityListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerLeashEntityListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerLeftListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerLeftListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerMoveListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerMoveListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerShearEntityListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerShearEntityListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerTakeLecternBookListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerTakeLecternBookListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerUnleashEntityListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerUnleashEntityListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PotionSplashListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/VehicleDamageListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/VehicleDamageListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/VehicleEnterListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/VehicleEnterListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/ConfigManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/ConfigManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/CraftingManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/CraftingManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/GUIManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/GUIManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/MarketManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/MarketManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/MessageManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/MessageManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/PlotManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/PlotManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/UserManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/UserManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/VisitManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/VisitManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/util/ChatUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/util/ChatUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/util/InventoryUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/util/InventoryUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/util/PlotPermissionUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/util/PlotPermissionUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/util/TimeUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/util/TimeUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +108,8 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Rzeczy związane z serwerem/BuildTools &amp; Spigot/Spigot/spigot1.14.4.jar!/" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Testowy serwer/plugins" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15917969" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />

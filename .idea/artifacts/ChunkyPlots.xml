@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ChunkyPlots">
+    <output-path>$USER_HOME$/Desktop/Testowy serwer/plugins</output-path>
+    <root id="archive" name="ChunkyPlots.jar">
+      <element id="module-output" name="ChunkyPlots" />
+    </root>
+  </artifact>
+</component>

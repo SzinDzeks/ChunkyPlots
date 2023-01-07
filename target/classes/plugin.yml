@@ -2,7 +2,7 @@ main: me.szindzeks.ChunkyPlots.ChunkyPlots
 name: ChunkyPlots
 version: 1.0.0
 author: SzinDzeks
-api-version: 1.13
+api-version: 1.19
 commands:
   plot:
     description: This command allows to commit basic operation on your own plots

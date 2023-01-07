@@ -6,7 +6,6 @@ import me.szindzeks.ChunkyPlots.basic.Flag;
 import me.szindzeks.ChunkyPlots.basic.Group;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.basic.User;
-import com.sun.istack.internal.NotNull;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -18,7 +17,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class UserManager {
-	private List<User> users = new ArrayList<User>();
+	private List<User> users = new ArrayList<>();
 	File userDirectory = new File(ChunkyPlots.plugin.getDataFolder() + "/users");
 
 	public UserManager(){
