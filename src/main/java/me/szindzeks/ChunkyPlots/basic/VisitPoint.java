@@ -20,7 +20,7 @@ public class VisitPoint {
 
 	public VisitPoint(Location location, UUID plotUUID, String ownerName, String name, String description){
 		if(description != null) this.description = description;
-		else this.description = ChatUtils.fixColors(ChunkyPlots.plugin.configManager.getMessages().get(MessageType.DEFAULT_VISIT_POINT_DESCRIPTION)).replace("%userName%", ownerName);
+		else this.description = ChatUtils.fixColors(ChunkyPlots.plugin.configManager.getMessage(MessageType.DEFAULT_VISIT_POINT_DESCRIPTION)).replace("%userName%", ownerName);
 		this.ownerName = ownerName;
 		this.location = location;
 		this.name = name;

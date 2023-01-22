@@ -3,11 +3,11 @@ usePrefix: true
 
 plotItem:
   material: "NOTE_BLOCK"
-  name: "&6&lBLOK DZIAŁKI"
+  name: "&6&lBLOK DZIALKI"
   lore:
-    - "&7Ten blok umożliwi ci zajęcie chunku"
-    - "&7tak, aby nikt obcy nie mógł"
-    - "&7zniszczyć ci działki"
+    - "&7Ten blok umozliwi ci zajecie chunku"
+    - "&7tak, aby nikt obcy nie mogl"
+    - "&7zniszczyc ci dzialki"
 
 defaultFlags:
   PLACE_STRANGER: false

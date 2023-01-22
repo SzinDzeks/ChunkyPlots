@@ -18,20 +18,22 @@ public class Plot {
 	private int chunkX;
 	private int chunkZ;
 	private String worldName;
-	private UUID uuid = UUID.randomUUID();
+	private UUID uuid;
 
 	public Plot(Player player, Chunk chunk){
 		this.ownerNickname = player.getName();
 		this.chunkX = chunk.getX();
 		this.chunkZ = chunk.getZ();
 		this.worldName = chunk.getWorld().getName();
+		this.uuid = UUID.randomUUID();
 	}
 	
-	public Plot(String ownerNickname, int chunkX, int chunkZ, String worldName){
+	public Plot(String ownerNickname, int chunkX, int chunkZ, String worldName, UUID uuid){
 		this.ownerNickname = ownerNickname;
 		this.chunkX = chunkX;
 		this.chunkZ = chunkZ;
 		this.worldName = worldName;
+		this.uuid = uuid;
 	}
 
 	public void setFlag(Flag flag, boolean value){ flags.put(flag, value); }

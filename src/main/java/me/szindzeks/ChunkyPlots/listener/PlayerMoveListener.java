@@ -70,9 +70,9 @@ public class PlayerMoveListener implements Listener {
     }
 
     private void sendEnterMessages(Player player, ConfigManager configManager, Plot newPlot){
-        player.sendMessage(configManager.getMessages().get(MessageType.ENTERED_PLOT).replace("{plotOwnerName}", newPlot.getOwnerNickname()));
+        player.sendMessage(configManager.getMessage(MessageType.ENTERED_PLOT).replace("{plotOwnerName}", newPlot.getOwnerNickname()));
     }
     private void sendLeaveMessages(Player player, ConfigManager configManager, Plot previousPlot){
-        player.sendMessage(configManager.getMessages().get(MessageType.LEFT_PLOT).replace("{plotOwnerName}", previousPlot.getOwnerNickname()));
+        player.sendMessage(configManager.getMessage(MessageType.LEFT_PLOT).replace("{plotOwnerName}", previousPlot.getOwnerNickname()));
     }
 }

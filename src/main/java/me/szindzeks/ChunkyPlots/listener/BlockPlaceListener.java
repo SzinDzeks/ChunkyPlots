@@ -30,16 +30,27 @@ public class BlockPlaceListener implements Listener {
         final Player player = event.getPlayer();
         final Plot blockPlot = plotManager.getPlotByChunk(block.getChunk());
 
-        if(!PlotPermissionUtil.canPlayerAffectPlot(player, blockPlot, Flag.PLACE_MEMBER, Flag.PLACE_STRANGER)){
-            event.setCancelled(true);
-            String message = configManager.getMessages().get(MessageType.NOT_PERMITTED);
-            player.sendMessage(message);
-        } else if(shouldPlotBeCreated(event)){
-            if(!hasBlockBeenPlacedInRestrictedArea(block)) {
-                plotManager.claimPlot(player, block);
-            } else {
-                String message = configManager.getMessages().get(MessageType.NOT_PERMITTED);
+        if(blockPlot != null){
+            if(!PlotPermissionUtil.canPlayerAffectPlot(player, blockPlot, Flag.PLACE_MEMBER, Flag.PLACE_STRANGER)){
+                event.setCancelled(true);
+                String message = configManager.getMessage(MessageType.NOT_PERMITTED);
                 player.sendMessage(message);
+            } else {
+                if(hasPlayerPlacedAPlotBlock(player, block)){
+                    event.setCancelled(true);
+                    String message = configManager.getMessage(MessageType.PLOT_ALREADY_EXISTS);
+                    player.sendMessage(message);
+                }
+            }
+        } else {
+            if(shouldPlotBeCreated(event)){
+                if(!hasBlockBeenPlacedInRestrictedArea(block)) {
+                    plotManager.claimPlot(player, block);
+                    block.setType(Material.AIR);
+                } else {
+                    String message = configManager.getMessage(MessageType.NOT_PERMITTED);
+                    player.sendMessage(message);
+                }
             }
         }
     }

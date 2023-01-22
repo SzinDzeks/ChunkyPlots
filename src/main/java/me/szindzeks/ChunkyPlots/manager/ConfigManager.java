@@ -103,6 +103,8 @@ public class ConfigManager {
 	public String getPlotItemName() { return  plotItemName; }
 	public List<String> getPlotItemLore() { return  plotItemLore; }
 	public HashMap<Flag, Boolean> getDefaultFlags(){ return defaultFlags; }
-	public HashMap<MessageType, String> getMessages() { return messages; }
+	public String getMessage(MessageType type){
+		return messages.get(type);
+	}
 
 }

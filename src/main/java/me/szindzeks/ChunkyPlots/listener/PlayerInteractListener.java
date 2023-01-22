@@ -17,11 +17,13 @@ public class PlayerInteractListener implements Listener {
 	public void onPlayerInteract(PlayerInteractEvent event){
 		final Block block = event.getClickedBlock();
 		final Player player = event.getPlayer();
-		final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(block.getChunk());
-
-		if(eventPlot != null) {
-			if (!PlotPermissionUtil.canPlayerAffectPlot(player, eventPlot, Flag.BLOCK_INTERACT_MEMBER, Flag.BLOCK_INTERACT_STRANGER)) {
-				event.setCancelled(true);
+		final Plot eventPlot;
+		if(block != null) {
+			eventPlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(block.getChunk());
+			if (eventPlot != null) {
+				if (!PlotPermissionUtil.canPlayerAffectPlot(player, eventPlot, Flag.BLOCK_INTERACT_MEMBER, Flag.BLOCK_INTERACT_STRANGER)) {
+					event.setCancelled(true);
+				}
 			}
 		}
 	}

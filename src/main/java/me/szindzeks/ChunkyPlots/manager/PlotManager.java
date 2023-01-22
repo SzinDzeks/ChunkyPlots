@@ -14,7 +14,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 public class PlotManager {
@@ -53,7 +52,7 @@ public class PlotManager {
 						flags.put(Flag.valueOf(s),flagsToConvert.get(s));
 					}
 
-					Plot plot = new Plot(ownerNickname, chunkX, chunkZ, worldName);
+					Plot plot = new Plot(ownerNickname, chunkX, chunkZ, worldName, UUID.fromString(file.getName()));
 					plot.blacklist = blacklist;
 					plot.members = members;
 					plot.blacklist = blacklist;
@@ -126,10 +125,7 @@ public class PlotManager {
 		return getPlotByChunk(chunk);
 	}
 
-	public void addPlot(Plot plot){
-		plots.add(plot);
-	}
-	public void removePlot(Plot plot){
+	public void disposePlot(Plot plot){
 		plots.remove(plot);
 		File f = new File(plotDirectory.getPath() + "/" + plot.getUUID());
 		f.delete();
@@ -143,21 +139,21 @@ public class PlotManager {
 	}
 
 	public void claimPlot(Player player, Block block){
-		HashMap<MessageType, String> messages = ChunkyPlots.plugin.configManager.getMessages();
+		ConfigManager configManager = ChunkyPlots.plugin.configManager;
 		Chunk chunk = block.getChunk();
 		String plotID = chunk.getX() + ";" + chunk.getZ();
 		if(getPlotByChunk(chunk) == null){
 			Plot plot = new Plot(player, chunk);
 			User user = ChunkyPlots.plugin.userManager.getUser(player.getName());
 
-			assingPlotToUserDefaultGroup(plot, user);
-			addPlot(plot);
+			assignPlotToUserDefaultGroup(plot, user);
+			plots.add(plot);
 			savePlot(plot);
-			player.sendMessage(messages.get(MessageType.PLOT_CREATED).replace("%plotID%", plotID));
-		} else player.sendMessage(messages.get(MessageType.PLOT_ALREADY_EXISTS).replace("%plotID%", plotID));
+			player.sendMessage(configManager.getMessage(MessageType.PLOT_CREATED).replace("{plotID}", plotID));
+		} else player.sendMessage(configManager.getMessage(MessageType.PLOT_ALREADY_EXISTS).replace("{plotID}", plotID));
 	}
 
-	private void assingPlotToUserDefaultGroup(Plot plot, User user){
+	private void assignPlotToUserDefaultGroup(Plot plot, User user){
 		for(Group group:user.groups){
 			if(group.getName().equals("all")) group.plots.add(plot.getUUID());
 		}

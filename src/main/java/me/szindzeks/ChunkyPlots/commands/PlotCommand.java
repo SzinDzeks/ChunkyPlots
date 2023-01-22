@@ -20,7 +20,6 @@ public class PlotCommand implements CommandExecutor {
 	final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 	final UserManager userManager = ChunkyPlots.plugin.userManager;
 	final VisitManager visitManager = ChunkyPlots.plugin.visitManager;
-	final HashMap<MessageType, String> messages = configManager.getMessages();
 
 	public boolean onCommand(CommandSender sender, Command command, String name, String[] args) {
 		if(sender instanceof Player){
@@ -137,7 +136,7 @@ public class PlotCommand implements CommandExecutor {
 					else displayHelpMessage(player);
 				} else displayHelpMessage(player);
 			} else displayHelpMessage(player);
-		} else sender.sendMessage(configManager.getMessages().get(MessageType.SENDER_NOT_PLAYER));
+		} else sender.sendMessage(configManager.getMessage(MessageType.SENDER_NOT_PLAYER));
 		return true;
 	}
 
@@ -171,9 +170,9 @@ public class PlotCommand implements CommandExecutor {
 		Plot plot = plotManager.getPlotByChunk(chunk);
 		if(plot != null){
 			if(plot.getOwnerNickname().equals(player.getName())) {
-				plotManager.removePlot(plot);
+				plotManager.disposePlot(plot);
 				player.getInventory().addItem(CraftingManager.plotBlock);
-				player.sendMessage(messages.get(MessageType.PLOT_DELETED).replace("{plotID}", plotID).replace("{world}", plot.getWorldName()));
+				player.sendMessage(configManager.getMessage(MessageType.PLOT_DELETED).replace("{plotID}", plotID).replace("{world}", plot.getWorldName()));
 
 				User user = userManager.getUser(player.getName());
 				for(Group group:user.groups){
@@ -188,8 +187,8 @@ public class PlotCommand implements CommandExecutor {
 					visitManager.deleteVisitPoint(visitPoint);
 					player.sendMessage(ChatUtils.fixColors("&cNa usuniętej działce znajdował się punkt &f" + visitPoint.getName() + "&c, więc został on usunięty!"));
 				}
-			} else player.sendMessage(messages.get(MessageType.NOT_OWNER));
-		} else player.sendMessage(messages.get(MessageType.NULL_PLOT).replace("{plotID}", plotID));
+			} else player.sendMessage(configManager.getMessage(MessageType.NOT_OWNER));
+		} else player.sendMessage(configManager.getMessage(MessageType.NULL_PLOT).replace("{plotID}", plotID));
 	}
 
 	private void displayPlotList(Player player){
@@ -233,7 +232,7 @@ public class PlotCommand implements CommandExecutor {
 			player.sendMessage(ChatUtils.fixColors("&aLokalizacja: &7X:&f" + location.getBlockX() + "  &7Y:&f" + location.getBlockY() + "  &7Z:&f" + location.getBlockZ()));
 			player.sendMessage(ChatUtils.fixColors("&aUUID: &f" + plot.getUUID()));
 			player.sendMessage(ChatUtils.fixColors("&9-----------{ " + configManager.getPluginPrefix() + " &9}-----------"));
-		} else player.sendMessage(messages.get(MessageType.NULL_PLOT));
+		} else player.sendMessage(configManager.getMessage(MessageType.NULL_PLOT));
 	}
 	private void displayFlags(Player player, boolean defaultOrNot, Plot plot) {
 		HashMap<Flag, Boolean> flags;
@@ -245,7 +244,7 @@ public class PlotCommand implements CommandExecutor {
 				flags = plot.getFlags();
 				player.sendMessage(ChatUtils.fixColors("&aLista flag dla działki o ID &8(&7" + plot.getID() + "&8)&a:"));
 			} else {
-				player.sendMessage(messages.get(MessageType.NULL_PLOT));
+				player.sendMessage(configManager.getMessage(MessageType.NULL_PLOT));
 				return;
 			}
 		}
@@ -255,7 +254,7 @@ public class PlotCommand implements CommandExecutor {
 				player.sendMessage(ChatUtils.fixColors("&7" + flag.toString() + "&8: " + (flagValue ? ("&a" + flagValue) : ("&c" + flagValue))));
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.ERROR_UNSPECIFIED);
+			String rawMessage = configManager.getMessage(MessageType.ERROR_UNSPECIFIED);
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
@@ -266,16 +265,16 @@ public class PlotCommand implements CommandExecutor {
 			if(flag != null){
 				String flagValue = plot.getFlags().get(flag).toString();
 
-				String rawMessage = messages.get(MessageType.FLAG_VALUE_ON_PLOT);
+				String rawMessage = configManager.getMessage(MessageType.FLAG_VALUE_ON_PLOT);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, flag);
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			} else {
-				String rawMessage = messages.get(MessageType.UNKNOWN_FLAG);
+				String rawMessage = configManager.getMessage(MessageType.UNKNOWN_FLAG);
 				String uncolouredMessage = rawMessage.replace("{flagName}", flagName.toUpperCase());
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.NULL_PLOT);
+			String rawMessage = configManager.getMessage(MessageType.NULL_PLOT);
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
@@ -284,31 +283,32 @@ public class PlotCommand implements CommandExecutor {
 		if(plot != null){
 			if(plot.getOwnerNickname().equals(player.getName())){
 				Flag flag = Flag.valueOf(flagName.toUpperCase());
+
 				if(flag != null){
 					if(flagValue.equalsIgnoreCase("true") || flagValue.equalsIgnoreCase("false")){
 						boolean value = Boolean.valueOf(flagValue);
 						plot.setFlag(flag, value);
 						plotManager.savePlot(plot);
 
-						String rawMessage = messages.get(MessageType.FLAG_SET_ON_PLOT);
+						String rawMessage = configManager.getMessage(MessageType.FLAG_SET_ON_PLOT);
 						String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, flag);
 						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 					} else {
-						String rawMessage = messages.get(MessageType.WRONG_FLAG_VALUE);
+						String rawMessage = configManager.getMessage(MessageType.WRONG_FLAG_VALUE);
 						String uncolouredMessage = rawMessage.replace("{flagValue}", flagValue.toUpperCase());
 						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 					}
 				} else {
-					String rawMessage = messages.get(MessageType.UNKNOWN_FLAG);
+					String rawMessage = configManager.getMessage(MessageType.UNKNOWN_FLAG);
 					String uncolouredMessage = rawMessage.replace("{flagName}", flagName.toUpperCase());
 					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 				}
 			} else {
-				String rawMessage = messages.get(MessageType.NOT_OWNER);
+				String rawMessage = configManager.getMessage(MessageType.NOT_OWNER);
 				MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.NULL_PLOT);
+			String rawMessage = configManager.getMessage(MessageType.NULL_PLOT);
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
@@ -321,7 +321,7 @@ public class PlotCommand implements CommandExecutor {
 					final User user = userManager.getUser(player.getName());
 					if (user.isTeleporting == false) {
 						user.isTeleporting = true;
-						String rawMessage = messages.get(MessageType.TELEPORTING_TO_VISIT_POINT);
+						String rawMessage = configManager.getMessage(MessageType.TELEPORTING_TO_VISIT_POINT);
 						String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
 						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 						final int x = player.getLocation().getBlockX();
@@ -333,11 +333,11 @@ public class PlotCommand implements CommandExecutor {
 								if (player.isOnline()) {
 									if (player.getLocation().getBlockX() == x && player.getLocation().getBlockY() == y && player.getLocation().getBlockZ() == z) {
 										player.teleport(visitPoint.getLocation());
-										String rawMessage = messages.get(MessageType.TELEPORTED_TO_VISIT_POINT);
+										String rawMessage = configManager.getMessage(MessageType.TELEPORTED_TO_VISIT_POINT);
 										String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
 										MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 									} else {
-										String rawMessage = messages.get(MessageType.TELEPORT_CANCELLED);
+										String rawMessage = configManager.getMessage(MessageType.TELEPORT_CANCELLED);
 										String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
 										MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 									}
@@ -346,20 +346,20 @@ public class PlotCommand implements CommandExecutor {
 							}
 						}, 20 * 5);
 					} else {
-						String rawMessage = messages.get(MessageType.ALREADY_TELEPORTING);
+						String rawMessage = configManager.getMessage(MessageType.ALREADY_TELEPORTING);
 						MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 					}
 				} else {
-					String rawMessage = messages.get(MessageType.VISIT_POINT_NOT_SAFE);
+					String rawMessage = configManager.getMessage(MessageType.VISIT_POINT_NOT_SAFE);
 					MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 				}
 			} else {
-				String rawMessage = messages.get(MessageType.VISIT_POINT_CLOSED);
+				String rawMessage = configManager.getMessage(MessageType.VISIT_POINT_CLOSED);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.NULL_VISIT_POINT);
+			String rawMessage = configManager.getMessage(MessageType.NULL_VISIT_POINT);
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
@@ -368,7 +368,7 @@ public class PlotCommand implements CommandExecutor {
 		if(plot != null) {
 			for (VisitPoint visitPoint : visitManager.getVisitPoints()) {
 				if (visitPoint.getName().equals(name)) {
-					String rawMessage = messages.get(MessageType.VISIT_POINT_ALREADY_EXISTS);
+					String rawMessage = configManager.getMessage(MessageType.VISIT_POINT_ALREADY_EXISTS);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
 					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 					return;
@@ -378,11 +378,11 @@ public class PlotCommand implements CommandExecutor {
 			VisitPoint visitPoint = new VisitPoint(location, plot.getUUID(), player.getName(), name, description);
 			visitManager.createVisitPoint(visitPoint);
 
-			String rawMessage = messages.get(MessageType.CREATED_VISIT_POINT);
+			String rawMessage = configManager.getMessage(MessageType.CREATED_VISIT_POINT);
 			String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
 			MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 		} else {
-			String rawMessage = messages.get(MessageType.VISIT_POINT_NOT_INSIDE_PLOT);
+			String rawMessage = configManager.getMessage(MessageType.VISIT_POINT_NOT_INSIDE_PLOT);
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
@@ -393,16 +393,16 @@ public class PlotCommand implements CommandExecutor {
 			if(visitPoint.getOwnerName().equals(player.getName())){
 				visitManager.deleteVisitPoint(visitPoint);
 
-				String rawMessage = messages.get(MessageType.DELETED_VISIT_POINT);
+				String rawMessage = configManager.getMessage(MessageType.DELETED_VISIT_POINT);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			} else {
-				String rawMessage = messages.get(MessageType.NOT_VISIT_POINT_OWNER);
+				String rawMessage = configManager.getMessage(MessageType.NOT_VISIT_POINT_OWNER);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint, player);
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.NULL_VISIT_POINT);
+			String rawMessage = configManager.getMessage(MessageType.NULL_VISIT_POINT);
 			String uncolouredMessage = rawMessage.replace("{visitPoint}", visitPointName);
 			MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 		}
@@ -428,25 +428,25 @@ public class PlotCommand implements CommandExecutor {
 					if (user != null) {
 						plot.members.add(userName);
 						plotManager.savePlot(plot);
-						String rawMessage = messages.get(MessageType.ADDED_MEMBER_TO_PLOT);
+						String rawMessage = configManager.getMessage(MessageType.ADDED_MEMBER_TO_PLOT);
 						String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, user);
 						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 					} else {
-						String rawMessage = messages.get(MessageType.NULL_USER);
+						String rawMessage = configManager.getMessage(MessageType.NULL_USER);
 						MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 					}
 				} else {
-					String rawMessage = messages.get(MessageType.CANNOT_ADD_OWNER_AS_MEMBER);
+					String rawMessage = configManager.getMessage(MessageType.CANNOT_ADD_OWNER_AS_MEMBER);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, player);
 					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 				}
 			} else {
-				String rawMessage = messages.get(MessageType.NOT_OWNER);
+				String rawMessage = configManager.getMessage(MessageType.NOT_OWNER);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, player);
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.NULL_PLOT);
+			String rawMessage = configManager.getMessage(MessageType.NULL_PLOT);
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
@@ -459,20 +459,20 @@ public class PlotCommand implements CommandExecutor {
 					plot.members.remove(userName);
 					plotManager.savePlot(plot);
 
-					String rawMessage = messages.get(MessageType.REMOVED_MEMBER_FROM_PLOT);
+					String rawMessage = configManager.getMessage(MessageType.REMOVED_MEMBER_FROM_PLOT);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, player);
 					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 				} else {
-					String rawMessage = messages.get(MessageType.NULL_USER);
+					String rawMessage = configManager.getMessage(MessageType.NULL_USER);
 					MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 				}
 			} else {
-				String rawMessage = messages.get(MessageType.NOT_OWNER);
+				String rawMessage = configManager.getMessage(MessageType.NOT_OWNER);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, player);
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.NULL_PLOT);
+			String rawMessage = configManager.getMessage(MessageType.NULL_PLOT);
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
@@ -486,23 +486,23 @@ public class PlotCommand implements CommandExecutor {
 					if(user != null){
 						plot.blacklist.add(userName);
 						plotManager.savePlot(plot);
-						player.sendMessage(messages.get(MessageType.BLACKLIST_ADDED_TO_PLOT).replace("%plotID%", plot.getID()).replace("%userName%", userName));
+						player.sendMessage(configManager.getMessage(MessageType.BLACKLIST_ADDED_TO_PLOT).replace("%plotID%", plot.getID()).replace("%userName%", userName));
 					} else {
-						String rawMessage = messages.get(MessageType.NULL_USER);
+						String rawMessage = configManager.getMessage(MessageType.NULL_USER);
 						MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 					}
 				} else {
-					String rawMessage = messages.get(MessageType.CANNOT_ADD_OWNER_TO_BLACKLIST);
+					String rawMessage = configManager.getMessage(MessageType.CANNOT_ADD_OWNER_TO_BLACKLIST);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, player);
 					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 				}
 			} else {
-				String rawMessage = messages.get(MessageType.NOT_OWNER);
+				String rawMessage = configManager.getMessage(MessageType.NOT_OWNER);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, player);
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.NULL_PLOT);
+			String rawMessage = configManager.getMessage(MessageType.NULL_PLOT);
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
@@ -515,21 +515,21 @@ public class PlotCommand implements CommandExecutor {
 					plot.blacklist.remove(userName);
 					plotManager.savePlot(plot);
 
-					player.sendMessage(messages.get(MessageType.BLACKLIST_REMOVED_FROM_PLOT).replace("%plotID%", plot.getID()).replace("%userName%", userName));
-					String rawMessage = messages.get(MessageType.BLACKLIST_REMOVED_FROM_PLOT);
+					player.sendMessage(configManager.getMessage(MessageType.BLACKLIST_REMOVED_FROM_PLOT).replace("%plotID%", plot.getID()).replace("%userName%", userName));
+					String rawMessage = configManager.getMessage(MessageType.BLACKLIST_REMOVED_FROM_PLOT);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, userManager.getUser(userName));
 					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 				} else {
-					String rawMessage = messages.get(MessageType.NULL_USER);
+					String rawMessage = configManager.getMessage(MessageType.NULL_USER);
 					MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 				}
 			} else {
-				String rawMessage = messages.get(MessageType.NOT_OWNER);
+				String rawMessage = configManager.getMessage(MessageType.NOT_OWNER);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, player);
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.NULL_PLOT);
+			String rawMessage = configManager.getMessage(MessageType.NULL_PLOT);
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
@@ -542,16 +542,16 @@ public class PlotCommand implements CommandExecutor {
 				user.groups.add(new Group(groupName));
 				userManager.saveUser(user);
 
-				String rawMessage = messages.get(MessageType.GROUP_CREATE);
+				String rawMessage = configManager.getMessage(MessageType.GROUP_CREATE);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, user.getGroupByName(groupName));
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			} else {
-				String rawMessage = messages.get(MessageType.GROUP_ALREADY_EXISTS);
+				String rawMessage = configManager.getMessage(MessageType.GROUP_ALREADY_EXISTS);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, user.getGroupByName(groupName));
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.NULL_USER);
+			String rawMessage = configManager.getMessage(MessageType.NULL_USER);
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
@@ -566,20 +566,20 @@ public class PlotCommand implements CommandExecutor {
 					user.groups.remove(group);
 					userManager.saveUser(user);
 
-					String rawMessage = messages.get(MessageType.GROUP_DELETE);
+					String rawMessage = configManager.getMessage(MessageType.GROUP_DELETE);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
 					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 				} else {
-					String rawMessage = messages.get(MessageType.NULL_GROUP);
+					String rawMessage = configManager.getMessage(MessageType.NULL_GROUP);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
 					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 				}
 			} else {
-				String rawMessage = messages.get(MessageType.NULL_USER);
+				String rawMessage = configManager.getMessage(MessageType.NULL_USER);
 				MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.CANNOT_DELETE_GROUP);
+			String rawMessage = configManager.getMessage(MessageType.CANNOT_DELETE_GROUP);
 			String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, user.getGroupByName("all"));
 			MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 		}
@@ -594,16 +594,16 @@ public class PlotCommand implements CommandExecutor {
 				group.plots.add(plot.getUUID());
 				userManager.saveUser(user);
 
-				String rawMessage = messages.get(MessageType.PLOT_ADDED_TO_GROUP);
+				String rawMessage = configManager.getMessage(MessageType.PLOT_ADDED_TO_GROUP);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, group);
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			} else {
-				String rawMessage = messages.get(MessageType.NULL_GROUP);
+				String rawMessage = configManager.getMessage(MessageType.NULL_GROUP);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.NULL_USER);
+			String rawMessage = configManager.getMessage(MessageType.NULL_USER);
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
@@ -617,16 +617,16 @@ public class PlotCommand implements CommandExecutor {
 				group.plots.remove(plot.getUUID());
 				userManager.saveUser(user);
 
-				String rawMessage = messages.get(MessageType.PLOT_REMOVED_FROM_GROUP);
+				String rawMessage = configManager.getMessage(MessageType.PLOT_REMOVED_FROM_GROUP);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, group);
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			} else {
-				String rawMessage = messages.get(MessageType.NULL_GROUP);
+				String rawMessage = configManager.getMessage(MessageType.NULL_GROUP);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
 				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 			}
 		} else {
-			String rawMessage = messages.get(MessageType.NULL_USER);
+			String rawMessage = configManager.getMessage(MessageType.NULL_USER);
 			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
 		}
 	}
@@ -649,7 +649,7 @@ public class PlotCommand implements CommandExecutor {
 			}
 		}
 		if(group == null){
-			String rawMessage = messages.get(MessageType.NULL_GROUP);
+			String rawMessage = configManager.getMessage(MessageType.NULL_GROUP);
 			String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, player);
 			MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
 		}
