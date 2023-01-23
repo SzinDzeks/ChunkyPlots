@@ -1,11 +1,9 @@
 package me.szindzeks.ChunkyPlots;
 
-import me.szindzeks.ChunkyPlots.commands.PlotAdminCommand;
-import me.szindzeks.ChunkyPlots.commands.PlotCommand;
+import me.szindzeks.ChunkyPlots.commands.plot.PlotCommandManager;
 import me.szindzeks.ChunkyPlots.listener.*;
 import me.szindzeks.ChunkyPlots.manager.*;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ChunkyPlots extends JavaPlugin {
@@ -19,7 +17,7 @@ public class ChunkyPlots extends JavaPlugin {
 	public CraftingManager craftingManager;
 	public MarketManager marketManager;
 
-	@EventHandler
+	@Override
 	public void onEnable(){
 		setupPluginConfig();
 		config = this.getConfig();
@@ -33,11 +31,6 @@ public class ChunkyPlots extends JavaPlugin {
 
 	private void setupPluginConfig() {
 		this.saveDefaultConfig();
-	}
-
-	@EventHandler
-	public void onDisable(){
-
 	}
 
 	private void initializeManagers(){
@@ -77,7 +70,7 @@ public class ChunkyPlots extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new VehicleEnterListener(),this);
 	}
 	private void registerCommands(){
-		getCommand("plot").setExecutor(new PlotCommand());
-		getCommand("plotadmin").setExecutor(new PlotAdminCommand());
+//		getCommand("plot").setExecutor(new PlotCommand());
+		getCommand("plot").setExecutor(new PlotCommandManager());
 	}
 }

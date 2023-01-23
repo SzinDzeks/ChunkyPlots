@@ -10,11 +10,11 @@ public class MessageManager {
 		player.sendMessage(ChatUtils.fixColors(message));
 	}
 	public static String replacePlaceholders(String message, VisitPoint visitPoint){
-		message = message.replace("{visitPoint}", visitPoint.getName());
+		message = message.replace("{visitPointName}", visitPoint.getName());
 		return message;
 	}
 	public static String replacePlaceholders(String message, Group group){
-		message = message.replace("{group}", group.getName());
+		message = message.replace("{groupName}", group.getName());
 		return message;
 	}
 	public static String replacePlaceholders(String message, Player player){
@@ -34,6 +34,12 @@ public class MessageManager {
 		message = replacePlaceholders(message, plot);
 		message = message.replace("{flagName}", flag.name());
 		message = message.replace("{flagValue}", plot.getFlags().get(flag).toString());
+		return message;
+	}
+
+	public static String replacePlaceholders(String message, Flag flag, Boolean flagValue){
+		message = message.replace("{flagName}", flag.name());
+		message = message.replace("{flagValue}", flagValue.toString());
 		return message;
 	}
 
@@ -64,4 +70,8 @@ public class MessageManager {
 		return message;
 	}
 
+	public static String replacePlaceholders(String message, Flag flag) {
+		message = message.replace("{flagName}", flag.name());
+		return message;
+	}
 }

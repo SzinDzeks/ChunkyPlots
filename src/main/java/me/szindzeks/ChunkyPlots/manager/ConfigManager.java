@@ -9,7 +9,6 @@ import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -21,8 +20,8 @@ public class ConfigManager {
 	private String plotItemName;
 	private List<String> plotItemLore;
 
-	HashMap<Flag, Boolean> defaultFlags = new HashMap<Flag, Boolean>();
-	HashMap<MessageType, String> messages = new HashMap<MessageType, String>();
+	HashMap<Flag, Boolean> defaultFlags = new HashMap<>();
+	HashMap<MessageType, String> messages = new HashMap<>();
 
 	public ConfigManager(){
 		loadConfig();
@@ -34,53 +33,68 @@ public class ConfigManager {
 		pluginPrefix = ChatUtils.fixColors(config.getString("pluginPrefix"));
 		loadPlotItem(config);
 		loadDefaultFlags(config);
-		loadMessages(config);
+		loadMessagesFromConfig();
 	}
 
-	private void loadMessages(FileConfiguration config) {
-		ConfigurationSection messageConfig = config.getConfigurationSection("messages");
-
-		messages.put(MessageType.PLOT_CREATED, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("plotCreated")));
-		messages.put(MessageType.PLOT_DELETED, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("plotDeleted")));
-		messages.put(MessageType.ENTERED_PLOT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("enteredPlot")));
-		messages.put(MessageType.LEFT_PLOT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("leftPlot")));
-		messages.put(MessageType.PLOT_ALREADY_EXISTS, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("plotAlreadyExists")));
-		messages.put(MessageType.NULL_PLOT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("nullPlot")));
-		messages.put(MessageType.ADDED_MEMBER_TO_PLOT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("addedMemberToPlot")));
-		//messages.put(MessageType.ADDED_MEMBER_TO_GROUP, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("addedMemberToGroup")));
-		messages.put(MessageType.REMOVED_MEMBER_FROM_PLOT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("removedMemberFromPlot")));
-		//messages.put(MessageType.REMOVED_MEMBER_FROM_GROUP, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("removedMemberFromGroup")));
-		messages.put(MessageType.BLACKLIST_ADDED_TO_PLOT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("blacklistAddedToPlot")));
-		//messages.put(MessageType.BLACKLIST_ADDED_TO_GROUP, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("blacklistAddedToGroup")));
-		messages.put(MessageType.BLACKLIST_REMOVED_FROM_PLOT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("blacklistRemovedFromPlot")));
-		//messages.put(MessageType.BLACKLIST_REMOVED_FROM_GROUP, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("blacklistRemovedFromGroup")));
-		messages.put(MessageType.FLAG_SET_ON_PLOT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("flagSetOnPlot")));
-		//messages.put(MessageType.FLAG_SET_ON_GROUP, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("flagSetOnGroup")));
-		messages.put(MessageType.FLAG_VALUE_ON_PLOT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("flagValueOnPlot")));
-		//messages.put(MessageType.FLAG_VALUE_ON_GROUP, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("flagValueOnGroup")));
-		messages.put(MessageType.FLAG_VALUES_IN_GROUP_ARE_DIFFERENT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("flagValuesInGroupAreDifferent")));
-		messages.put(MessageType.UNKNOWN_FLAG, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("unknownFlag")));
-		messages.put(MessageType.WRONG_FLAG_VALUE, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("wrongFlagValue")));
-		messages.put(MessageType.NOT_OWNER, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("notOwner")));
-		messages.put(MessageType.NOT_PERMITTED, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("notPermitted")));
-		messages.put(MessageType.CANNOT_ADD_OWNER_TO_BLACKLIST, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("cannotAddOwnerToBlacklist")));
-		messages.put(MessageType.CANNOT_ADD_OWNER_AS_MEMBER, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("cannotAddOwnerAsMember")));
-		messages.put(MessageType.PLAYER_IS_ALREADY_BLACKLISTED, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("playerIsAlreadyBlacklisted")));
-		messages.put(MessageType.PLAYER_IS_ALREADY_A_MEMBER, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("playerIsAlreadyAMember")));
-		messages.put(MessageType.NULL_USER, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("nullUser")));
-		messages.put(MessageType.NULL_GROUP, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("nullGroup")));
-		messages.put(MessageType.GROUP_CREATE, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("groupCreate")));
-		messages.put(MessageType.GROUP_DELETE, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("groupDelete")));
-		messages.put(MessageType.PLOT_ADDED_TO_GROUP, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("plotAddedToGroup")));
-		messages.put(MessageType.DEFAULT_VISIT_POINT_DESCRIPTION, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("defaultVisitPointDescription")));
-		messages.put(MessageType.NULL_VISIT_POINT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("nullVisitPoint")));
-		messages.put(MessageType.VISIT_POINT_CLOSED, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("visitPointClosed")));
-		messages.put(MessageType.NOT_VISIT_POINT_OWNER, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("notVisitPointOwner")));
-		messages.put(MessageType.TELEPORTING_TO_VISIT_POINT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("teleportingToVisitPoint")));
-		messages.put(MessageType.TELEPORTED_TO_VISIT_POINT, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("teleportedToVisitPoint")));
-		messages.put(MessageType.TELEPORT_CANCELLED, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("teleportCancelled")));
-		messages.put(MessageType.SENDER_NOT_PLAYER, pluginPrefix + " " + ChatUtils.fixColors(messageConfig.getString("senderNotPlayer")));
+	private void loadMessagesFromConfig() {
+		loadMessageFromConfig(MessageType.PLOT_CREATED, "plotCreated");
+		loadMessageFromConfig(MessageType.PLOT_DELETED, "plotDeleted");
+		loadMessageFromConfig(MessageType.ENTERED_PLOT, "enteredPlot");
+		loadMessageFromConfig(MessageType.LEFT_PLOT, "leftPlot");
+		loadMessageFromConfig(MessageType.PLOT_ALREADY_EXISTS, "plotAlreadyExists");
+		loadMessageFromConfig(MessageType.NULL_PLOT, "nullPlot");
+		loadMessageFromConfig(MessageType.ADDED_MEMBER_TO_PLOT, "addedMemberToPlot");
+		//loadMessage(MessageType.ADDED_MEMBER_TO_GROUP, "addedMemberToGroup");
+		loadMessageFromConfig(MessageType.REMOVED_MEMBER_FROM_PLOT, "removedMemberFromPlot");
+		//loadMessage(MessageType.REMOVED_MEMBER_FROM_GROUP, "removedMemberFromGroup");
+		loadMessageFromConfig(MessageType.BLACKLIST_ADDED_TO_PLOT, "blacklistAddedToPlot");
+		//loadMessage(MessageType.BLACKLIST_ADDED_TO_GROUP, "blacklistAddedToGroup");
+		loadMessageFromConfig(MessageType.BLACKLIST_REMOVED_FROM_PLOT, "blacklistRemovedFromPlot");
+		//loadMessage(MessageType.BLACKLIST_REMOVED_FROM_GROUP, "blacklistRemovedFromGroup");
+		loadMessageFromConfig(MessageType.FLAG_SET_ON_PLOT, "flagSetOnPlot");
+		//loadMessage(MessageType.FLAG_SET_ON_GROUP, "flagSetOnGroup");
+		loadMessageFromConfig(MessageType.FLAG_VALUE_ON_PLOT, "flagValueOnPlot");
+		//loadMessage(MessageType.FLAG_VALUE_ON_GROUP, "flagValueOnGroup");
+		loadMessageFromConfig(MessageType.FLAG_VALUES_IN_GROUP_ARE_DIFFERENT, "flagValuesInGroupAreDifferent");
+		loadMessageFromConfig(MessageType.UNKNOWN_FLAG, "unknownFlag");
+		loadMessageFromConfig(MessageType.WRONG_FLAG_VALUE, "wrongFlagValue");
+		loadMessageFromConfig(MessageType.NOT_OWNER, "notOwner");
+		loadMessageFromConfig(MessageType.NOT_PERMITTED, "notPermitted");
+		loadMessageFromConfig(MessageType.CANNOT_ADD_OWNER_TO_BLACKLIST, "cannotAddOwnerToBlacklist");
+		loadMessageFromConfig(MessageType.CANNOT_ADD_OWNER_AS_MEMBER, "cannotAddOwnerAsMember");
+		loadMessageFromConfig(MessageType.PLAYER_IS_ALREADY_BLACKLISTED, "playerIsAlreadyBlacklisted");
+		loadMessageFromConfig(MessageType.PLAYER_IS_ALREADY_A_MEMBER, "playerIsAlreadyAMember");
+		loadMessageFromConfig(MessageType.NULL_USER, "nullUser");
+		loadMessageFromConfig(MessageType.NULL_GROUP, "nullGroup");
+		loadMessageFromConfig(MessageType.GROUP_ALREADY_EXISTS, "groupAlreadyExists");
+		loadMessageFromConfig(MessageType.GROUP_CREATE, "groupCreate");
+		loadMessageFromConfig(MessageType.GROUP_DELETE, "groupDelete");
+		loadMessageFromConfig(MessageType.PLOT_ADDED_TO_GROUP, "plotAddedToGroup");
+		loadMessageFromConfig(MessageType.PLOT_REMOVED_FROM_GROUP, "plotRemovedFromGroup");
+		loadMessageFromConfig(MessageType.CREATED_VISIT_POINT, "createdVisitPoint");
+		loadMessageFromConfig(MessageType.DEFAULT_VISIT_POINT_DESCRIPTION, "defaultVisitPointDescription");
+		loadMessageFromConfig(MessageType.NULL_VISIT_POINT, "nullVisitPoint");
+		loadMessageFromConfig(MessageType.VISIT_POINT_CLOSED, "visitPointClosed");
+		loadMessageFromConfig(MessageType.NOT_VISIT_POINT_OWNER, "notVisitPointOwner");
+		loadMessageFromConfig(MessageType.VISIT_POINT_ALREADY_EXISTS, "visitPointAlreadyExists");
+		loadMessageFromConfig(MessageType.TELEPORTING_TO_VISIT_POINT, "teleportingToVisitPoint");
+		loadMessageFromConfig(MessageType.TELEPORTED_TO_VISIT_POINT, "teleportedToVisitPoint");
+		loadMessageFromConfig(MessageType.TELEPORT_CANCELLED, "teleportCancelled");
+		loadMessageFromConfig(MessageType.SENDER_NOT_PLAYER, "senderNotPlayer");
+		loadMessageFromConfig(MessageType.DELETED_VISIT_POINT, "deletedVisitPoint");
+		loadMessageFromConfig(MessageType.VISIT_POINT_NOT_SAFE, "visitPointNotSafe");
+		loadMessageFromConfig(MessageType.CANNOT_DELETE_DEFAULT_GROUP, "cannotDeleteDefaultGroup");
+		loadMessageFromConfig(MessageType.CANNOT_REMOVE_PLOT_FROM_DEFAULT_GROUP, "cannotRemovePlotFromDefaultGroup");
+		loadMessageFromConfig(MessageType.CANNOT_ADD_PLOT_TO_DEFAULT_GROUP, "cannotAddPlotToDefaultGroup");
+		loadMessageFromConfig(MessageType.PLOT_NOT_IN_GROUP, "plotNotInGroup");
+		loadMessageFromConfig(MessageType.PLOT_ALREADY_IN_GROUP, "plotAlreadyInGroup");
 	}
+
+	private void loadMessageFromConfig(MessageType type, String messageName){
+		ConfigurationSection messageConfig = ChunkyPlots.plugin.config.getConfigurationSection("messages");
+		messages.put(type, ChatUtils.fixColors(pluginPrefix + " " + messageConfig.getString(messageName)));
+	}
+
 	private void loadDefaultFlags(FileConfiguration config) {
 		Set<String> keyList = config.getConfigurationSection("defaultFlags").getKeys(false);
 		for(String key:keyList){

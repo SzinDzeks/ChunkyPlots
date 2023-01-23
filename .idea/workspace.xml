@@ -9,29 +9,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="Removed NotNull annotations">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="Reimplemented command system using CommandManager pattern and fixed most important command related bugs">
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/Subcommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/PlotCommandManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotBlacklistCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotDisposeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotFlagCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotGroupCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotGuiCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotHelpCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotInfoCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotListCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotMembersCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotVisitCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/Plot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/Plot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/VisitPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/VisitPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/PlotCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/PlotCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/BlockPlaceListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/BlockPlaceListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/PlayerInteractListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/PlayerInteractListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/PlayerMoveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listener/PlayerMoveListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/ChunkyPlots.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/ChunkyPlots.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/Flag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/Flag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/MessageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/MessageType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/basic/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/PlotAdminCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/PlotCommand.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/ConfigManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/PlotManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/PlotManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/MessageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/MessageManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/Plot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/Plot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/VisitPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/VisitPoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/ChunkyPlots.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/ChunkyPlots.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/MessageType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/MessageType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/basic/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/commands/PlotAdminCommand.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/commands/PlotCommand$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/commands/PlotCommand$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/commands/PlotCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/commands/PlotCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockPlaceListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/BlockPlaceListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerInteractListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerInteractListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerMoveListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/listener/PlayerMoveListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/ConfigManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/ConfigManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/MarketManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/MarketManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/PlotManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/PlotManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/MessageManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/szindzeks/ChunkyPlots/manager/MessageManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +57,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1QYjJLG4gOGDvKG3aoCnXBuSrfR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -96,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673130797059</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fixed plots duplicating when disposing and then claiming the same chunk after server restart. Misc.">
+      <created>1674412307289</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1674412307289</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -129,6 +153,8 @@
       <path value="$PROJECT_DIR$/src/ChunkyPlots" />
     </ignored-roots>
     <MESSAGE value="Removed NotNull annotations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed NotNull annotations" />
+    <MESSAGE value="Fixed plots duplicating when disposing and then claiming the same chunk after server restart. Misc." />
+    <MESSAGE value="Reimplemented command system using CommandManager pattern and fixed most important command related bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reimplemented command system using CommandManager pattern and fixed most important command related bugs" />
   </component>
 </project>

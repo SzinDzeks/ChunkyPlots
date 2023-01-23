@@ -55,5 +55,14 @@ public enum Flag {
 	DROWNING_DAMAGE,
 
 	EXTERNAL_PISTON_PROTECTION,
-	EXTERNAL_FIRE_PROTECTION,
+	EXTERNAL_FIRE_PROTECTION;
+
+	public static Flag getByName(String name){
+		for(Flag flag:values()){
+			if(flag.name().equalsIgnoreCase(name)){
+				return Flag.valueOf(name.toUpperCase());
+			}
+		}
+		return null;
+	}
 }
