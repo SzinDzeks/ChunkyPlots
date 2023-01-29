@@ -3,10 +3,7 @@ package me.szindzeks.ChunkyPlots.commands.plot.subcommands;
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.commands.Subcommand;
-import me.szindzeks.ChunkyPlots.manager.ConfigManager;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
-import me.szindzeks.ChunkyPlots.manager.UserManager;
-import me.szindzeks.ChunkyPlots.manager.VisitManager;
 import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
@@ -37,9 +34,7 @@ public class PlotListCommand extends Subcommand {
 
 	@Override
 	public void execute(CommandSender sender, String[] args) {
-		if(sender instanceof Player){
-			Player player = (Player) sender;
-
+		if(sender instanceof Player player){
 			player.sendMessage("");
 			player.sendMessage("");
 			player.sendMessage(ChatUtils.fixColors("&eID Działki &9» &ePrzybliżone koordynaty działki"));

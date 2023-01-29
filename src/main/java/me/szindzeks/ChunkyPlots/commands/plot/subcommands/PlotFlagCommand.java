@@ -10,7 +10,6 @@ import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,8 +18,6 @@ import static me.szindzeks.ChunkyPlots.commands.plot.subcommands.PlotGroupComman
 public class PlotFlagCommand extends Subcommand {
 	final ConfigManager configManager = ChunkyPlots.plugin.configManager;
 	final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
-	final UserManager userManager = ChunkyPlots.plugin.userManager;
-	final VisitManager visitManager = ChunkyPlots.plugin.visitManager;
 	
 	@Override
 	public String getName() {
@@ -44,9 +41,7 @@ public class PlotFlagCommand extends Subcommand {
 
 	@Override
 	public void execute(CommandSender sender, String[] args) {
-		if(sender instanceof Player){
-			Player player = (Player) sender;
-
+		if(sender instanceof Player player){
 			if(args.length == 2) {
 				if (args[1].equals("defaults")) displayFlags(player, true, null);
 				else if (args[1].equals("list"))
@@ -97,7 +92,7 @@ public class PlotFlagCommand extends Subcommand {
 
 	private void displayFlagValue(Player player, String flagName, Plot plot) {
 		if(plot != null){
-//			TODO: sdf
+//			TODO: message manager flag value
 			Flag flagToDisplay = Flag.getByName(flagName);
 			if(flagToDisplay != null){
 				String flagValue = plot.getFlags().get(flagToDisplay).toString();
@@ -147,7 +142,7 @@ public class PlotFlagCommand extends Subcommand {
 		if(plot != null){
 			if(plot.getOwnerNickname().equals(player.getName())){
 				Flag flag = Flag.valueOf(flagName.toUpperCase());
-
+//				TODO: Proper checking if flag exists before taking value of it
 				if(flag != null){
 					if(flagValue.equalsIgnoreCase("true") || flagValue.equalsIgnoreCase("false")){
 						boolean value = Boolean.parseBoolean(flagValue);

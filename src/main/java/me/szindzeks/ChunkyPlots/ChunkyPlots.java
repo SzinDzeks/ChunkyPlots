@@ -1,6 +1,6 @@
 package me.szindzeks.ChunkyPlots;
 
-import me.szindzeks.ChunkyPlots.commands.plot.PlotCommandManager;
+import me.szindzeks.ChunkyPlots.commands.plot.PlotCommandExecutor;
 import me.szindzeks.ChunkyPlots.listener.*;
 import me.szindzeks.ChunkyPlots.manager.*;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -70,7 +70,6 @@ public class ChunkyPlots extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new VehicleEnterListener(),this);
 	}
 	private void registerCommands(){
-//		getCommand("plot").setExecutor(new PlotCommand());
-		getCommand("plot").setExecutor(new PlotCommandManager());
+		getCommand("plot").setExecutor(new PlotCommandExecutor());
 	}
 }

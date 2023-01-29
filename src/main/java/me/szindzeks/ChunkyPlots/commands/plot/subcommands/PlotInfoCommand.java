@@ -6,8 +6,6 @@ import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.commands.Subcommand;
 import me.szindzeks.ChunkyPlots.manager.ConfigManager;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
-import me.szindzeks.ChunkyPlots.manager.UserManager;
-import me.szindzeks.ChunkyPlots.manager.VisitManager;
 import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
@@ -39,8 +37,7 @@ public class PlotInfoCommand extends Subcommand {
 
 	@Override
 	public void execute(CommandSender sender, String[] args) {
-		if(sender instanceof Player) {
-			Player player = (Player) sender;
+		if(sender instanceof Player player) {
  			Plot plot = plotManager.getPlotByChunk(player.getLocation().getChunk());
 			if (plot != null) {
 				player.sendMessage(ChatUtils.fixColors("&9-----------{ " + configManager.getPluginPrefix() + " &9}-----------"));

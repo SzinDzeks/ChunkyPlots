@@ -1,7 +1,6 @@
 package me.szindzeks.ChunkyPlots.commands.plot.subcommands;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
-import me.szindzeks.ChunkyPlots.basic.Group;
 import me.szindzeks.ChunkyPlots.basic.MessageType;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.basic.User;
@@ -11,15 +10,12 @@ import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class PlotMembersCommand extends Subcommand {
 	final ConfigManager configManager = ChunkyPlots.plugin.configManager;
 	final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 	final UserManager userManager = ChunkyPlots.plugin.userManager;
-	final VisitManager visitManager = ChunkyPlots.plugin.visitManager;
 
 	@Override
 	public String getName() {
@@ -43,8 +39,7 @@ public class PlotMembersCommand extends Subcommand {
 
 	@Override
 	public void execute(CommandSender sender, String[] args) {
-		if (sender instanceof Player) {
-			Player player = (Player) sender;
+		if (sender instanceof Player player) {
 			if(args.length == 3) {
 					if (args[1].equals("add"))
 						addMemberToPlot(player, args[2], plotManager.getPlotByChunk(player.getLocation().getChunk()));
