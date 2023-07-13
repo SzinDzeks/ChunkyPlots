@@ -24,7 +24,7 @@ public class PlotPermissionUtil {
 		Plot affectedPlot = plotManager.getPlotByChunk(affectedBlock.getChunk());
 		if(affectedPlot == null){
 			return true;
-		} else if(pistonPlot == null && affectedBlock != null){
+		} else if(pistonPlot == null){
 			return false;
 		} else if(pistonPlot.hasTheSameOwnerAs(affectedPlot)) {
 			return true;
@@ -36,7 +36,9 @@ public class PlotPermissionUtil {
 	}
 
 	public static boolean canPlayerAffectPlot(Player player, Plot plot, Flag memberFlag, Flag strangerFlag){
-		if(plot.isPlayerOwner(player)){
+		if (plot == null){
+			return true;
+		} else if(plot.isPlayerOwner(player)){
 			return true;
 		} else if(plot.isPlayerMember(player)){
 			return canMemberAffectPlot(plot, memberFlag);

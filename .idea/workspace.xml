@@ -9,21 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="Reimplemented command system using CommandManager pattern and fixed most important command related bugs">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/PlotCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/PlotCommandExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="Updated to 1.20.1">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ChunkyPlots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ChunkyPlots.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChunkyPlots.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ChunkyPlots.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/ChunkyPlots.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/ChunkyPlots.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/PlotCommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotFlagCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotFlagCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotInfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotInfoCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotListCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotMembersCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotMembersCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/util/PlotPermissionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/util/PlotPermissionUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +29,37 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="dev" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -59,6 +80,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="jbr-17" />
+  </component>
   <component name="ProjectId" id="1QYjJLG4gOGDvKG3aoCnXBuSrfR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -67,18 +91,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "C:/Users/user/IdeaProjects/ChunkyPlots/pom.xml",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/chunkyplots-1.20.1-server/plugins&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="me.szindzeks.ChunkyPlots.commands" />
@@ -86,6 +111,33 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="me.szindzeks.ChunkyPlots.listener" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ChunkyPlots [package]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -113,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1674412307289</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Updated to 1.20.1">
+      <option name="closed" value="true" />
+      <created>1689277137821</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1689277137821</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -134,7 +194,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/dev" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -147,6 +219,7 @@
     <MESSAGE value="Removed NotNull annotations" />
     <MESSAGE value="Fixed plots duplicating when disposing and then claiming the same chunk after server restart. Misc." />
     <MESSAGE value="Reimplemented command system using CommandManager pattern and fixed most important command related bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reimplemented command system using CommandManager pattern and fixed most important command related bugs" />
+    <MESSAGE value="Updated to 1.20.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated to 1.20.1" />
   </component>
 </project>
