@@ -1,7 +1,7 @@
 package me.szindzeks.ChunkyPlots;
 
 import me.szindzeks.ChunkyPlots.commands.plot.PlotCommandExecutor;
-import me.szindzeks.ChunkyPlots.listener.*;
+import me.szindzeks.ChunkyPlots.protections.*;
 import me.szindzeks.ChunkyPlots.manager.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -44,15 +44,14 @@ public class ChunkyPlots extends JavaPlugin {
 
 	private void registerListeners(){
 		this.getServer().getPluginManager().registerEvents(new AreaEffectCloudApplyListener(),this);
-		this.getServer().getPluginManager().registerEvents(new BlockBreakListener(),this);
-		this.getServer().getPluginManager().registerEvents(new BlockBurnListener(),this);
-		this.getServer().getPluginManager().registerEvents(new BlockIgniteListener(),this);
+		this.getServer().getPluginManager().registerEvents(new BlockBreakProtection(),this);
+		this.getServer().getPluginManager().registerEvents(new BlockBurnProtection(),this);
+		this.getServer().getPluginManager().registerEvents(new IgniteProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new BlockFromToListener(),this);
 		this.getServer().getPluginManager().registerEvents(new BlockSpreadListener(),this);
-		this.getServer().getPluginManager().registerEvents(new BlockPistonExtendListener(),this);
-		this.getServer().getPluginManager().registerEvents(new BlockPistonRetractListener(),this);
+		this.getServer().getPluginManager().registerEvents(new PistonProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new BlockPlaceListener(),this);
-		this.getServer().getPluginManager().registerEvents(new DispenseListener(),this);
+		this.getServer().getPluginManager().registerEvents(new DispenserProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new EntityDamageByEntityListener(),this);
 		this.getServer().getPluginManager().registerEvents(new ExplodeProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerBucketEmptyListener(),this);

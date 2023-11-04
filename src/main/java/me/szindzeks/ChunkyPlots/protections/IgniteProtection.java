@@ -1,4 +1,4 @@
-package me.szindzeks.ChunkyPlots.listener;
+package me.szindzeks.ChunkyPlots.protections;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
@@ -15,7 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockIgniteEvent;
 
-public class BlockIgniteListener implements Listener {
+public class IgniteProtection implements Listener {
 	private final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 
 	@EventHandler
@@ -35,8 +35,9 @@ public class BlockIgniteListener implements Listener {
 			return canBlockBeIgnitedByBlock(block, ignitingBlock);
 		} else if(ignitingEntity != null){
 			return canBlockBeIgnitedByEntity(block, ignitingEntity);
+		} else {
+			return false;
 		}
-		return false;
 	}
 
 	private boolean canBlockBeIgnitedByBlock(Block block, Block ignitingBlock) {
@@ -51,10 +52,8 @@ public class BlockIgniteListener implements Listener {
 			return true;
 		} else if(sourceBlockPlot == null && destinationBlockPlot != null){
 			return false;
-		} else if(sourceBlockPlot == null && destinationBlockPlot == null){
-			return true;
 		} else {
-			return false;
+			return true;
 		}
 	}
 
@@ -62,23 +61,21 @@ public class BlockIgniteListener implements Listener {
 		Chunk blockChunk = block.getChunk();
 		Plot destinationBlockPlot = plotManager.getPlotByChunk(blockChunk);
 
-		if(destinationBlockPlot != null) {
-			if (ignitingEntity instanceof Player) {
-				Player player = (Player) ignitingEntity;
+		if (destinationBlockPlot != null) {
+			if (ignitingEntity instanceof Player player) {
 				return PlotPermissionUtil.canPlayerAffectPlot(player, destinationBlockPlot, Flag.IGNITE_MEMBER, Flag.IGNITE_STRANGER);
-			} else if (ignitingEntity instanceof EnderCrystal) {
-				EnderCrystal enderCrystal = (EnderCrystal) ignitingEntity;
+			} else if (ignitingEntity instanceof EnderCrystal enderCrystal) {
 				return canEnderCrystalIgnitePlot(enderCrystal, destinationBlockPlot);
+			} else {
+				return false;
 			}
+		} else {
+			return true;
 		}
-		return false;
 	}
 
 	private boolean canEnderCrystalIgnitePlot(EnderCrystal enderCrystal, Plot plot) {
 		Location enderCrystalLocation = enderCrystal.getLocation();
-		if(plot.isLocationInside(enderCrystalLocation)) {
-			return true;
-		}
-		return false;
+		return plot.isLocationInside(enderCrystalLocation);
 	}
 }

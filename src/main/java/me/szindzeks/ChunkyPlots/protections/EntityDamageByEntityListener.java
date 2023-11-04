@@ -1,15 +1,11 @@
-package me.szindzeks.ChunkyPlots.listener;
+package me.szindzeks.ChunkyPlots.protections;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
-import me.szindzeks.ChunkyPlots.basic.MessageType;
 import me.szindzeks.ChunkyPlots.basic.Plot;
-import me.szindzeks.ChunkyPlots.basic.User;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
 import me.szindzeks.ChunkyPlots.util.PlotPermissionUtil;
-import org.bukkit.Location;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.type.Fire;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,22 +27,17 @@ public class EntityDamageByEntityListener implements Listener {
     }
 
     public boolean canEntityDamageEntity(Entity attacker, Entity victim) {
-        if(attacker instanceof Player){
-            Player player = (Player) attacker;
+        if(attacker instanceof Player player){
             return canPlayerDamageEntity(player, victim);
-        } else if(attacker instanceof Projectile){
-            Projectile projectile = (Projectile) attacker;
+        } else if(attacker instanceof Projectile projectile){
             return canProjectileDamageEntity(projectile, victim);
-        } else if(attacker instanceof Monster){
-            Monster monster = (Monster) attacker;
+        } else if(attacker instanceof Monster monster){
             return canMonsterDamageEntity(monster, victim);
-        } else if(attacker instanceof Firework){
-            Firework firework = (Firework) attacker;
-            return canFireworkDamageEntity(firework, victim);
-        } else if(attacker instanceof TNTPrimed){
-            TNTPrimed tntPrimed = (TNTPrimed) attacker;
-            return canTntDamageEntity(tntPrimed, victim);
-        }
+        } else {
+			if(attacker instanceof TNTPrimed tntPrimed){
+				return canTntDamageEntity(tntPrimed, victim);
+			}
+		}
         return false;
     }
 
@@ -62,12 +53,10 @@ public class EntityDamageByEntityListener implements Listener {
 
     public boolean canProjectileDamageEntity(Projectile projectile, Entity victim) {
         ProjectileSource projectileSource = projectile.getShooter();
-        if(projectileSource instanceof LivingEntity){
-            LivingEntity livingEntity = (LivingEntity) projectileSource;
+        if(projectileSource instanceof LivingEntity livingEntity){
             return canEntityDamageEntity(livingEntity, victim);
-        } else if(projectileSource instanceof BlockProjectileSource){
+        } else if(projectileSource instanceof BlockProjectileSource blockProjectileSource){
             Plot victimPlot = plotManager.getPlotByLocation(victim.getLocation());
-            BlockProjectileSource blockProjectileSource = (BlockProjectileSource) projectileSource;
             Block block = blockProjectileSource.getBlock();
             return PlotPermissionUtil.canBlockAffectPlot(block, victimPlot);
         }

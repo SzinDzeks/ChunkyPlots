@@ -1,20 +1,16 @@
-package me.szindzeks.ChunkyPlots.listener;
+package me.szindzeks.ChunkyPlots.protections;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
 import me.szindzeks.ChunkyPlots.util.PlotPermissionUtil;
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
 import org.bukkit.entity.minecart.ExplosiveMinecart;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
@@ -29,13 +25,11 @@ public class ExplodeProtection implements Listener {
 	private final HashMap<UUID, Player> witherSummoners = new HashMap<>();
 	private Player lastWitherBlockPlacer;
 
-	private final HashMap<UUID, Block> tntPrimedDispensers = new HashMap<>();
-	private final HashMap<Location, Block> tntDispenseBlockAndLocation = new HashMap<>();
-
 	@EventHandler
 	public void onEntityExplode(final EntityExplodeEvent event){
 		if(!canEntityExplodeBlocks(event.getEntity(), event.blockList())){
 			event.setCancelled(true);
+			Bukkit.broadcastMessage("cancelled");
 		}
 	}
 
@@ -64,20 +58,15 @@ public class ExplodeProtection implements Listener {
 	}
 
 	private boolean canEntityExplodeBlock(Entity entity, Block block) {
-		if(entity instanceof Wither){
-			Wither wither = (Wither) entity;
+		if(entity instanceof Wither wither){
 			return canWitherExplodeBlock(wither, block);
-		} else if(entity instanceof WitherSkull){
-			WitherSkull witherSkull = (WitherSkull) entity;
+		} else if(entity instanceof WitherSkull witherSkull){
 			return canWitherSkullExplodeBlock(witherSkull, block);
-		} else if(entity instanceof TNTPrimed){
-			TNTPrimed tntPrimed = (TNTPrimed) entity;
+		} else if(entity instanceof TNTPrimed tntPrimed){
 			return canTNTPrimedExplodeBlock(tntPrimed, block);
-		} else if(entity instanceof ExplosiveMinecart){
-			ExplosiveMinecart explosiveMinecart = (ExplosiveMinecart) entity;
+		} else if(entity instanceof ExplosiveMinecart explosiveMinecart){
 			return canExplosiveMinecraftExplodeBlock(explosiveMinecart, block);
-		} else if(entity instanceof EnderCrystal){
-			EnderCrystal enderCrystal = (EnderCrystal) entity;
+		} else if(entity instanceof EnderCrystal enderCrystal){
 			return canEnderCrystalExplodeBlock(enderCrystal, block);
 		} else {
 			return false;
@@ -97,8 +86,7 @@ public class ExplodeProtection implements Listener {
 	}
 
 	private boolean canWitherSkullExplodeBlock(WitherSkull witherSkull, Block block) {
-		if(witherSkull.getShooter() instanceof Wither) {
-			Wither wither = (Wither) witherSkull.getShooter();
+		if(witherSkull.getShooter() instanceof Wither wither) {
 			return canWitherExplodeBlock(wither, block);
 		}
 		return false;
@@ -109,8 +97,7 @@ public class ExplodeProtection implements Listener {
 		if(tntSource != null) {
 			if (tntSource.isValid()) {
 				Plot blockPlot = plotManager.getPlotByChunk(block.getChunk());
-				if (tntSource instanceof Player) {
-					Player player = (Player) tntSource;
+				if (tntSource instanceof Player player) {
 					return PlotPermissionUtil.canPlayerAffectPlot(player, blockPlot, Flag.EXPLODE_MEMBER, Flag.EXPLODE_STRANGER);
 				}
 			}

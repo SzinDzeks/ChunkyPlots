@@ -1,4 +1,4 @@
-package me.szindzeks.ChunkyPlots.listener;
+package me.szindzeks.ChunkyPlots.protections;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.MessageType;
@@ -20,7 +20,7 @@ public class PlayerMoveListener implements Listener {
         final Location from = event.getFrom();
         final Location to = event.getTo();
 
-        if (from != null || to != null || from.distance(to) != 0){
+        if (to != null && from.distance(to) != 0){
             final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
             final UserManager userManager = ChunkyPlots.plugin.userManager;
             final ConfigManager configManager = ChunkyPlots.plugin.configManager;
@@ -33,14 +33,14 @@ public class PlayerMoveListener implements Listener {
 
             if(user != null) {
                 if(newPlot != null && newPlot.blacklist.contains(user.getNickname())) event.setCancelled(true);
-                if (user.hasEntered == false) {
+                if (!user.hasEntered) {
                     if(newPlot != null) {
                         if(!newPlot.blacklist.contains(player.getName())) {
                             sendEnterMessages(player, configManager, newPlot);
                             user.hasEntered = true;
                         } else event.setCancelled(true);
                     }
-                } else if(user.hasEntered == true){
+                } else {
                     if(previousPlot != null) {
                         if (newPlot != null) {
                             if (!newPlot.equals(previousPlot)) {
@@ -53,7 +53,7 @@ public class PlayerMoveListener implements Listener {
                             sendLeaveMessages(player, configManager, previousPlot);
                             user.hasEntered = false;
                         }
-                    } else if(previousPlot == null) {
+                    } else {
                         if(newPlot == null){
                             MessageManager.sendColouredMessageToPlayer("&e&lKwadraciarze.pl &8&l» &7&cDziałka, na której stałeś została usunięta!", player);
                             user.hasEntered = false;

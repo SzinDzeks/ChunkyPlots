@@ -1,15 +1,12 @@
-package me.szindzeks.ChunkyPlots.listener;
+package me.szindzeks.ChunkyPlots.protections;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
 import me.szindzeks.ChunkyPlots.basic.MessageType;
 import me.szindzeks.ChunkyPlots.basic.Plot;
-import me.szindzeks.ChunkyPlots.basic.User;
 import me.szindzeks.ChunkyPlots.manager.ConfigManager;
 import me.szindzeks.ChunkyPlots.manager.CraftingManager;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
-import me.szindzeks.ChunkyPlots.manager.UserManager;
-import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import me.szindzeks.ChunkyPlots.util.PlotPermissionUtil;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -59,27 +56,20 @@ public class BlockPlaceListener implements Listener {
         if(!event.isCancelled()){
             Player player = event.getPlayer();
             Block block = event.getBlockPlaced();
-            if(hasPlayerPlacedAPlotBlock(player, block)){
-                return true;
-            }
+			return hasPlayerPlacedAPlotBlock(player, block);
         }
         return false;
     }
     private boolean hasPlayerPlacedAPlotBlock(Player player, Block block) {
         PlayerInventory inventory = player.getInventory();
         if (inventory.getItemInMainHand().isSimilar(CraftingManager.plotBlock) || inventory.getItemInOffHand().isSimilar(CraftingManager.plotBlock)) {
-            if(block.getType().equals(Material.NOTE_BLOCK)) {
-                return true;
-            }
+			return block.getType().equals(Material.NOTE_BLOCK);
         }
         return false;
     }
 
     private boolean hasBlockBeenPlacedInRestrictedArea(Block block) {
-        if(block.getWorld().getName().equals("world_the_end")) {
-            return true;
-        }
-        return false;
-    }
+		return block.getWorld().getName().equals("world_the_end");
+	}
 
 }

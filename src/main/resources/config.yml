@@ -40,6 +40,8 @@ defaultFlags:
   FALL_DAMAGE: true
   DROWNING_DAMAGE: true
   EXTERNAL_PISTON_PROTECTION: true
+  EXPLODE_MEMBER: true
+  EXPLODE_STRANGER: false
 
 messages:
   notPermitted: "&cNie masz uprawnień, aby to zrobić!"

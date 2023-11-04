@@ -4,36 +4,13 @@ import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
-import org.bukkit.Chunk;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import java.util.List;
 
 public class PlotPermissionUtil {
-	private static PlotManager plotManager = ChunkyPlots.plugin.plotManager;
-
-	public static boolean canPistonAffectBlocks(Block piston, List<Block> affectedBlocks){
-		for(Block block:affectedBlocks) {
-			if (!canPistonAffectBlock(piston, block)) return false;
-		}
-		return true;
-	}
-	public static boolean canPistonAffectBlock(Block piston, Block affectedBlock){
-		Plot pistonPlot = plotManager.getPlotByChunk(piston.getChunk());
-		Plot affectedPlot = plotManager.getPlotByChunk(affectedBlock.getChunk());
-		if(affectedPlot == null){
-			return true;
-		} else if(pistonPlot == null){
-			return false;
-		} else if(pistonPlot.hasTheSameOwnerAs(affectedPlot)) {
-			return true;
-		} else if(affectedPlot.getFlags().get(Flag.EXTERNAL_PISTON_PROTECTION) == false){
-			return true;
-		} else {
-			return false;
-		}
-	}
+	private static final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 
 	public static boolean canPlayerAffectPlot(Player player, Plot plot, Flag memberFlag, Flag strangerFlag){
 		if (plot == null){
@@ -66,9 +43,16 @@ public class PlotPermissionUtil {
 	public static boolean canBlockAffectPlot(Block block, Plot plot){
 		Plot blockPlot = plotManager.getPlotByChunk(block.getChunk());
 		if(blockPlot != null) {
-			if (plot.hasTheSameOwnerAs(blockPlot)) {
-				return true;
-			}
+			return plot.hasTheSameOwnerAs(blockPlot);
+		}
+		return false;
+	}
+
+	public static boolean canBlockAffectBlock(Block block, Block block2){
+		Plot blockPlot = plotManager.getPlotByChunk(block.getChunk());
+		Plot block2Plot = plotManager.getPlotByChunk(block2.getChunk());
+		if(blockPlot != null) {
+			return blockPlot.hasTheSameOwnerAs(block2Plot);
 		}
 		return false;
 	}
@@ -76,15 +60,12 @@ public class PlotPermissionUtil {
 	public static boolean canPlotAffectPlots(Plot plot, List<Plot> plots){
 		for(Plot affectedPlot:plots){
 			if(plot != null) {
-				if (!plot.hasTheSameOwnerAs(affectedPlot)) {
-					return false;
-				} else {
-					return true;
-				}
+				return plot.hasTheSameOwnerAs(affectedPlot);
 			} else {
 				return false;
 			}
 		}
 		return true;
 	}
+
 }

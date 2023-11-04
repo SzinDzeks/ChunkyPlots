@@ -1,22 +1,16 @@
-package me.szindzeks.ChunkyPlots.listener;
+package me.szindzeks.ChunkyPlots.protections;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
-import me.szindzeks.ChunkyPlots.basic.MessageType;
 import me.szindzeks.ChunkyPlots.basic.Plot;
-import me.szindzeks.ChunkyPlots.basic.User;
-import me.szindzeks.ChunkyPlots.manager.ConfigManager;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
-import me.szindzeks.ChunkyPlots.manager.UserManager;
 import me.szindzeks.ChunkyPlots.util.PlotPermissionUtil;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-public class BlockBreakListener implements Listener {
+public class BlockBreakProtection implements Listener {
 	private final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 
 	@EventHandler(priority = EventPriority.MONITOR)

@@ -1,16 +1,15 @@
-package me.szindzeks.ChunkyPlots.listener;
+package me.szindzeks.ChunkyPlots.protections;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
-import org.bukkit.Chunk;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBurnEvent;
 
-public class BlockBurnListener implements Listener {
+public class BlockBurnProtection implements Listener {
 	private final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 
 	@EventHandler

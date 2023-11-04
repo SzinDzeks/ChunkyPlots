@@ -1,4 +1,4 @@
-package me.szindzeks.ChunkyPlots.listener;
+package me.szindzeks.ChunkyPlots.protections;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Plot;
@@ -37,11 +37,7 @@ public class BlockFromToListener implements Listener {
 			return true;
 		} else if(fromPlot == null && toPlot != null){
 			return false;
-		} else if(fromPlot.hasTheSameOwnerAs(toPlot)){
-			return true;
-		} else {
-			return false;
-		}
+		} else return fromPlot.hasTheSameOwnerAs(toPlot);
 	}
 
 	private boolean canDragonEggMoveFromTo(Block block, Block toBlock) {
@@ -53,10 +49,6 @@ public class BlockFromToListener implements Listener {
 			return false;
 		} else if(fromPlot == null && toPlot != null){
 			return false;
-		} else if(fromPlot.hasTheSameOwnerAs(toPlot)){
-			return true;
-		} else {
-			return false;
-		}
+		} else return fromPlot.hasTheSameOwnerAs(toPlot);
 	}
 }

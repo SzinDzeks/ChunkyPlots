@@ -1,8 +1,7 @@
-package me.szindzeks.ChunkyPlots.listener;
+package me.szindzeks.ChunkyPlots.protections;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
-import me.szindzeks.ChunkyPlots.basic.MessageType;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
 import me.szindzeks.ChunkyPlots.util.PlotPermissionUtil;
@@ -12,8 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.AreaEffectCloudApplyEvent;
 import org.bukkit.projectiles.ProjectileSource;
-
-import java.util.Collection;
 
 public class AreaEffectCloudApplyListener implements Listener {
 	private final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
@@ -41,8 +38,7 @@ public class AreaEffectCloudApplyListener implements Listener {
 	}
 
 	private boolean canShooterApplyEffectToEntityStandingOnPlot(ProjectileSource shooter, Plot plotEntityIsStandingOn) {
-		if(shooter instanceof Player){
-			Player player = (Player) shooter;
+		if(shooter instanceof Player player){
 			return PlotPermissionUtil.canPlayerAffectPlot(player, plotEntityIsStandingOn, Flag.SPLASH_POTION_MEMBER, Flag.SPLASH_POTION_STRANGER);
 		}
 		return false;

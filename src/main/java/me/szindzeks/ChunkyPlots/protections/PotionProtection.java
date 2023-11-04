@@ -1,18 +1,14 @@
-package me.szindzeks.ChunkyPlots.listener;
+package me.szindzeks.ChunkyPlots.protections;
 
-import com.google.gson.internal.$Gson$Preconditions;
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
-import me.szindzeks.ChunkyPlots.basic.MessageType;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
 import me.szindzeks.ChunkyPlots.util.PlotPermissionUtil;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.LingeringPotionSplashEvent;
@@ -84,15 +80,10 @@ public class PotionProtection implements Listener {
 	private boolean canPlotSplashPotion(final Plot plot, final  PotionSplashEvent event){
 		List<Plot> affectedEntitesPlots = getAffectedEntitiesPlotList(event);
 		if(plot != null) {
-			if (PlotPermissionUtil.canPlotAffectPlots(plot, affectedEntitesPlots)) {
-				return true;
-			}
+			return PlotPermissionUtil.canPlotAffectPlots(plot, affectedEntitesPlots);
 		} else {
-			if(affectedEntitesPlots.size() == 0){
-				return true;
-			}
+			return affectedEntitesPlots.isEmpty();
 		}
-		return false;
 	}
 
 	@EventHandler
@@ -119,13 +110,10 @@ public class PotionProtection implements Listener {
 		Plot plot = plotManager.getPlotByLocation(event.getHitBlock().getLocation());
 
 		if(plot != null) {
-			if (PlotPermissionUtil.canPlayerAffectPlot(player, plot, Flag.SPLASH_POTION_MEMBER, Flag.SPLASH_POTION_STRANGER)) {
-				return true;
-			}
+			return PlotPermissionUtil.canPlayerAffectPlot(player, plot, Flag.SPLASH_POTION_MEMBER, Flag.SPLASH_POTION_STRANGER);
 		} else {
 			return true;
 		}
-		return false;
 	}
 	private boolean canBlockSplashLingeringPotion(LingeringPotionSplashEvent event) {
 		ProjectileSource shooter = event.getEntity().getShooter();
