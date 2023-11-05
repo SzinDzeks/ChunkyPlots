@@ -93,6 +93,10 @@ public class PlotManager {
 	public List<Plot> getPlots(){
 		return plots;
 	}
+
+	public Plot getPlotByBlock(Block block){
+		return getPlotByChunk(block.getChunk());
+	}
 	public Plot getPlotByChunk(Chunk chunk){
 		for(Plot plot:plots) {
 			if (plot.getChunkX() == chunk.getX() && plot.getChunkZ() == chunk.getZ()) return plot;
@@ -113,9 +117,9 @@ public class PlotManager {
 	public Plot getPlotByCoordinates(int x, int z, String worldName){
 		for(Plot plot:plots) {
 			if (
-				plot.getChunkX() == x &&
-				plot.getChunkZ() == z &&
-				plot.getWorldName().equals(worldName)
+					plot.getChunkX() == x &&
+							plot.getChunkZ() == z &&
+							plot.getWorldName().equals(worldName)
 			) return plot;
 		}
 		return null;

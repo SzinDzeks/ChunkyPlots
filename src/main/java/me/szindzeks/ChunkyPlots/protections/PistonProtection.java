@@ -32,17 +32,22 @@ public class PistonProtection implements Listener {
     private boolean canPistonAffectBlocks(Block piston, BlockFace direction, List<Block> blocks) {
         PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 
-        Plot pistonPlot = plotManager.getPlotByLocation(piston.getLocation());
+        Plot pistonPlot = plotManager.getPlotByBlock(piston);
+        Plot pistonHeadPlot = plotManager.getPlotByBlock(piston.getRelative(direction));
         List<Plot> blockPlots = getPlotsOfAllBlocks(blocks);
         List<Plot> affectedPlots = getPlotsAffectedByPiston(direction, blocks);
 
         if(pistonPlot == null){
-            if(blockPlots.isEmpty())
+            if(pistonHeadPlot != null)
+                return false;
+            else if (blockPlots.isEmpty())
                 return affectedPlots.isEmpty();
             else
                 return false;
         } else {
-            if(doPlotsMatchTheOwnerOrHaveNoOwner(affectedPlots, pistonPlot.getOwnerNickname()))
+            if(!pistonPlot.hasTheSameOwnerAs(pistonHeadPlot) && pistonHeadPlot != null)
+                return false;
+            else if(doPlotsMatchTheOwnerOrHaveNoOwner(affectedPlots, pistonPlot.getOwnerNickname()))
                 return doPlotsMatchTheOwnerOrHaveNoOwner(blockPlots, pistonPlot.getOwnerNickname());
             else
                 return false;
