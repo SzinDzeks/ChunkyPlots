@@ -1,6 +1,6 @@
 main: me.szindzeks.ChunkyPlots.ChunkyPlots
 name: ChunkyPlots
-version: 1.0.0
+version: ${project.version}
 author: SzinDzeks
 api-version: 1.19
 commands:

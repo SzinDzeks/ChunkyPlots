@@ -9,8 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="Changed package name from &quot;listeners&quot; to &quot;protections&quot;. &#10;Combined &quot;BlockPistonExtendListener&quot; and &quot;BlockPistonRetractListener&quot; into &quot;PistonProtection&quot;.&#10;Changed name of some of the class files.">
+    <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="Fixed piston head going through plot borders.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +60,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -178,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689281257469</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fixed piston head going through plot borders.">
+      <option name="closed" value="true" />
+      <created>1699209747077</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699209747077</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -227,6 +238,7 @@
     <MESSAGE value="Updated to 1.20.1" />
     <MESSAGE value="Fixed canPlayerAffectPlot()" />
     <MESSAGE value="Changed package name from &quot;listeners&quot; to &quot;protections&quot;. &#10;Combined &quot;BlockPistonExtendListener&quot; and &quot;BlockPistonRetractListener&quot; into &quot;PistonProtection&quot;.&#10;Changed name of some of the class files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed package name from &quot;listeners&quot; to &quot;protections&quot;. &#10;Combined &quot;BlockPistonExtendListener&quot; and &quot;BlockPistonRetractListener&quot; into &quot;PistonProtection&quot;.&#10;Changed name of some of the class files." />
+    <MESSAGE value="Fixed piston head going through plot borders." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed piston head going through plot borders." />
   </component>
 </project>
