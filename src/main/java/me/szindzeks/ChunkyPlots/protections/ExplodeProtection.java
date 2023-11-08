@@ -21,7 +21,6 @@ import java.util.UUID;
 
 public class ExplodeProtection implements Listener {
 	private final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
-
 	private final HashMap<UUID, Player> witherSummoners = new HashMap<>();
 	private Player lastWitherBlockPlacer;
 
@@ -29,7 +28,6 @@ public class ExplodeProtection implements Listener {
 	public void onEntityExplode(final EntityExplodeEvent event){
 		if(!canEntityExplodeBlocks(event.getEntity(), event.blockList())){
 			event.setCancelled(true);
-			Bukkit.broadcastMessage("cancelled");
 		}
 	}
 

@@ -29,7 +29,6 @@ public abstract class CommandManager implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, org.bukkit.command.Command cmd, String s, String[] args) {
-		double start = System.nanoTime();
 		if(args.length > 0){
 			String providedSubcommandName = args[0];
 			for (String subcommandName:subcommandNames){
@@ -37,7 +36,6 @@ public abstract class CommandManager implements CommandExecutor {
 					for(Subcommand subcommand:subcommands){
 						if(subcommand.getName().equals(subcommandName)){
 							subcommand.execute(sender, args);
-							sender.sendMessage("Execution time: "+(System.nanoTime()-start)/1000000+"ms");
 							return true;
 						}
 					}
@@ -47,8 +45,6 @@ public abstract class CommandManager implements CommandExecutor {
 		}
 
 		command.execute(sender);
-		double timeElapsed = (System.nanoTime()-start)/1000000;
-		sender.sendMessage("Execution time: "+timeElapsed+"ms");
 		return true;
 	}
 }

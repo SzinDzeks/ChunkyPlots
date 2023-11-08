@@ -42,8 +42,7 @@ public class PlotBlacklistCommand extends Subcommand {
 
 	@Override
 	public void execute(CommandSender sender, String[] args) {
-		if(sender instanceof Player){
-			Player player = (Player) sender;
+		if(sender instanceof Player player){
 			if(args.length == 3) {
 				if (args[1].equals("add"))
 					addPlayerToBlacklist(player, args[2], plotManager.getPlotByChunk(player.getLocation().getChunk()));
@@ -57,12 +56,12 @@ public class PlotBlacklistCommand extends Subcommand {
 //				TODO: Fix being able to add one player to blacklist multiple times
 				if (args[1].equals("add")) {
 					List<Plot> plots = getPlotsFromGroupName(player, args[3]);
-					if(plots.size() > 0) for(Plot plot: plots) addPlayerToBlacklist(player, args[2], plot );
+					if(!plots.isEmpty()) for(Plot plot: plots) addPlayerToBlacklist(player, args[2], plot );
 					else player.sendMessage(ChatUtils.fixColors("&cDo tej grupy nie są przypisane żadne działki"));
 				}
 				else if (args[1].equals("remove")) {
 					List<Plot> plots = getPlotsFromGroupName(player, args[3]);
-					if(plots.size() > 0) for(Plot plot: plots) removePlayerFromBlacklist(player, args[2], plot);
+					if(!plots.isEmpty()) for(Plot plot: plots) removePlayerFromBlacklist(player, args[2], plot);
 					else player.sendMessage(ChatUtils.fixColors("&cDo tej grupy nie są przypisane żadne działki"));
 				}
 			} else if(args.length == 6){

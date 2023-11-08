@@ -103,6 +103,7 @@ public class ConfigManager {
 				if(flag.name().equals(key)) defaultFlags.put(flag, value);
 			}
 		}
+		//TODO: Change message below to english
 		if(defaultFlags.size() != Flag.values().length)
 			Bukkit.getLogger().warning("Nie dla wszystkich flag ustawiono domyślne wartości! ("+ defaultFlags.size() +" z " + Flag.values().length +")");
 	}

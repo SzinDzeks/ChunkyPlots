@@ -9,8 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="Update API version to 1.20">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="Update version to 1.20.2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/ConfigManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699283003155</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Update version to 1.20.2">
+      <option name="closed" value="true" />
+      <created>1699283025221</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699283025221</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -246,6 +256,7 @@
     <MESSAGE value="Changed package name from &quot;listeners&quot; to &quot;protections&quot;. &#10;Combined &quot;BlockPistonExtendListener&quot; and &quot;BlockPistonRetractListener&quot; into &quot;PistonProtection&quot;.&#10;Changed name of some of the class files." />
     <MESSAGE value="Fixed piston head going through plot borders." />
     <MESSAGE value="Update API version to 1.20" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update API version to 1.20" />
+    <MESSAGE value="Update version to 1.20.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update version to 1.20.2" />
   </component>
 </project>
