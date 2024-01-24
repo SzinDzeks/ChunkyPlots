@@ -6,8 +6,12 @@ import me.szindzeks.ChunkyPlots.manager.ConfigManager;
 import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import org.bukkit.command.CommandSender;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlotHelpCommand extends Subcommand {
 	final ConfigManager configManager = ChunkyPlots.plugin.configManager;
+	ArrayList<Subcommand> subcommands;
 
 	@Override
 	public String getName() {
@@ -16,7 +20,7 @@ public class PlotHelpCommand extends Subcommand {
 
 	@Override
 	public String getDescription() {
-		return "Wyświetla listę komend plugin";
+		return "lista dostępnych komend";
 	}
 
 	@Override
@@ -34,27 +38,19 @@ public class PlotHelpCommand extends Subcommand {
 		sendHelpMessage(sender);
 	}
 
-	public static void sendHelpMessage(CommandSender sender){
-		sender.sendMessage(ChatUtils.fixColors("&9-----------{ " + ChunkyPlots.plugin.configManager.getPluginPrefix() + " &9}-----------"));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot help "));
-		sender.sendMessage(ChatUtils.fixColors("&9========================================"));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot dispose "));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot list "));
-		sender.sendMessage(ChatUtils.fixColors("&9========================================"));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot info "));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot info <x działki> <z działki> <nazwa świata>"));
-		sender.sendMessage(ChatUtils.fixColors("&9========================================"));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot members add <nick> "));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot members add <nick> <x działki> <z działki> <nazwa świata> "));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot members remove <nick>"));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot members remove <nick> <x działki> <z działki> <nazwa świata> "));
-		sender.sendMessage(ChatUtils.fixColors("&9========================================"));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot group create <nazwa grupy> "));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot group delete <nazwa grupy> "));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot group add <nazwa grupy>"));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot group add <nazwa grupy> <x działki> <z działki> <nazwa świata>"));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot group remove <nazwa grupy>"));
-		sender.sendMessage(ChatUtils.fixColors("&a/plot group remove <nazwa grupy> <x działki> <z działki> <nazwa świata>"));
-		sender.sendMessage(ChatUtils.fixColors("&9-----------{ " + ChunkyPlots.plugin.configManager.getPluginPrefix() + " &9}-----------"));
+	public void sendHelpMessage(CommandSender sender){
+		if(subcommands != null) {
+			ChatUtils.sendNoPrefixMessage(sender, "&9-----------{ " + ChunkyPlots.plugin.configManager.getPluginPrefix() + " &9}-----------");
+			for(Subcommand s: subcommands){
+				ChatUtils.sendNoPrefixMessage(sender, "&a/plot " + s.getName() + " &8- &7" + s.getDescription());
+			}
+			ChatUtils.sendNoPrefixMessage(sender, "&9-----------{ " + ChunkyPlots.plugin.configManager.getPluginPrefix() + " &9}-----------");
+		} else {
+			ChatUtils.sendMessage(sender, " ");
+		}
+	}
+
+	public void updateSubcommandList(ArrayList<Subcommand> subcommands) {
+		this.subcommands = subcommands;
 	}
 }

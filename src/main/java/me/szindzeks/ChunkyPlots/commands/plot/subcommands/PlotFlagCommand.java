@@ -5,6 +5,7 @@ import me.szindzeks.ChunkyPlots.basic.Flag;
 import me.szindzeks.ChunkyPlots.basic.MessageType;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.commands.Subcommand;
+import me.szindzeks.ChunkyPlots.commands.plot.PlotCommandManager;
 import me.szindzeks.ChunkyPlots.manager.*;
 import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import org.bukkit.command.CommandSender;
@@ -26,7 +27,7 @@ public class PlotFlagCommand extends Subcommand {
 
 	@Override
 	public String getDescription() {
-		return "Pozwala na zarządzanie flagami działki";
+		return "zarządzanie flagami działki";
 	}
 
 	@Override
@@ -46,7 +47,7 @@ public class PlotFlagCommand extends Subcommand {
 				if (args[1].equals("defaults")) displayFlags(player, true, null);
 				else if (args[1].equals("list"))
 					displayFlags(player, false, plotManager.getPlotByChunk(player.getLocation().getChunk()));
-				else PlotHelpCommand.sendHelpMessage(player);
+				else PlotCommandManager.sendHelpMessage(player);
 			} else if(args.length == 3){
 				if(args[1].equals("check")) displayFlagValue(player, args[2], plotManager.getPlotByChunk(player.getLocation().getChunk()));
 			} else if(args.length == 4){

@@ -22,7 +22,7 @@ public class PlotInfoCommand extends Subcommand {
 
 	@Override
 	public String getDescription() {
-		return "description";
+		return "wyświetla informacje o działce";
 	}
 
 	@Override

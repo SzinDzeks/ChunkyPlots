@@ -1,5 +1,6 @@
 package me.szindzeks.ChunkyPlots.util;
 
+import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.basic.User;
@@ -24,6 +25,10 @@ public class ChatUtils {
 	}
 
 	public static void sendMessage(CommandSender sender, String message){
+		sendNoPrefixMessage(sender, ChunkyPlots.plugin.configManager.getPluginPrefix() + message);
+	}
+
+	public static void sendNoPrefixMessage(CommandSender sender, String message){
 		sender.sendMessage(fixColors(message));
 	}
 

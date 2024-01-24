@@ -27,7 +27,7 @@ public class PlotBlacklistCommand extends Subcommand {
 
 	@Override
 	public String getDescription() {
-		return "Pozwala na powstrzymanie niechcianych graczy przed wchodzeniem na działkę";
+		return "zarzrądzanie blokowaniem dostępu do dziąłki";
 	}
 
 	@Override

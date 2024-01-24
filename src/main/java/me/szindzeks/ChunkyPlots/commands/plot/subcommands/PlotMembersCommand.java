@@ -24,7 +24,7 @@ public class PlotMembersCommand extends Subcommand {
 
 	@Override
 	public String getDescription() {
-		return "Pozwala na zarządzanie członkami działki";
+		return "zarządzanie członkami działki";
 	}
 
 	@Override

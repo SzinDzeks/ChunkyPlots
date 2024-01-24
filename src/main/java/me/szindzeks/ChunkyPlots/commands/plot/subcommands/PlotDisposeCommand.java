@@ -25,7 +25,7 @@ public class PlotDisposeCommand extends Subcommand {
 
 	@Override
 	public String getDescription() {
-		return "Pozwala na usunięcie działki. Zwraca blok działki.";
+		return "usuwa działkę i zwraca blok działki";
 	}
 
 	@Override

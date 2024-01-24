@@ -27,7 +27,7 @@ public class PlotGroupCommand extends Subcommand {
 
 	@Override
 	public String getDescription() {
-		return "Pozwala na zarządzenie grupami działek";
+		return "zarządzenie grupami działek";
 	}
 
 	@Override

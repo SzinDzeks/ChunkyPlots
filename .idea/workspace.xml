@@ -9,39 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="Update version to 1.20.2">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ChunkyPlots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ChunkyPlots.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="Change some class names to better match their purpose. Deleted unfinished abandoned features. Refactored CommandManager.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/ChunkyPlots.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/ChunkyPlots.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/Subcommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/Subcommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/PlotCommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/PlotCommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotGuiCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/AreaEffectCloudApplyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/misc/LingeringPotionProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/BlockBreakProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/BlockBreakProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/BlockBurnProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/BlockBurnProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/BlockFromToListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/BlockFromToListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/BlockPlaceListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/BlockPlaceListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/BlockSpreadListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/BlockSpreadListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/DispenserProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/redstone/DispenserProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/EntityDamageByEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/entity/EntityDamageProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/ExplodeProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/ExplodeProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/IgniteProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/IgniteProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PistonProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/redstone/PistonProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerBucketEmptyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/player/PlayerBucketEmptyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerInteractAtEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/player/PlayerInteractAtEntityListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerInteractListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/player/PlayerInteractListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerJoinListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listeners/PlayerJoinListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerLeashEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/entity/PlayerLeashEntityProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerLeftListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listeners/PlayerLeftListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerMoveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listeners/PlayerMoveListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerShearEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/entity/PlayerShearEntityProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerTakeLecternBookListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/LecternBookProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerUnleashEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/entity/PlayerUnleashEntityProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PotionProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/misc/SplashPotionProtection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/VehicleDamageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/entity/VehicleDamageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/VehicleEnterListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/entity/VehicleEnterListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/PlotCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/PlotCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/PlotCommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/PlotCommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotBlacklistCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotBlacklistCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotDisposeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotDisposeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotFlagCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotFlagCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotGroupCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotGroupCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotHelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotHelpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotInfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotInfoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotMembersCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotMembersCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotVisitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotVisitCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/util/ChatUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/util/ChatUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -255,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699283025221</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Change some class names to better match their purpose. Deleted unfinished abandoned features. Refactored CommandManager.java">
+      <option name="closed" value="true" />
+      <created>1706108644465</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706108644465</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -307,6 +295,7 @@
     <MESSAGE value="Fixed piston head going through plot borders." />
     <MESSAGE value="Update API version to 1.20" />
     <MESSAGE value="Update version to 1.20.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update version to 1.20.2" />
+    <MESSAGE value="Change some class names to better match their purpose. Deleted unfinished abandoned features. Refactored CommandManager.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change some class names to better match their purpose. Deleted unfinished abandoned features. Refactored CommandManager.java" />
   </component>
 </project>

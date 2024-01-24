@@ -19,7 +19,7 @@ public class PlotListCommand extends Subcommand {
 
 	@Override
 	public String getDescription() {
-		return "Wyświetla listę działek gracza";
+		return "lista działek gracza";
 	}
 
 	@Override

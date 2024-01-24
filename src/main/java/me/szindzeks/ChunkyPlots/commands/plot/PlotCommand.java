@@ -7,6 +7,6 @@ import org.bukkit.command.CommandSender;
 public class PlotCommand extends Command {
 	@Override
 	public void execute(CommandSender sender) {
-		PlotHelpCommand.sendHelpMessage(sender);
+		PlotCommandManager.sendHelpMessage(sender);
 	}
 }

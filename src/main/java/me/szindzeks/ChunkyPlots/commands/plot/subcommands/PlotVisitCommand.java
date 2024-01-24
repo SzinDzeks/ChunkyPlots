@@ -23,7 +23,7 @@ public class PlotVisitCommand extends Subcommand {
 
 	@Override
 	public String getDescription() {
-		return "Pozwala na tworzenie i odwiedzanie punktów wizyt";
+		return "tworzenie i odwiedzanie punktów wizyt";
 	}
 
 	@Override
