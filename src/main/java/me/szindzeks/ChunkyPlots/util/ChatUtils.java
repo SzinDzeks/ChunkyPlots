@@ -5,6 +5,7 @@ import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.basic.User;
 import me.szindzeks.ChunkyPlots.basic.VisitPoint;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -20,6 +21,10 @@ public class ChatUtils {
 			fixedStringList.add(fixColors(string));
 		}
 		return fixedStringList;
+	}
+
+	public static void sendMessage(CommandSender sender, String message){
+		sender.sendMessage(fixColors(message));
 	}
 
 }

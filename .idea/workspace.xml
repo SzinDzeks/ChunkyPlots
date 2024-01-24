@@ -10,9 +10,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9f5cc09-c269-4668-b373-b287f3ac5ec3" name="Default Changelist" comment="Update version to 1.20.2">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ChunkyPlots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ChunkyPlots.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/ChunkyPlots.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/ChunkyPlots.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/manager/ConfigManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/Subcommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/Subcommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/PlotCommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/PlotCommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/commands/plot/subcommands/PlotGuiCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/AreaEffectCloudApplyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/misc/LingeringPotionProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/BlockBreakProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/BlockBreakProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/BlockBurnProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/BlockBurnProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/BlockFromToListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/BlockFromToListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/BlockPlaceListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/BlockPlaceListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/BlockSpreadListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/BlockSpreadListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/DispenserProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/redstone/DispenserProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/EntityDamageByEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/entity/EntityDamageProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/ExplodeProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/ExplodeProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/IgniteProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/IgniteProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PistonProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/redstone/PistonProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerBucketEmptyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/player/PlayerBucketEmptyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerInteractAtEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/player/PlayerInteractAtEntityListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerInteractListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/player/PlayerInteractListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerJoinListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listeners/PlayerJoinListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerLeashEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/entity/PlayerLeashEntityProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerLeftListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listeners/PlayerLeftListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerMoveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/listeners/PlayerMoveListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerShearEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/entity/PlayerShearEntityProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerTakeLecternBookListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/block/LecternBookProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PlayerUnleashEntityListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/entity/PlayerUnleashEntityProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/PotionProtection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/misc/SplashPotionProtection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/VehicleDamageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/entity/VehicleDamageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/VehicleEnterListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/protections/entity/VehicleEnterListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/util/ChatUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/szindzeks/ChunkyPlots/util/ChatUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +106,9 @@
   <component name="MavenRunner">
     <option name="jreName" value="jbrsdk-17" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -87,19 +120,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/chunkyplots-1.20.1-server/plugins&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.ChunkyPlots [deploy:deploy-file,-url...].executor": "Run",
+    "Maven.ChunkyPlots [deploy:deploy-file...].executor": "Run",
+    "Maven.ChunkyPlots [deploy:deploy].executor": "Run",
+    "Maven.ChunkyPlots [install:install-file...].executor": "Run",
+    "Maven.ChunkyPlots [install:install-file].executor": "Run",
+    "Maven.ChunkyPlots [package].executor": "Run",
+    "Maven.Local server deploy.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "dev",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/ChunkyPlots/chunkyplots-1.20.2-server/plugins",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="me.szindzeks.ChunkyPlots.commands" />
@@ -124,6 +166,7 @@
                 <option value="package" />
               </list>
             </option>
+            <option name="multimoduleDir" />
             <option name="pomFileName" />
             <option name="profilesMap">
               <map />
@@ -138,6 +181,13 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">

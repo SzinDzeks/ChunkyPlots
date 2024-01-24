@@ -1,4 +1,4 @@
-package me.szindzeks.ChunkyPlots.protections;
+package me.szindzeks.ChunkyPlots.protections.entity;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
@@ -10,7 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerUnleashEntityEvent;
 
-public class PlayerUnleashEntityListener implements Listener {
+public class PlayerUnleashEntityProtection implements Listener {
 	@EventHandler
 	public void onPlayerUnleashEntity(PlayerUnleashEntityEvent event){
 		final Location entityLocation = event.getEntity().getLocation();

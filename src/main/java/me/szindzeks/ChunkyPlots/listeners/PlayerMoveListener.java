@@ -1,4 +1,4 @@
-package me.szindzeks.ChunkyPlots.protections;
+package me.szindzeks.ChunkyPlots.listeners;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.MessageType;

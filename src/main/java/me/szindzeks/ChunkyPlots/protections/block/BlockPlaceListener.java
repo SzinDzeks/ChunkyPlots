@@ -1,4 +1,4 @@
-package me.szindzeks.ChunkyPlots.protections;
+package me.szindzeks.ChunkyPlots.protections.block;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;

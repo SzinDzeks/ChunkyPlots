@@ -1,4 +1,4 @@
-package me.szindzeks.ChunkyPlots.protections;
+package me.szindzeks.ChunkyPlots.protections.entity;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.projectiles.BlockProjectileSource;
 import org.bukkit.projectiles.ProjectileSource;
 
-public class EntityDamageByEntityListener implements Listener {
+public class EntityDamageProtection implements Listener {
     private final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 
     @EventHandler

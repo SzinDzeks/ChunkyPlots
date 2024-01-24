@@ -1,4 +1,4 @@
-package me.szindzeks.ChunkyPlots.protections;
+package me.szindzeks.ChunkyPlots.protections.entity;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
@@ -8,17 +8,17 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerLeashEntityEvent;
+import org.bukkit.event.player.PlayerShearEntityEvent;
 
-public class PlayerLeashEntityListener implements Listener {
+public class PlayerShearEntityProtection implements Listener {
     @EventHandler
-    public void onPlayerLeashEntity(final PlayerLeashEntityEvent event){
+    public void onPlayerShearEntity(final PlayerShearEntityEvent event){
         final Location entityLocation = event.getEntity().getLocation();
         final Player player = event.getPlayer();
-        final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlotByLocation(entityLocation);
+        final Plot eventPlot = ChunkyPlots.plugin.plotManager.getPlotByChunk(entityLocation.getChunk());
 
         if(eventPlot != null) {
-            if (!PlotPermissionUtil.canPlayerAffectPlot(player, eventPlot, Flag.ENTITY_LEASH_MEMBER, Flag.ENTITY_LEASH_STRANGER)) {
+            if (!PlotPermissionUtil.canPlayerAffectPlot(player, eventPlot, Flag.ENTITY_SHEAR_MEMBER, Flag.ENTITY_SHEAR_STRANGER)) {
                 event.setCancelled(true);
             }
         }

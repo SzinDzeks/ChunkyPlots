@@ -1,4 +1,4 @@
-package me.szindzeks.ChunkyPlots.protections;
+package me.szindzeks.ChunkyPlots.listeners;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.User;
@@ -6,15 +6,20 @@ import me.szindzeks.ChunkyPlots.manager.UserManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
-public class PlayerLeftListener implements Listener {
+public class PlayerJoinListener implements Listener {
     @EventHandler
-    public void onPlayerLeft(final PlayerQuitEvent event){
+    public void onPlayerJoin(final PlayerJoinEvent event){
         final Player player = event.getPlayer();
 
         final UserManager userManager = ChunkyPlots.plugin.userManager;
         User user = userManager.getUser(player.getName());
-        userManager.saveUser(user);
+        if(user == null){
+            user = new User(event.getPlayer().getName());
+            userManager.saveUser(user);
+        }
+        final ChunkyPlots plugin = ChunkyPlots.plugin;
+        plugin.userManager.addUser(user);
     }
 }

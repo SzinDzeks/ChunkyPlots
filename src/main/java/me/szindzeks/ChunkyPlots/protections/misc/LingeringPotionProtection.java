@@ -1,4 +1,4 @@
-package me.szindzeks.ChunkyPlots.protections;
+package me.szindzeks.ChunkyPlots.protections.misc;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
@@ -12,7 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.AreaEffectCloudApplyEvent;
 import org.bukkit.projectiles.ProjectileSource;
 
-public class AreaEffectCloudApplyListener implements Listener {
+public class LingeringPotionProtection implements Listener {
 	private final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 
 	@EventHandler

@@ -1,8 +1,19 @@
 package me.szindzeks.ChunkyPlots;
 
-import me.szindzeks.ChunkyPlots.commands.plot.PlotCommandExecutor;
-import me.szindzeks.ChunkyPlots.protections.*;
+import me.szindzeks.ChunkyPlots.commands.plot.PlotCommandManager;
+import me.szindzeks.ChunkyPlots.listeners.PlayerJoinListener;
+import me.szindzeks.ChunkyPlots.listeners.PlayerLeftListener;
+import me.szindzeks.ChunkyPlots.listeners.PlayerMoveListener;
 import me.szindzeks.ChunkyPlots.manager.*;
+import me.szindzeks.ChunkyPlots.protections.block.*;
+import me.szindzeks.ChunkyPlots.protections.entity.*;
+import me.szindzeks.ChunkyPlots.protections.misc.LingeringPotionProtection;
+import me.szindzeks.ChunkyPlots.protections.misc.SplashPotionProtection;
+import me.szindzeks.ChunkyPlots.protections.player.PlayerBucketEmptyListener;
+import me.szindzeks.ChunkyPlots.protections.player.PlayerInteractAtEntityListener;
+import me.szindzeks.ChunkyPlots.protections.player.PlayerInteractListener;
+import me.szindzeks.ChunkyPlots.protections.redstone.DispenserProtection;
+import me.szindzeks.ChunkyPlots.protections.redstone.PistonProtection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -43,7 +54,7 @@ public class ChunkyPlots extends JavaPlugin {
 	}
 
 	private void registerListeners(){
-		this.getServer().getPluginManager().registerEvents(new AreaEffectCloudApplyListener(),this);
+		this.getServer().getPluginManager().registerEvents(new LingeringPotionProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new BlockBreakProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new BlockBurnProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new IgniteProtection(),this);
@@ -52,23 +63,23 @@ public class ChunkyPlots extends JavaPlugin {
 		this.getServer().getPluginManager().registerEvents(new PistonProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new BlockPlaceListener(),this);
 		this.getServer().getPluginManager().registerEvents(new DispenserProtection(),this);
-		this.getServer().getPluginManager().registerEvents(new EntityDamageByEntityListener(),this);
+		this.getServer().getPluginManager().registerEvents(new EntityDamageProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new ExplodeProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerBucketEmptyListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerInteractAtEntityListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerInteractListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerJoinListener(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerLeftListener(),this);
-		this.getServer().getPluginManager().registerEvents(new PlayerLeashEntityListener(),this);
+		this.getServer().getPluginManager().registerEvents(new PlayerLeashEntityProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new PlayerMoveListener(),this);
-		this.getServer().getPluginManager().registerEvents(new PlayerShearEntityListener(),this);
-		this.getServer().getPluginManager().registerEvents(new PlayerTakeLecternBookListener(),this);
-		this.getServer().getPluginManager().registerEvents(new PlayerUnleashEntityListener(),this);
-		this.getServer().getPluginManager().registerEvents(new PotionProtection(),this);
+		this.getServer().getPluginManager().registerEvents(new PlayerShearEntityProtection(),this);
+		this.getServer().getPluginManager().registerEvents(new LecternBookProtection(),this);
+		this.getServer().getPluginManager().registerEvents(new PlayerUnleashEntityProtection(),this);
+		this.getServer().getPluginManager().registerEvents(new SplashPotionProtection(),this);
 		this.getServer().getPluginManager().registerEvents(new VehicleDamageListener(),this);
 		this.getServer().getPluginManager().registerEvents(new VehicleEnterListener(),this);
 	}
 	private void registerCommands(){
-		getCommand("plot").setExecutor(new PlotCommandExecutor());
+		getCommand("plot").setExecutor(new PlotCommandManager());
 	}
 }

@@ -1,4 +1,4 @@
-package me.szindzeks.ChunkyPlots.protections;
+package me.szindzeks.ChunkyPlots.protections.block;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
@@ -10,7 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTakeLecternBookEvent;
 
-public class PlayerTakeLecternBookListener implements Listener {
+public class LecternBookProtection implements Listener {
 	@EventHandler
 	public void onPlayerTakeLecternBook(PlayerTakeLecternBookEvent event){
 		final Location lecternLocation = event.getLectern().getLocation();

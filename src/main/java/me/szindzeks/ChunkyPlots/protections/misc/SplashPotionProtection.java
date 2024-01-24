@@ -1,4 +1,4 @@
-package me.szindzeks.ChunkyPlots.protections;
+package me.szindzeks.ChunkyPlots.protections.misc;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class PotionProtection implements Listener {
+public class SplashPotionProtection implements Listener {
 	private final PlotManager plotManager = ChunkyPlots.plugin.plotManager;
 
 	@EventHandler

@@ -7,7 +7,7 @@ import me.szindzeks.ChunkyPlots.commands.plot.subcommands.*;
 
 import java.util.ArrayList;
 
-public class PlotCommandExecutor extends CommandManager {
+public class PlotCommandManager extends CommandManager {
 
 	protected ArrayList<Subcommand> getSubcommands() {
 		ArrayList<Subcommand> subcommands = new ArrayList<>();
@@ -15,7 +15,6 @@ public class PlotCommandExecutor extends CommandManager {
 		subcommands.add(new PlotBlacklistCommand());
 		subcommands.add(new PlotFlagCommand());
 		subcommands.add(new PlotGroupCommand());
-		subcommands.add(new PlotGuiCommand());
 		subcommands.add(new PlotHelpCommand());
 		subcommands.add(new PlotInfoCommand());
 		subcommands.add(new PlotMembersCommand());
