@@ -16,6 +16,8 @@ import org.bukkit.inventory.ItemStack;
 import java.io.File;
 import java.util.*;
 
+import static me.szindzeks.ChunkyPlots.manager.MessageManager.*;
+
 public class PlotManager {
 	private final List<Plot> plots = new ArrayList<Plot>();
 	private ItemStack plotItem;
@@ -153,8 +155,8 @@ public class PlotManager {
 			assignPlotToUserDefaultGroup(plot, user);
 			plots.add(plot);
 			savePlot(plot);
-			player.sendMessage(configManager.getMessage(MessageType.PLOT_CREATED).replace("{plotID}", plotID));
-		} else player.sendMessage(configManager.getMessage(MessageType.PLOT_ALREADY_EXISTS).replace("{plotID}", plotID));
+			sendMessage(player, configManager.getMessage(MessageType.PLOT_CREATED).replace("{plotID}", plotID));
+		} else sendMessage(player, configManager.getMessage(MessageType.PLOT_ALREADY_EXISTS).replace("{plotID}", plotID));
 	}
 
 	private void assignPlotToUserDefaultGroup(Plot plot, User user){

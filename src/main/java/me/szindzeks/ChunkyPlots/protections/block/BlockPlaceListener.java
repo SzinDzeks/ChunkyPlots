@@ -6,6 +6,7 @@ import me.szindzeks.ChunkyPlots.basic.MessageType;
 import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.manager.ConfigManager;
 import me.szindzeks.ChunkyPlots.manager.CraftingManager;
+import me.szindzeks.ChunkyPlots.manager.MessageManager;
 import me.szindzeks.ChunkyPlots.manager.PlotManager;
 import me.szindzeks.ChunkyPlots.util.PlotPermissionUtil;
 import org.bukkit.Material;
@@ -31,12 +32,12 @@ public class BlockPlaceListener implements Listener {
             if(!PlotPermissionUtil.canPlayerAffectPlot(player, blockPlot, Flag.PLACE_MEMBER, Flag.PLACE_STRANGER)){
                 event.setCancelled(true);
                 String message = configManager.getMessage(MessageType.NOT_PERMITTED);
-                player.sendMessage(message);
+                MessageManager.sendMessage(player, message);
             } else {
                 if(hasPlayerPlacedAPlotBlock(player, block)){
                     event.setCancelled(true);
                     String message = configManager.getMessage(MessageType.PLOT_ALREADY_EXISTS);
-                    player.sendMessage(message);
+                    MessageManager.sendMessage(player, message);
                 }
             }
         } else {
@@ -46,7 +47,7 @@ public class BlockPlaceListener implements Listener {
                     block.setType(Material.AIR);
                 } else {
                     String message = configManager.getMessage(MessageType.NOT_PERMITTED);
-                    player.sendMessage(message);
+                    MessageManager.sendMessage(player, message);
                 }
             }
         }
