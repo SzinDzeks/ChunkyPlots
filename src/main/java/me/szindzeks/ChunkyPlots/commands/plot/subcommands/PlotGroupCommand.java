@@ -99,15 +99,15 @@ public class PlotGroupCommand extends Subcommand {
 
 				String rawMessage = configManager.getMessage(MessageType.GROUP_CREATE);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, user.getGroupByName(groupName));
-				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				MessageManager.sendMessage(player, uncolouredMessage);
 			} else {
 				String rawMessage = configManager.getMessage(MessageType.GROUP_ALREADY_EXISTS);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, user.getGroupByName(groupName));
-				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				MessageManager.sendMessage(player, uncolouredMessage);
 			}
 		} else {
 			String rawMessage = configManager.getMessage(MessageType.NULL_USER);
-			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+			MessageManager.sendMessage(player, rawMessage);
 		}
 	}
 
@@ -123,21 +123,21 @@ public class PlotGroupCommand extends Subcommand {
 
 					String rawMessage = configManager.getMessage(MessageType.GROUP_DELETE);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
-					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+					MessageManager.sendMessage(player, uncolouredMessage);
 				} else {
 					group = new Group(groupName);
 					String rawMessage = configManager.getMessage(MessageType.NULL_GROUP);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
-					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+					MessageManager.sendMessage(player, uncolouredMessage);
 				}
 			} else {
 				String rawMessage = configManager.getMessage(MessageType.NULL_USER);
-				MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+				MessageManager.sendMessage(player, rawMessage);
 			}
 		} else {
 			String rawMessage = configManager.getMessage(MessageType.CANNOT_DELETE_DEFAULT_GROUP);
 			String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, user.getGroupByName("all"));
-			MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			MessageManager.sendMessage(player, uncolouredMessage);
 		}
 	}
 
@@ -154,26 +154,26 @@ public class PlotGroupCommand extends Subcommand {
 
 						String rawMessage = configManager.getMessage(MessageType.PLOT_ADDED_TO_GROUP);
 						String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, group);
-						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+						MessageManager.sendMessage(player, uncolouredMessage);
 					} else {
 						String rawMessage = configManager.getMessage(MessageType.PLOT_ALREADY_IN_GROUP);
 						String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
-						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+						MessageManager.sendMessage(player, uncolouredMessage);
 					}
 				} else {
 					String rawMessage = configManager.getMessage(MessageType.CANNOT_ADD_PLOT_TO_DEFAULT_GROUP);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
-					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+					MessageManager.sendMessage(player, uncolouredMessage);
 				}
 			} else {
 				group = new Group(groupName);
 				String rawMessage = configManager.getMessage(MessageType.NULL_GROUP);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
-				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				MessageManager.sendMessage(player, uncolouredMessage);
 			}
 		} else {
 			String rawMessage = configManager.getMessage(MessageType.NULL_USER);
-			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+			MessageManager.sendMessage(player, rawMessage);
 		}
 	}
 
@@ -190,26 +190,26 @@ public class PlotGroupCommand extends Subcommand {
 
 						String rawMessage = configManager.getMessage(MessageType.PLOT_REMOVED_FROM_GROUP);
 						String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, group);
-						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+						MessageManager.sendMessage(player, uncolouredMessage);
 					} else {
 						String rawMessage = configManager.getMessage(MessageType.PLOT_NOT_IN_GROUP);
 						String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
-						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+						MessageManager.sendMessage(player, uncolouredMessage);
 					}
 				} else {
 					String rawMessage = configManager.getMessage(MessageType.CANNOT_REMOVE_PLOT_FROM_DEFAULT_GROUP);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
-					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+					MessageManager.sendMessage(player, uncolouredMessage);
 				}
 			} else {
 				group = new Group(groupName);
 				String rawMessage = configManager.getMessage(MessageType.NULL_GROUP);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, group);
-				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				MessageManager.sendMessage(player, uncolouredMessage);
 			}
 		} else {
 			String rawMessage = configManager.getMessage(MessageType.NULL_USER);
-			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+			MessageManager.sendMessage(player, rawMessage);
 		}
 	}
 
@@ -231,7 +231,7 @@ public class PlotGroupCommand extends Subcommand {
 		}
 		String rawMessage = ChunkyPlots.plugin.configManager.getMessage(MessageType.NULL_GROUP);
 		String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, player);
-		MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+		MessageManager.sendMessage(player, uncolouredMessage);
 		return plots;
 
 	}

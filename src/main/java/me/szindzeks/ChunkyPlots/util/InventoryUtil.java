@@ -1,5 +1,6 @@
 package me.szindzeks.ChunkyPlots.util;
 
+import me.szindzeks.ChunkyPlots.manager.MessageManager;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -20,8 +21,8 @@ public class InventoryUtil {
 	}
 
 	private static void modifyItemMetaWithValues(ItemMeta itemMeta, String name, List<String> lore, HashMap<Enchantment, Integer> enchantments, boolean isUnbreakable){
-		itemMeta.setDisplayName(ChatUtils.fixColors(name));
-		itemMeta.setLore(ChatUtils.fixColors(lore));
+		itemMeta.setDisplayName(MessageManager.fixColors(name));
+		itemMeta.setLore(MessageManager.fixColors(lore));
 		for(Enchantment e:enchantments.keySet()){
 			itemMeta.addEnchant(e, enchantments.get(e), true);
 		}

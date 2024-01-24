@@ -3,11 +3,10 @@ package me.szindzeks.ChunkyPlots.commands.plot.subcommands;
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.commands.Subcommand;
 import me.szindzeks.ChunkyPlots.manager.ConfigManager;
-import me.szindzeks.ChunkyPlots.util.ChatUtils;
+import me.szindzeks.ChunkyPlots.manager.MessageManager;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlotHelpCommand extends Subcommand {
 	final ConfigManager configManager = ChunkyPlots.plugin.configManager;
@@ -40,13 +39,13 @@ public class PlotHelpCommand extends Subcommand {
 
 	public void sendHelpMessage(CommandSender sender){
 		if(subcommands != null) {
-			ChatUtils.sendNoPrefixMessage(sender, "&9-----------{ " + ChunkyPlots.plugin.configManager.getPluginPrefix() + " &9}-----------");
+			MessageManager.sendNoPrefixMessage(sender, "&9-----------{ " + ChunkyPlots.plugin.configManager.getPluginPrefix() + " &9}-----------");
 			for(Subcommand s: subcommands){
-				ChatUtils.sendNoPrefixMessage(sender, "&a/plot " + s.getName() + " &8- &7" + s.getDescription());
+				MessageManager.sendNoPrefixMessage(sender, "&a/plot " + s.getName() + " &8- &7" + s.getDescription());
 			}
-			ChatUtils.sendNoPrefixMessage(sender, "&9-----------{ " + ChunkyPlots.plugin.configManager.getPluginPrefix() + " &9}-----------");
+			MessageManager.sendNoPrefixMessage(sender, "&9-----------{ " + ChunkyPlots.plugin.configManager.getPluginPrefix() + " &9}-----------");
 		} else {
-			ChatUtils.sendMessage(sender, " ");
+			MessageManager.sendMessage(sender, "&cSpecified subcommand was not found.");
 		}
 	}
 

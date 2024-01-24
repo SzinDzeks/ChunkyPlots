@@ -1,7 +1,6 @@
 package me.szindzeks.ChunkyPlots.commands;
 
-import com.google.common.base.Optional;
-import me.szindzeks.ChunkyPlots.util.ChatUtils;
+import me.szindzeks.ChunkyPlots.manager.MessageManager;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
@@ -28,7 +27,7 @@ public abstract class CommandManager implements CommandExecutor {
 			if(subcommand != null)
 				subcommand.execute(sender, args);
             else
-				ChatUtils.sendMessage(sender, "&cCouldn't find matching subcommand to execute.");
+				MessageManager.sendMessage(sender, "&cCouldn't find matching subcommand to execute.");
 		} else command.execute(sender);
 
 		return true;

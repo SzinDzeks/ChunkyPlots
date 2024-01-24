@@ -11,6 +11,7 @@ public class VisitManager {
 	private List<VisitPoint> visitPoints = new ArrayList<>();
 
 	public VisitManager(){ loadVisitPoints(); }
+	//TODO: Find better solution to save visit points on server shutdown
 	protected void finalize(){ saveVisitPoints(); }
 
 

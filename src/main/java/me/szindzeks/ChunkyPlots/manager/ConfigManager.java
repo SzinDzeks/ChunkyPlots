@@ -3,7 +3,6 @@ package me.szindzeks.ChunkyPlots.manager;
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.Flag;
 import me.szindzeks.ChunkyPlots.basic.MessageType;
-import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -15,6 +14,7 @@ import java.util.Set;
 
 public class ConfigManager {
 	private String pluginPrefix;
+	private String prefixSpacer;
 
 	private Material plotItemMaterial;
 	private String plotItemName;
@@ -30,7 +30,8 @@ public class ConfigManager {
 	private void loadConfig() {
 		FileConfiguration config = ChunkyPlots.plugin.config;
 
-		pluginPrefix = ChatUtils.fixColors(config.getString("pluginPrefix"));
+		pluginPrefix = config.getString("pluginPrefix");
+		prefixSpacer = config.getString("prefixSpacer");
 		loadPlotItem(config);
 		loadDefaultFlags(config);
 		loadMessagesFromConfig();
@@ -92,7 +93,7 @@ public class ConfigManager {
 
 	private void loadMessageFromConfig(MessageType type, String messageName){
 		ConfigurationSection messageConfig = ChunkyPlots.plugin.config.getConfigurationSection("messages");
-		messages.put(type, ChatUtils.fixColors(pluginPrefix + " " + messageConfig.getString(messageName)));
+		messages.put(type, messageConfig.getString(messageName));
 	}
 
 	private void loadDefaultFlags(FileConfiguration config) {
@@ -114,6 +115,7 @@ public class ConfigManager {
 	}
 
 	public String getPluginPrefix() { return  pluginPrefix; }
+	public String getPrefixSpacer() { return prefixSpacer; }
 	public Material getPlotItemMaterial() { return  plotItemMaterial; }
 	public String getPlotItemName() { return  plotItemName; }
 	public List<String> getPlotItemLore() { return  plotItemLore; }
@@ -121,5 +123,4 @@ public class ConfigManager {
 	public String getMessage(MessageType type){
 		return messages.get(type);
 	}
-
 }

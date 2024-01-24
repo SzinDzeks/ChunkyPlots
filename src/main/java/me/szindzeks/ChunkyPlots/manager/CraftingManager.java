@@ -1,18 +1,15 @@
 package me.szindzeks.ChunkyPlots.manager;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
-import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import me.szindzeks.ChunkyPlots.util.InventoryUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 

@@ -55,7 +55,7 @@ public class PlayerMoveListener implements Listener {
                         }
                     } else {
                         if(newPlot == null){
-                            MessageManager.sendColouredMessageToPlayer("&e&lKwadraciarze.pl &8&l» &7&cDziałka, na której stałeś została usunięta!", player);
+                            MessageManager.sendMessage(player, "&cDziałka, na której stałeś została usunięta!");
                             user.hasEntered = false;
                         } else {
                             if (!newPlot.getOwnerNickname().equals(previousPlot.getOwnerNickname())) {
@@ -70,9 +70,9 @@ public class PlayerMoveListener implements Listener {
     }
 
     private void sendEnterMessages(Player player, ConfigManager configManager, Plot newPlot){
-        player.sendMessage(configManager.getMessage(MessageType.ENTERED_PLOT).replace("{plotOwnerName}", newPlot.getOwnerNickname()));
+        MessageManager.sendMessage(player, configManager.getMessage(MessageType.ENTERED_PLOT).replace("{plotOwnerName}", newPlot.getOwnerNickname()));
     }
     private void sendLeaveMessages(Player player, ConfigManager configManager, Plot previousPlot){
-        player.sendMessage(configManager.getMessage(MessageType.LEFT_PLOT).replace("{plotOwnerName}", previousPlot.getOwnerNickname()));
+        MessageManager.sendMessage(player, configManager.getMessage(MessageType.LEFT_PLOT).replace("{plotOwnerName}", previousPlot.getOwnerNickname()));
     }
 }

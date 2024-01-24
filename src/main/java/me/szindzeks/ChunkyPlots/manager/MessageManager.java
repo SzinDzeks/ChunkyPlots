@@ -2,13 +2,32 @@ package me.szindzeks.ChunkyPlots.manager;
 
 import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.*;
-import me.szindzeks.ChunkyPlots.util.ChatUtils;
+import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MessageManager {
-	public static void sendColouredMessageToPlayer(String message, Player player){
-		player.sendMessage(ChatUtils.fixColors(message));
+	private static ConfigManager configManager = ChunkyPlots.plugin.configManager;
+	public static String fixColors(String string){
+		return ChatColor.translateAlternateColorCodes('&', string);
 	}
+	public static List<String> fixColors(List<String> list){
+		ArrayList<String> fixed = new ArrayList<>();
+		for(String string: list)
+			fixed.add(ChatColor.translateAlternateColorCodes('&', string));
+		return fixed;
+	}
+	public static void sendNoPrefixMessage(CommandSender sender, String message){
+		sender.sendMessage(fixColors(message));
+	}
+	public static void sendMessage(CommandSender sender, String message){
+		sendNoPrefixMessage(sender, configManager.getPluginPrefix() + configManager.getPrefixSpacer() + message);
+	}
+
 	public static String replacePlaceholders(String message, VisitPoint visitPoint){
 		message = message.replace("{visitPointName}", visitPoint.getName());
 		return message;

@@ -4,7 +4,6 @@ import me.szindzeks.ChunkyPlots.ChunkyPlots;
 import me.szindzeks.ChunkyPlots.basic.*;
 import me.szindzeks.ChunkyPlots.commands.Subcommand;
 import me.szindzeks.ChunkyPlots.manager.*;
-import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import org.bukkit.Chunk;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -63,7 +62,7 @@ public class PlotDisposeCommand extends Subcommand {
 					}
 					for (VisitPoint visitPoint : visitPointsToDelete) {
 						visitManager.deleteVisitPoint(visitPoint);
-						player.sendMessage(ChatUtils.fixColors("&cNa usuniętej działce znajdował się punkt &f" + visitPoint.getName() + "&c, więc został on usunięty!"));
+						MessageManager.sendMessage(player, "&cNa usuniętej działce znajdował się punkt &f" + visitPoint.getName() + "&c, więc został on usunięty!");
 					}
 				} else player.sendMessage(configManager.getMessage(MessageType.NOT_OWNER));
 			} else player.sendMessage(configManager.getMessage(MessageType.NULL_PLOT).replace("{plotID}", plotID));

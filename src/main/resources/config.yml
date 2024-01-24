@@ -1,4 +1,5 @@
-pluginPrefix: "&e&lKwadraciarze.pl &8&l» &7"
+pluginPrefix: "&e&lKwadraciarze.pl"
+prefixSpacer: " &8&l» &7"
 usePrefix: true
 
 plotItem:

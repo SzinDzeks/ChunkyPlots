@@ -52,7 +52,7 @@ public class PlotVisitCommand extends Subcommand {
 								user.isTeleporting = true;
 								String rawMessage = configManager.getMessage(MessageType.TELEPORTING_TO_VISIT_POINT);
 								String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
-								MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+								MessageManager.sendMessage(player, uncolouredMessage);
 								final int x = player.getLocation().getBlockX();
 								final int y = player.getLocation().getBlockY();
 								final int z = player.getLocation().getBlockZ();
@@ -62,31 +62,31 @@ public class PlotVisitCommand extends Subcommand {
 											player.teleport(visitPoint.getLocation());
 											String rawMessage1 = configManager.getMessage(MessageType.TELEPORTED_TO_VISIT_POINT);
 											String uncolouredMessage1 = MessageManager.replacePlaceholders(rawMessage1, visitPoint);
-											MessageManager.sendColouredMessageToPlayer(uncolouredMessage1, player);
+											MessageManager.sendMessage(player, uncolouredMessage1);
 										} else {
 											String rawMessage1 = configManager.getMessage(MessageType.TELEPORT_CANCELLED);
 											String uncolouredMessage1 = MessageManager.replacePlaceholders(rawMessage1, visitPoint);
-											MessageManager.sendColouredMessageToPlayer(uncolouredMessage1, player);
+											MessageManager.sendMessage(player, uncolouredMessage1);
 										}
 									}
 									user.isTeleporting = false;
 								}, 20 * 5);
 							} else {
 								String rawMessage = configManager.getMessage(MessageType.ALREADY_TELEPORTING);
-								MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+								MessageManager.sendMessage(player, rawMessage);
 							}
 						} else {
 							String rawMessage = configManager.getMessage(MessageType.VISIT_POINT_NOT_SAFE).replace("{visitPointName}", visitPointName);
-							MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+							MessageManager.sendMessage(player, rawMessage);
 						}
 					} else {
 						String rawMessage = configManager.getMessage(MessageType.VISIT_POINT_CLOSED).replace("{visitPointName}", visitPointName);
 						String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
-						MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+						MessageManager.sendMessage(player, uncolouredMessage);
 					}
 				} else {
 					String rawMessage = configManager.getMessage(MessageType.NULL_VISIT_POINT).replace("{visitPointName}", visitPointName);
-					MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+					MessageManager.sendMessage(player, rawMessage);
 				}
 			} else if (args.length == 3){
 				if(args[1].equals("createpoint")) createVisitPoint(player, args[2], null, plotManager.getPlotByChunk(player.getLocation().getChunk()));
@@ -101,7 +101,7 @@ public class PlotVisitCommand extends Subcommand {
 				if (visitPoint.getName().equals(name)) {
 					String rawMessage = configManager.getMessage(MessageType.VISIT_POINT_ALREADY_EXISTS);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
-					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+					MessageManager.sendMessage(player, uncolouredMessage);
 					return;
 				}
 			}
@@ -111,10 +111,10 @@ public class PlotVisitCommand extends Subcommand {
 
 			String rawMessage = configManager.getMessage(MessageType.CREATED_VISIT_POINT);
 			String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
-			MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			MessageManager.sendMessage(player, uncolouredMessage);
 		} else {
 			String rawMessage = configManager.getMessage(MessageType.VISIT_POINT_NOT_INSIDE_PLOT);
-			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+			MessageManager.sendMessage(player, rawMessage);
 		}
 	}
 
@@ -126,16 +126,16 @@ public class PlotVisitCommand extends Subcommand {
 
 				String rawMessage = configManager.getMessage(MessageType.DELETED_VISIT_POINT);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint);
-				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				MessageManager.sendMessage(player, uncolouredMessage);
 			} else {
 				String rawMessage = configManager.getMessage(MessageType.NOT_VISIT_POINT_OWNER);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, visitPoint, player);
-				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				MessageManager.sendMessage(player, uncolouredMessage);
 			}
 		} else {
 			String rawMessage = configManager.getMessage(MessageType.NULL_VISIT_POINT);
 			String uncolouredMessage = rawMessage.replace("{visitPointName}", visitPointName);
-			MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+			MessageManager.sendMessage(player, uncolouredMessage);
 		}
 	}
 }

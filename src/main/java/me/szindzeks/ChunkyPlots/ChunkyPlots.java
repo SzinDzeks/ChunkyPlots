@@ -26,7 +26,6 @@ public class ChunkyPlots extends JavaPlugin {
 	public ConfigManager configManager;
 	public VisitManager visitManager;
 	public CraftingManager craftingManager;
-	public MarketManager marketManager;
 
 	@Override
 	public void onEnable(){
@@ -50,7 +49,6 @@ public class ChunkyPlots extends JavaPlugin {
 		userManager = new UserManager();
 		visitManager = new VisitManager();
 		craftingManager = new CraftingManager();
-		marketManager = new MarketManager();
 	}
 
 	private void registerListeners(){

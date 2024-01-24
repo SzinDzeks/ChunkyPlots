@@ -6,7 +6,6 @@ import me.szindzeks.ChunkyPlots.basic.Plot;
 import me.szindzeks.ChunkyPlots.basic.User;
 import me.szindzeks.ChunkyPlots.commands.Subcommand;
 import me.szindzeks.ChunkyPlots.manager.*;
-import me.szindzeks.ChunkyPlots.util.ChatUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -50,12 +49,12 @@ public class PlotMembersCommand extends Subcommand {
 				if (args[1].equals("add")) {
 					List<Plot> plots = PlotGroupCommand.getPlotsFromGroupName(player, args[3]);
 					if(plots.size() > 0) for (Plot plot : plots) addMemberToPlot(player, args[2], plot);
-					else player.sendMessage(ChatUtils.fixColors("&cDo tej grupy nie są przypisane żadne działki"));
+					else MessageManager.sendMessage(player, "&cDo tej grupy nie są przypisane żadne działki");
 				}
 				else if (args[1].equals("remove")) {
 					List<Plot> plots = PlotGroupCommand.getPlotsFromGroupName(player, args[3]);
 					if(plots.size() > 0) for (Plot plot : plots) removeMemberFromPlot(player, args[2], plot);
-					else player.sendMessage(ChatUtils.fixColors("&cDo tej grupy nie są przypisane żadne działki"));
+					else MessageManager.sendMessage(player, "&cDo tej grupy nie są przypisane żadne działki");
 				}
 			} else if(args.length == 6){
 				if (args[1].equals("add")) addMemberToPlot(player, args[2], plotManager.getPlotByCoordinates(args[3], args[4], args[5]));
@@ -75,29 +74,29 @@ public class PlotMembersCommand extends Subcommand {
 							plotManager.savePlot(plot);
 							String rawMessage = configManager.getMessage(MessageType.ADDED_MEMBER_TO_PLOT);
 							String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, user);
-							MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+							MessageManager.sendMessage(player, uncolouredMessage);
 						} else {
 							String rawMessage = configManager.getMessage(MessageType.PLAYER_IS_ALREADY_A_MEMBER);
 							String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, user);
-							MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+							MessageManager.sendMessage(player, uncolouredMessage);
 						}
 					} else {
 						String rawMessage = configManager.getMessage(MessageType.NULL_USER).replace("{userName}", userName);
-						MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+						MessageManager.sendMessage(player, rawMessage);
 					}
 				} else {
 					String rawMessage = configManager.getMessage(MessageType.CANNOT_ADD_OWNER_AS_MEMBER);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, player);
-					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+					MessageManager.sendMessage(player, uncolouredMessage);
 				}
 			} else {
 				String rawMessage = configManager.getMessage(MessageType.NOT_OWNER);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, player);
-				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				MessageManager.sendMessage(player, uncolouredMessage);
 			}
 		} else {
 			String rawMessage = configManager.getMessage(MessageType.NULL_PLOT);
-			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+			MessageManager.sendMessage(player, rawMessage);
 		}
 	}
 
@@ -112,19 +111,19 @@ public class PlotMembersCommand extends Subcommand {
 					User user = userManager.getUser(userName);
 					String rawMessage = configManager.getMessage(MessageType.REMOVED_MEMBER_FROM_PLOT);
 					String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, user);
-					MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+					MessageManager.sendMessage(player, uncolouredMessage);
 				} else {
 					String rawMessage = configManager.getMessage(MessageType.NULL_USER).replace("{userName}", userName);
-					MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+					MessageManager.sendMessage(player, rawMessage);
 				}
 			} else {
 				String rawMessage = configManager.getMessage(MessageType.NOT_OWNER);
 				String uncolouredMessage = MessageManager.replacePlaceholders(rawMessage, plot, player);
-				MessageManager.sendColouredMessageToPlayer(uncolouredMessage, player);
+				MessageManager.sendMessage(player, uncolouredMessage);
 			}
 		} else {
 			String rawMessage = configManager.getMessage(MessageType.NULL_PLOT);
-			MessageManager.sendColouredMessageToPlayer(rawMessage, player);
+			MessageManager.sendMessage(player, rawMessage);
 		}
 	}
 }
